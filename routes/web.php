@@ -14,3 +14,10 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/admin',function(){
+	$title='商城后台';
+	return view('admin.index',['title'=>$title]);	
+});
+
+
