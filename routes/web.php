@@ -15,10 +15,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+//商城后台的路由
 Route::get('/admin',function(){
 	$title='商城后台';
 	return view('admin.index',['title'=>$title]);	
 });
+
 
 //用户后台登录页面
 Route::get('admin/login','Admin\LoginController@login');
@@ -41,7 +44,11 @@ Route::resource('user','Admin\UserController');
 Route::get('crypt','Admin\LoginController@crypt');
 
 
+//商城后台友情链接模块
+Route::resource('friendlink','Admin\FriendlinkController');
 
+//商城后台文章管理模块
+Route::resource('work','Admin\WorkController');
 
 
 
@@ -49,3 +56,4 @@ Route::get('crypt','Admin\LoginController@crypt');
 
 //资源路由
 // Route::resource('good','GoodController');
+
