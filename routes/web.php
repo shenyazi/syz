@@ -19,5 +19,9 @@ Route::get('/admin',function(){
 	$title='商城后台';
 	return view('admin.index',['title'=>$title]);	
 });
-
+Route::get('/admin/add',function(){
+	$title='添加商品';
+	return view('/admin/add',['title'=>$title]);
+});
+route::resource('good','Admin\GoodController');
 

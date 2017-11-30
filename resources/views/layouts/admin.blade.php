@@ -119,12 +119,12 @@
                   <li class="sub-menu">
                       <a href="javascript:;" class="">
                           <i class="icon-th"></i>
-                          <span>Data Tables</span>
+                          <span>商品管理</span>
                           <span class="arrow"></span>
                       </a>
                       <ul class="sub">
-                          <li><a class="" href="basic_table.html">Basic Table</a></li>
-                          <li><a class="" href="dynamic_table.html">Dynamic Table</a></li>
+                          <li><a class="" href="{{url('admin/add')}}">添加商品</a></li>
+                          <li><a class="" href="dynamic_table.html">浏览商品</a></li>
                       </ul>
                   </li>
                   <li>
