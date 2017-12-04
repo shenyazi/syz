@@ -23,6 +23,13 @@ Route::get('/admin',function(){
 });
 
 
+//商城前台的路由
+Route::get('/home',function(){
+	$title='商城前台首页';
+	return view('home.index',['title'=>$title]);	
+});
+
+
 //用户后台登录页面
 Route::get('admin/login','Admin\LoginController@login');
 
@@ -36,12 +43,10 @@ Route::get('admin/yzm','Admin\LoginController@yzm');
 Route::resource('user','Admin\UserController');
 
 
-// //用户添加
-// Route::get('/admin/user/add', 'Admin\UserController@add');
-// //用户插入
-// Route::post('/admin/user/insert', 'Admin\UserController@insert');
+
 //后台验证用户密码
 Route::get('crypt','Admin\LoginController@crypt');
+
 
 
 //商城后台友情链接模块

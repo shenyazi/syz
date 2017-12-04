@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
-use App\Model\Friendlink;
+use App\Http\Model\Friendlink;
 
 class FriendlinkController extends Controller
 {
@@ -165,12 +165,18 @@ class FriendlinkController extends Controller
 	 * 删除链接数据
 	 */
 	public function destroy($id){
-		$friend = Friendlink::find($id);
+		$res = Friendlink::find($id)->delete();
 
-		if($friend->delete()){
-			return back()->with('msg','删除链接成功');
-		}else{
-			return back()->with('msg','删除链接失败!!!');
-		}
+		//删除成功后返回到ajax的数据
+		$data=[];
+		if($res){
+            $data['error'] = 0;
+            $data['msg'] ="删除成功";
+        }else{
+            $data['error'] = 1;
+            $data['msg'] ="删除失败";
+        }
+
+		return $data;
 	}
 }
