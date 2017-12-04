@@ -16,44 +16,53 @@ Route::get('/', function () {
 });
 
 
-//商城后台的路由
-Route::get('/admin',function(){
-	$title='商城后台';
-	return view('admin.index',['title'=>$title]);	
-});
 
 
-//用户后台登录页面
-Route::get('admin/login','Admin\LoginController@login');
 
-//用户后台登录
-Route::post('admin/dologin','Admin\LoginController@doLogin');
+
 //后台登录时的验证码
 Route::get('admin/yzm','Admin\LoginController@yzm');
 
 
-//后台的用户路由
-Route::resource('user','Admin\UserController');
 
 
-// //用户添加
-// Route::get('/admin/user/add', 'Admin\UserController@add');
-// //用户插入
-// Route::post('/admin/user/insert', 'Admin\UserController@insert');
+//后台的登录的路由
+Route::get('admin/login','Admin\LoginController@login');
+Route::post('admin/dologin','Admin\LoginController@doLogin');
+
+Route::group(['middleware'=>'islogin','namespace'=>'Admin'],function (){
+	
+	//商城后台的路由
+	Route::get('/admin','LoginController@index');
+		
+	
+
+	
+    
+    //后台用户登出的路由
+    Route::get('logout','LoginController@logout');
+
+	//商城后台友情链接模块
+	Route::resource('friendlink','FriendlinkController');
+
+	//商城后台文章管理模块
+	Route::resource('work','WorkController');
+   
+   // 用户模块路由
+ 	Route::resource('user','UserController');
+});
+
 //后台验证用户密码
 Route::get('crypt','Admin\LoginController@crypt');
 
 
-//商城后台友情链接模块
-Route::resource('friendlink','Admin\FriendlinkController');
-
-//商城后台文章管理模块
-Route::resource('work','Admin\WorkController');
 
 
 
 
 
-//资源路由
-// Route::resource('good','GoodController');
+
+
+
+
 

@@ -58,7 +58,7 @@
                             <li><a href="#"><i class=" icon-suitcase"></i>个人中心</a></li>
                             <li><a href="#"><i class="icon-cog"></i> 设置</a></li>
                             <li><a href="#"><i class="icon-bell-alt"></i> 修改密码</a></li>
-                            <li><a href="login.html"><i class="icon-key"></i> 退 出</a></li>
+                            <li><a href="{{url('admin/logout')}}"><i class="icon-key"></i> 退 出</a></li>
                         </ul>
                     </li>
                     <!-- user login dropdown end -->
@@ -72,12 +72,7 @@
           <div id="sidebar"  class="nav-collapse ">
               <!-- sidebar menu start-->
               <ul class="sidebar-menu">
-                  <li class="active">
-                      <a class="" href="index.html">
-                          <i class="icon-dashboard"></i>
-                          <span>Dashboard</span>
-                      </a>
-                  </li>
+                  
                   <li class="sub-menu">
                       <a href="javascript:;" class="">
                           <i class="icon-book"></i>
@@ -85,8 +80,19 @@
                           <span class="arrow"></span>
                       </a>
                       <ul class="sub">
-                          <li><a class="" href="general.html">用户添加</a></li>
-                          <li><a class="" href="buttons.html">用户浏览</a></li>
+                          <li><a class="" href="{{url('user/create')}}">用户添加</a></li>
+                          <li><a class="" href="{{url('user')}}">用户浏览</a></li>
+                      </ul>
+                  </li>
+                   <li class="sub-menu">
+                      <a href="javascript:;" class="">
+                          <i class="icon-book"></i>
+                          <span>友情链接模块</span>
+                          <span class="arrow"></span>
+                      </a>
+                      <ul class="sub">
+                          <li><a class="" href="{{ url('friendlink/create') }}">友情链接添加</a></li>
+                          <li><a class="" href="{{ url('friendlink') }}">友情链接浏览</a></li>
                       </ul>
                   </li>
               </ul>
@@ -111,6 +117,7 @@
     <script src="{{ asset('/admins/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.js') }}"></script>
     <script src="{{ asset('/admins/js/owl.carousel.js') }}" ></script>
     <script src="{{ asset('/admins/js/jquery.customSelect.min.js') }}" ></script>
+    <script src="{{ asset('/layer/layer.js') }}" ></script>
 
     <!--common script for all pages-->
     <script src="{{ asset('/admins/js/common-scripts.js') }}"></script>

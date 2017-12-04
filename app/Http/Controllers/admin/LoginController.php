@@ -97,9 +97,9 @@ class LoginController extends Controller
           }
        // 3.登录逻辑
        // 3.0验证码是否正确
-       // if( $input['code'] !=  Session::get('code')) {
-       //     return redirect('admin/login')->with('errors','验证码错误');
-       // }
+       if( $input['code'] !=  Session::get('code')) {
+           return redirect('admin/login')->with('errors','验证码错误');
+       }
 
        // 3.1 判断是否有此用户
        $user = User::where('username',$input['username'])->first();
@@ -109,17 +109,24 @@ class LoginController extends Controller
           }
          //3.2密码是否正确
         if(Hash::check($request->password,$user->password)){
+            Session::put('user',$user);
             return redirect('/admin');
         }else{
             return redirect('admin/login')->with('errors','密码不正确');
         }
        
        // 4.登录成功，将用户信息保存到session中，用于判断用户是佛登录以及获取登录用户信息
+       
+       // return redirect('admin/index');
        // 5登录失败，返回登录页面
     }
 
-    public function crypt()
-    {
-    	
-    }
+   
+   /**
+    * 后台首页的方法
+    */
+   public function index(){
+      $title='商城后台';
+      return view('admin.index',['title'=>$title]); 
+   }
 }

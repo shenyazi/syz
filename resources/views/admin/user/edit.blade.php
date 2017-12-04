@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('title')
-    后台用户添加页面
+   后台用户修改页面
 @endsection
 @section('content')
 <section id="main-content">
@@ -10,7 +10,7 @@
                   <div class="col-lg-12">
                       <section class="panel">
                           <header class="panel-heading">
-                              用户添加
+                              用户修改
                           </header>
                           <div class="panel-body">
                               @if (count($errors) > 0)
@@ -23,25 +23,22 @@
                                 </div>
                               @endif
                               
-                              <form class="form-horizontal" id="default" action="/user" method='post'>
+                              <form class="form-horizontal" id="default" action="{{url('user/'.$user->id)}}" method='post'>
+
                                   <fieldset title="Step1" class="step" id="default-step-0">
                                       <legend> </legend>
                                       <div class="form-group">
                                           <label class="col-lg-2 control-label">用户名</label>
                                           <div class="col-lg-10">
-                                              <input type="text" class="form-control" placeholder="用户名必须输入" name="username" value="{{ old('username')}}">
+                                          <input type="hidden" name="_method" value="put">
+                                              <input type="text" class="form-control" placeholder="用户名必须输入" name="username" value="{{$user->username}}">
                                           </div>
                                       </div>
-                                      <div class="form-group">
-                                          <label class="col-lg-2 control-label">密码</label>
-                                          <div class="col-lg-10">
-                                              <input type="password" class="form-control" placeholder="密码必须输入" name="password" value="{{ old('password')}}">
-                                          </div>
-                                      </div>
-                                    
+                                     
                                   </fieldset>
                                      {{csrf_field()}}
-                                  <input type="submit" class="finish btn btn-danger" value="添加"/>
+                                  <input type="submit" class="finish btn btn-danger" value="提交"/>
+                                  <input type="button" class="back" onclick="history.go(-1)" value="返回">
                               </form>
                           </div>
                       </section>

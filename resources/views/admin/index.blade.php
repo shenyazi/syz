@@ -1,6 +1,7 @@
 @extends('layouts.admin')
-
-@section('title',$title)
+@section('title')
+    后台首页
+@endsection
 
 @section('content')
 	 <section id="main-content">
