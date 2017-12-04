@@ -95,6 +95,28 @@
                           <li><a class="" href="{{ url('friendlink') }}">友情链接浏览</a></li>
                       </ul>
                   </li>
+                   <li class="sub-menu">
+                      <a href="javascript:;" class="">
+                          <i class="icon-book"></i>
+                          <span>文章管理模块</span>
+                          <span class="arrow"></span>
+                      </a>
+                      <ul class="sub">
+                          <li><a class="" href="{{url('work/create')}}">文章添加</a></li>
+                          <li><a class="" href="{{url('work')}}">文章浏览</a></li>
+                      </ul>
+                  </li>
+                   <li class="sub-menu">
+                      <a href="javascript:;" class="">
+                          <i class="icon-book"></i>
+                          <span>友情链接管理模块</span>
+                          <span class="arrow"></span>
+                      </a>
+                      <ul class="sub">
+                          <li><a class="" href="{{url('friendlink/create')}}">友情链接添加</a></li>
+                          <li><a class="" href="{{url('friendlink')}}">友情链接浏览</a></li>
+                      </ul>
+                  </li>
               </ul>
               <!-- sidebar menu end-->
           </div>
@@ -125,6 +147,10 @@
     <!--script for this page-->
     <script src="{{ asset('/admins/js/sparkline-chart.js') }}"></script>
     <script src="{{ asset('/admins/js/easy-pie-chart.js') }}"></script>
+
+    <!-- layer.js -->
+    <script type="text/javascript" src="{{asset('layer/layer.js')}}"></script>
+
 
   <script>
 

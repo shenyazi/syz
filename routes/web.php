@@ -19,9 +19,19 @@ Route::get('/', function () {
 
 
 
+//商城前台的路由
+Route::get('/home',function(){
+	$title='商城前台首页';
+	return view('home.index',['title'=>$title]);	
+});
+
+
+
+
 
 //后台登录时的验证码
 Route::get('admin/yzm','Admin\LoginController@yzm');
+
 
 
 
@@ -52,8 +62,12 @@ Route::group(['middleware'=>'islogin','namespace'=>'Admin'],function (){
  	Route::resource('user','UserController');
 });
 
+
 //后台验证用户密码
 Route::get('crypt','Admin\LoginController@crypt');
+
+
+
 
 
 

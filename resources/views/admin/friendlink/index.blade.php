@@ -54,20 +54,11 @@
                                   <td>{{$v->id}}</td>
                                   <td class="hidden-phone">{{$v->lname}}</td>
                                   <td>{{$v->lurl}} </td>
-                                  <td>
-                                      @if($v->status ==1)  开启
-                                      @else   关闭
-                                      @endif 
-                                  </td>
+                                  <td>{{$v->status ==1? '开启' :'关闭' }}</td>
                                   <td>{{$v->limg}}</td>
                                   <td>
-                                      <a href='/friendlink/{{$v->id}}/edit' style='margin-right:3px;float:left'><button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button></a>
-                                      <form action='/friendlink/{{$v->id}}' method='post' style='float:left'>
-                                          <input type="hidden" name="_method" value='delete'>
-                                            {{csrf_field()}}
-                                          <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
-                                      </form>
-                                     
+                                      <a href="{{url('friendlink/'.$v->id.'/edit')}}" style='margin-right:3px;float:left'><button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button></a>
+                                      <a href="javascript:;" onclick="del({{$v->id}})" style='margin-right:3px;float:left'><button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button></a>
                                   </td>
                               </tr>
                             @endforeach
@@ -84,4 +75,28 @@
               </div>
           </section>
       </section>
+
+      <script type="text/javascript">
+          //链接删除调用的函数
+          function del(id){
+            layer.confirm('您确定要删除???', {
+              btn: ['确定','取消'] 
+            }, function(){
+              //$.post("请求服务器的路径","携带的参数", 获取执行成功后的额返回数据);
+              $.post("{{url('friendlink')}}/"+id,{"_method":'delete',"_token":"{{csrf_token()}}"},function(data){
+                //删除成功
+                if(data.error==0){
+                  layer.msg(data.msg, {icon: 6});
+                  var t=setTimeout("location.href = location.href;",3000);
+                }else{
+                  layer.msg(data.msg, {icon: 5});
+                  var t=setTimeout("location.href = location.href;",3000);
+                }
+              });
+              
+            }, function(){
+              
+            });
+          }
+      </script>
 @endsection
