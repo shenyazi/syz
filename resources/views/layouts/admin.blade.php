@@ -55,9 +55,8 @@
                         </a>
                         <ul class="dropdown-menu extended logout">
                             <div class="log-arrow-up"></div>
-                            <li><a href="#"><i class=" icon-suitcase"></i>个人中心</a></li>
-                            <li><a href="#"><i class="icon-cog"></i> 设置</a></li>
-                            <li><a href="#"><i class="icon-bell-alt"></i> 修改密码</a></li>
+                            
+                            <li><a href="{{url('admin/passedit')}}"><i class="icon-bell-alt"></i> 修改密码</a></li>
                             <li><a href="{{url('admin/logout')}}"><i class="icon-key"></i> 退 出</a></li>
                         </ul>
                     </li>

@@ -26,7 +26,8 @@ Route::get('/home',function(){
 });
 
 
-
+//商城前台登录的路由
+Route::get('home/login','Home\LoginController@login');
 
 
 //后台登录时的验证码
@@ -40,6 +41,12 @@ Route::get('admin/yzm','Admin\LoginController@yzm');
 Route::get('admin/login','Admin\LoginController@login');
 Route::post('admin/dologin','Admin\LoginController@doLogin');
 
+//后台用户退出的路由
+Route::get('admin/logout','Admin\LoginController@logout');
+
+//修改密码的路由
+Route::get('admin/passedit','Admin\LoginController@passedit');
+Route::get('admin/password','Admin\LoginController@password');
 Route::group(['middleware'=>'islogin','namespace'=>'Admin'],function (){
 	
 	//商城后台的路由
@@ -49,8 +56,6 @@ Route::group(['middleware'=>'islogin','namespace'=>'Admin'],function (){
 
 	
     
-    //后台用户登出的路由
-    Route::get('logout','LoginController@logout');
 
 	//商城后台友情链接模块
 	Route::resource('friendlink','FriendlinkController');

@@ -28,6 +28,13 @@ class LoginController extends Controller
         return view('admin/login');  
     }
 
+    //退出登录
+    public function logout(){
+      
+      session(['user'=>null]);
+
+      return view('admin/login');
+    }
 
     public function yzm()
     {
@@ -129,4 +136,62 @@ class LoginController extends Controller
       $title='商城后台';
       return view('admin.index',['title'=>$title]); 
    }
+
+   //加载修改密码页面
+  public function passedit(){
+    return view('admin.passedit');
+  }
+
+  //修改密码
+  public function password(Request $request)
+  {
+    $data = $request->except('_token');
+
+
+    $rule = [
+        'password' => 'required|between:3,20',
+        'newpass'  => 'required|between:3,20',
+        'repass'   => 'required|same:pass',
+    ];
+
+    $mess = [
+        'password.required'=>'旧密码必须输入',
+        'password.between' =>'旧密码的长度在3-20位之间',
+        'newpass.required' =>'新密码必须输入',
+        'newpass.between'  =>'新密码的长度在3-20位之间',
+        'repass.required'  =>'确认密码必须输入',
+        'repass.same'      =>'确认密码必须和新密码相同',
+    ];
+
+    $validator = Validator::make($data,$rule,$mess);
+
+    //如果验证失败
+    if($validator->fails()){
+      return back()
+          ->withErrors($validator)
+          ->withInput();
+    }
+
+    //验证密码是否输入正确
+    $admin = Admin::where('name',session('user')->name)->first();
+
+    if(Hash::check($admin->password)!= trim
+      ($data['password'])){
+
+      return back()->with('errors','密码不正确');
+          
+        }
+
+    //修改密码
+    $admin->password=Hash::make($data['newpass']);
+
+    if($admin->save()){
+      session(['user'=>'']);
+      return redirect('admin/login')->with('success','请先登录');
+    }else{
+
+      back()->with('sorry');
+    }
+
+  }
 }
