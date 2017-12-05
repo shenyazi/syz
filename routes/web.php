@@ -52,13 +52,19 @@ Route::group(['middleware'=>'islogin','namespace'=>'Admin'],function (){
 	//商城后台的路由
 	Route::get('/admin','LoginController@index');
 		
+<<<<<<< HEAD
 	
 
 	
     
+=======
+    //后台用户登出的路由
+    Route::get('logout','LoginController@logout');
+>>>>>>> origin/sunlei
 
 	//商城后台友情链接模块
 	Route::resource('friendlink','FriendlinkController');
+	Route::post('/admin/upload','FriendlinkController@upload');
 
 	//商城后台文章管理模块
 	Route::resource('work','WorkController');
@@ -69,7 +75,7 @@ Route::group(['middleware'=>'islogin','namespace'=>'Admin'],function (){
 
 
 //后台验证用户密码
-Route::get('crypt','Admin\LoginController@crypt');
+// Route::get('crypt','Admin\LoginController@crypt');
 
 
 

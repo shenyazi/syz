@@ -53,8 +53,8 @@
                               <tr>
                                   <th><i class="icon-bullhorn"></i>ID</th>
                                   <th class="hidden-phone"><i class="icon-question-sign"></i>文章标题</th>
-                                  <th><i class="icon-bookmark"></i>文章内容</th>
-                                  <th><i class=" icon-edit"></i>文章链接</th>
+                                  <th><i class="icon-bookmark"></i>文章描述</th>
+                                  <!-- <th><i class=" icon-edit"></i>文章内容</th> -->
                                   <th>操作</th>
                               </tr>
                               </thead>
@@ -63,8 +63,8 @@
                               <tr>
                                   <td>{{$v->id}}</td>
                                   <td>{{$v->wtitle}}</td>
-                                  <td class='award-name'>{{$v->wcontent}} </td>
-                                  <td>{{$v->wpath}}</td>
+                                  <td class='award-name'>{{$v->wdesc}} </td>
+                                  <!-- <td>{!! $v->wcontent !!}</td> -->
                                   <td>
                                       <a href='/work/{{$v->id}}/edit' style='margin-right:3px;float:left'><button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button></a>
                                       <a href='javascript:;' onclick='del({{$v->id}})' style='margin-right:3px;float:left'><button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button></a>
