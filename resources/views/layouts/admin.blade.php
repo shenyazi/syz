@@ -20,6 +20,7 @@
     <!-- Custom styles for this template -->
     <link href="{{ asset('/admins/css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('/admins/css/style-responsive.css') }}" rel="stylesheet" />
+       <script type="text/javascript" src="{{ asset('/js/jquery-1.8.3.min.js')}}"></script>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
     <!--[if lt IE 9]>
@@ -58,7 +59,7 @@
                             <li><a href="#"><i class=" icon-suitcase"></i>个人中心</a></li>
                             <li><a href="#"><i class="icon-cog"></i> 设置</a></li>
                             <li><a href="#"><i class="icon-bell-alt"></i> 修改密码</a></li>
-                            <li><a href="login.html"><i class="icon-key"></i> 登 出</a></li>
+                            <li><a href="login.html"><i class="icon-key"></i> 退 出</a></li>
                         </ul>
                     </li>
                     <!-- user login dropdown end -->
@@ -81,17 +82,15 @@
                   <li class="sub-menu">
                       <a href="javascript:;" class="">
                           <i class="icon-book"></i>
-                          <span>UI Elements</span>
+                          <span>用户管理</span>
                           <span class="arrow"></span>
                       </a>
                       <ul class="sub">
-                          <li><a class="" href="general.html">General</a></li>
-                          <li><a class="" href="buttons.html">Buttons</a></li>
-                          <li><a class="" href="widget.html">Widget</a></li>
-                          <li><a class="" href="slider.html">Slider</a></li>
-                          <li><a class="" href="font_awesome.html">Font Awesome</a></li>
+                          <li><a class="" href="general.html">用户添加</a></li>
+                          <li><a class="" href="buttons.html">用户浏览</a></li>
                       </ul>
                   </li>
+
                   <li class="sub-menu">
                       <a href="javascript:;" class="">
                           <i class="icon-cogs"></i>
@@ -123,7 +122,7 @@
                           <span class="arrow"></span>
                       </a>
                       <ul class="sub">
-                          <li><a class="" href="{{url('admin/add')}}">添加商品</a></li>
+                          <li><a class="" href="{{url('/admin/good/create')}}">添加商品</a></li>
                           <li><a class="" href="dynamic_table.html">浏览商品</a></li>
                       </ul>
                   </li>
@@ -154,7 +153,7 @@
                           <span>Login Page</span>
                       </a>
                   </li>
-              </ul>
+				         </ul>
               <!-- sidebar menu end-->
           </div>
       </aside>
@@ -208,3 +207,6 @@
 
   </body>
 </html>
+
+
+       

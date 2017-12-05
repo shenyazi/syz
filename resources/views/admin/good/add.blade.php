@@ -23,8 +23,22 @@
                           <header class="panel-heading no-border">
                               添加商品
                           </header>
-                          <form action="{{url('good')}}" method="POST">
+                          @if (count($errors) > 0)
+                <div class="alert alert-danger">
+                    <ul>
+                        @if(is_object($errors))
+                            @foreach ($errors->all() as $error)
+                                <li style="color:red">{{ $error }}</li>
+                        @endforeach
+                        @else
+                            <li style="color:red">{{ $errors }}</li>
+                        @endif
+                    </ul>
+                </div>
+            @endif
+                          <form id="#bd" action="{{url('/admin/good')}}" method="POST">
                            {{csrf_field()}}
+                           
                           <table class="table table-bordered">
                               
                               <tr >
@@ -32,7 +46,7 @@
                                   
                                   <td>
                                       <select class="form-control" id="inputPassword2">  
-                                        <option  value="请选择">请选择</option>  
+                                        <option  value="请选择" >请选择</option>  
                                        
                                        </select>  
                                   </td>
@@ -42,20 +56,21 @@
                                   <th>商品名称:</th>
                                   <td>
 
-                                      <input class="form-control" id="inputPassword2" type="text" name="gname">
+                                      <input class="form-control" id="inputPassword3" type="text" name="gname" placeholder="请填写您的商品名称">
+                                     
                                   </td>
                               </tr>
                               <tr>
                                   <th>商品价格:</th>
                                   <td>
-                                      <input class="form-control" id="inputPassword2" type="text" name="gprice">
+                                      <input class="form-control" id="inputPassword2" type="text" name="gprice" placeholder="请标明您的价格">
                                   </td>
                               </tr>
                               <tr>
                                   <th>库存:</th>
                                   <td>
                                    
-                                      <input class="form-control" id="inputPassword2" type="text" name="goodsNum">
+                                      <input class="form-control" id="inputPassword2" type="text" name="goodsNum" placeholder="请填写您的商品数量">
                                   </td>
                               </tr>
                               <tr>
@@ -67,7 +82,7 @@
                                <tr>
                                   <th>商品描述:</th>
                                   <td>
-                                      <textarea class="form-control" id="inputPassword2" name="goodsDes"></textarea>
+                                      <textarea class="form-control" id="inputPassword2" name="goodsDes" placeholder="请对您的商品进行描述"></textarea>
                                   </td>
                               </tr>
                                <tr>
@@ -91,6 +106,48 @@
                       </section>
                   </div>
                   </form>
+                   <script type="text/javascript">
+                   
+
+                    
+                        $("input").focus(function(){
+
+                               $(this).attr('placeholder','');
+                              
+                        });
+                        
+                        // $("input").blur(function(){
+                          
+                            
+                        //    var data = new FormData($('#bd')[0]);
+                        //    data.append('_token',"{{csrf_token()}}");
+                          
+                        //   $.ajax({
+                        //     type:"POST",
+                            
+                        //     url:"{{url('/admin/good')}}",
+                        //     data:data,
+                        //     async: true,
+                            
+                        //     cache: false,
+                        //     contentType: false,
+                        //     processData: false,
+                        //     success:function(data)
+                        //     {
+                              
+                        //       console.log(1);
+                        //     },
+                        //     error: function(XMLHttpRequest, textStatus, errorThrown) {
+                        //                     alert("上传失败，请检查网络后重试");
+                        //                 }
+                        //   });
+
+
+                        // });
+
+
+                            
+                   </script>
                   
               <div class="row">
                   <div class="col-lg-12">
@@ -248,8 +305,11 @@
                       </section>
                   </div>
               </div>
+
+
               <!-- page end-->
           </section>
       </section>
+
       <!--main content end-->
   @endsection
