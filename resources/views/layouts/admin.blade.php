@@ -21,6 +21,9 @@
     <link href="{{ asset('/admins/css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('/admins/css/style-responsive.css') }}" rel="stylesheet" />
 
+    <script src="{{ asset('/admins/js/jquery.js') }}"></script>
+    <script src="{{ asset('/admins/js/jquery-1.8.3.min.js') }}"></script>
+
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
     <!--[if lt IE 9]>
       <script src="js/html5shiv.js"></script>
@@ -87,17 +90,6 @@
                    <li class="sub-menu">
                       <a href="javascript:;" class="">
                           <i class="icon-book"></i>
-                          <span>友情链接模块</span>
-                          <span class="arrow"></span>
-                      </a>
-                      <ul class="sub">
-                          <li><a class="" href="{{ url('friendlink/create') }}">友情链接添加</a></li>
-                          <li><a class="" href="{{ url('friendlink') }}">友情链接浏览</a></li>
-                      </ul>
-                  </li>
-                   <li class="sub-menu">
-                      <a href="javascript:;" class="">
-                          <i class="icon-book"></i>
                           <span>文章管理模块</span>
                           <span class="arrow"></span>
                       </a>
@@ -130,8 +122,7 @@
   </section>
 
     <!-- js placed at the end of the document so the pages load faster -->
-    <script src="{{ asset('/admins/js/jquery.js') }}"></script>
-    <script src="{{ asset('/admins/js/jquery-1.8.3.min.js') }}"></script>
+   
     <script src="{{ asset('/admins/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('/admins/js/jquery.scrollTo.min.js') }}"></script>
     <script src="{{ asset('/admins/js/jquery.nicescroll.js') }}" type="text/javascript"></script>

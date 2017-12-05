@@ -29,13 +29,13 @@ class WorkController extends Controller
         $rule = [
             'wtitle'=>'required',
             "wcontent"=>'required',
-            "wpath"=>'required',
+            "wdesc"=>'required',
         ];
 
         $mess = [
             'wtitle.required'=>'文章标题必须输入',
             'wcontent.required'=>'文章内容必须输入',
-            'wpath.required'=>'文章路径必须输入',
+            'wdesc.required'=>'文章描述必须输入',
             
         ];
 		 
@@ -51,7 +51,7 @@ class WorkController extends Controller
         $work=new Work();
         $work->wtitle=$request->wtitle;
 	    $work->wcontent=$request->wcontent;
-	    $work->wpath=$request->wpath;
+	    $work->wdesc=$request->wdesc;
 	    
 	    //插入数据库
 	    if($work->save()){
@@ -105,13 +105,13 @@ class WorkController extends Controller
         $rule = [
             'wtitle'=>'required',
             "wcontent"=>'required',
-            "wpath"=>'required',
+            "wdesc"=>'required',
         ];
 
         $mess = [
             'wtitle.required'=>'文章标题必须输入',
             'wcontent.required'=>'文章内容必须输入',
-            'wpath.required'=>'文章路径必须输入',
+            'wdesc.required'=>'文章描述必须输入',
             
         ];
 		 
@@ -129,7 +129,7 @@ class WorkController extends Controller
         //把表单提交的内容添加到$work变量中
         $work->wtitle=$request->wtitle;
 	    $work->wcontent=$request->wcontent;
-	    $work->wpath=$request->wpath;
+	    $work->wdesc=$request->wdesc;
 	    
 	    //插入数据库
 	    if($work->save()){
