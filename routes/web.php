@@ -50,6 +50,10 @@ Route::resource('friendlink','Admin\FriendlinkController');
 //商城后台文章管理模块
 Route::resource('work','Admin\WorkController');
 
+// 分类管理路由模块
+Route::resource('admin/cate','Admin\CateController');
+// 修改分类的排序
+Route::post('admin/cate/changeorder', 'Admin\CateController@changeOrder');
 
 
 
