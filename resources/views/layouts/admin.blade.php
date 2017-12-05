@@ -8,7 +8,7 @@
     <meta name="keyword" content="FlatLab, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
     <link rel="shortcut icon" href="{{ asset('/admins/img/favicon.html') }}">
 
-    <title>『Panda熊猫』-@yield('title')</title>
+    <title>@yield('title')-『Panda熊猫』</title>
 
     <!-- Bootstrap core CSS -->
     <link href="{{ asset('/admins/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -20,6 +20,9 @@
     <!-- Custom styles for this template -->
     <link href="{{ asset('/admins/css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('/admins/css/style-responsive.css') }}" rel="stylesheet" />
+    <script type="text/javascript" src="{{asset('jquery-1.8.3.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('layer/layer.js')}}"></script>
+
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
     <!--[if lt IE 9]>
@@ -114,6 +117,17 @@
                       <ul class="sub">
                           <li><a class="" href="{{url('friendlink/create')}}">友情链接添加</a></li>
                           <li><a class="" href="{{url('friendlink')}}">友情链接浏览</a></li>
+                      </ul>
+                  </li>
+                  <li class="sub-menu">
+                      <a href="javascript:;" class="">
+                          <i class="icon-tasks"></i>
+                          <span>类别管理</span>
+                          <span class="arrow"></span>
+                      </a>
+                      <ul class="sub">
+                          <li><a class="" href="{{url('admin/cate/create')}}">类别添加</a></li>
+                          <li><a class="" href="{{url('admin/cate')}}">类别浏览</a></li>
                       </ul>
                   </li>
               </ul>

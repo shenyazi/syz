@@ -74,6 +74,10 @@ Route::get('crypt','Admin\LoginController@crypt');
 
 
 
+// 分类管理路由模块
+Route::resource('admin/cate','Admin\CateController');
+// 修改分类的排序
+Route::post('admin/cate/changeorder', 'Admin\CateController@changeOrder');
 
 
 
