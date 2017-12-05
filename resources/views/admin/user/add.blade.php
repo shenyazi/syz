@@ -1,5 +1,7 @@
 @extends('layouts.admin')
-
+@section('title')
+    后台用户添加页面
+@endsection
 @section('content')
 <section id="main-content">
           <section class="wrapper">
@@ -33,7 +35,7 @@
                                       <div class="form-group">
                                           <label class="col-lg-2 control-label">密码</label>
                                           <div class="col-lg-10">
-                                              <input type="text" class="form-control" placeholder="密码必须输入" name="password" value="{{ old('password')}}">
+                                              <input type="password" class="form-control" placeholder="密码必须输入" name="password" value="{{ old('password')}}">
                                           </div>
                                       </div>
                                     

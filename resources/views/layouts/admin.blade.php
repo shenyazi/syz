@@ -8,7 +8,7 @@
     <meta name="keyword" content="FlatLab, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
     <link rel="shortcut icon" href="{{ asset('/admins/img/favicon.html') }}">
 
-    <title>『Panda熊猫』-@yield('title')</title>
+    <title>@yield('title')-『Panda熊猫』</title>
 
     <!-- Bootstrap core CSS -->
     <link href="{{ asset('/admins/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -20,7 +20,16 @@
     <!-- Custom styles for this template -->
     <link href="{{ asset('/admins/css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('/admins/css/style-responsive.css') }}" rel="stylesheet" />
+
        <script type="text/javascript" src="{{ asset('/js/jquery-1.8.3.min.js')}}"></script>
+
+    <script type="text/javascript" src="{{asset('jquery-1.8.3.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('layer/layer.js')}}"></script>
+
+
+    <script src="{{ asset('/admins/js/jquery.js') }}"></script>
+    <script src="{{ asset('/admins/js/jquery-1.8.3.min.js') }}"></script>
+
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
     <!--[if lt IE 9]>
@@ -56,10 +65,9 @@
                         </a>
                         <ul class="dropdown-menu extended logout">
                             <div class="log-arrow-up"></div>
-                            <li><a href="#"><i class=" icon-suitcase"></i>个人中心</a></li>
-                            <li><a href="#"><i class="icon-cog"></i> 设置</a></li>
-                            <li><a href="#"><i class="icon-bell-alt"></i> 修改密码</a></li>
-                            <li><a href="login.html"><i class="icon-key"></i> 退 出</a></li>
+                            
+                            <li><a href="{{url('admin/passedit')}}"><i class="icon-bell-alt"></i> 修改密码</a></li>
+                            <li><a href="{{url('admin/logout')}}"><i class="icon-key"></i> 退 出</a></li>
                         </ul>
                     </li>
                     <!-- user login dropdown end -->
@@ -73,12 +81,7 @@
           <div id="sidebar"  class="nav-collapse ">
               <!-- sidebar menu start-->
               <ul class="sidebar-menu">
-                  <li class="active">
-                      <a class="" href="index.html">
-                          <i class="icon-dashboard"></i>
-                          <span>Dashboard</span>
-                      </a>
-                  </li>
+                  
                   <li class="sub-menu">
                       <a href="javascript:;" class="">
                           <i class="icon-book"></i>
@@ -86,8 +89,41 @@
                           <span class="arrow"></span>
                       </a>
                       <ul class="sub">
-                          <li><a class="" href="general.html">用户添加</a></li>
-                          <li><a class="" href="buttons.html">用户浏览</a></li>
+                          <li><a class="" href="{{url('user/create')}}">用户添加</a></li>
+                          <li><a class="" href="{{url('user')}}">用户浏览</a></li>
+                      </ul>
+                  </li>
+                   <li class="sub-menu">
+                      <a href="javascript:;" class="">
+                          <i class="icon-book"></i>
+                          <span>文章管理模块</span>
+                          <span class="arrow"></span>
+                      </a>
+                      <ul class="sub">
+                          <li><a class="" href="{{url('work/create')}}">文章添加</a></li>
+                          <li><a class="" href="{{url('work')}}">文章浏览</a></li>
+                      </ul>
+                  </li>
+                   <li class="sub-menu">
+                      <a href="javascript:;" class="">
+                          <i class="icon-book"></i>
+                          <span>友情链接管理模块</span>
+                          <span class="arrow"></span>
+                      </a>
+                      <ul class="sub">
+                          <li><a class="" href="{{url('friendlink/create')}}">友情链接添加</a></li>
+                          <li><a class="" href="{{url('friendlink')}}">友情链接浏览</a></li>
+                      </ul>
+                  </li>
+                  <li class="sub-menu">
+                      <a href="javascript:;" class="">
+                          <i class="icon-tasks"></i>
+                          <span>类别管理</span>
+                          <span class="arrow"></span>
+                      </a>
+                      <ul class="sub">
+                          <li><a class="" href="{{url('admin/cate/create')}}">类别添加</a></li>
+                          <li><a class="" href="{{url('admin/cate')}}">类别浏览</a></li>
                       </ul>
                   </li>
 
@@ -166,8 +202,7 @@
   </section>
 
     <!-- js placed at the end of the document so the pages load faster -->
-    <script src="{{ asset('/admins/js/jquery.js') }}"></script>
-    <script src="{{ asset('/admins/js/jquery-1.8.3.min.js') }}"></script>
+   
     <script src="{{ asset('/admins/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('/admins/js/jquery.scrollTo.min.js') }}"></script>
     <script src="{{ asset('/admins/js/jquery.nicescroll.js') }}" type="text/javascript"></script>
@@ -175,6 +210,7 @@
     <script src="{{ asset('/admins/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.js') }}"></script>
     <script src="{{ asset('/admins/js/owl.carousel.js') }}" ></script>
     <script src="{{ asset('/admins/js/jquery.customSelect.min.js') }}" ></script>
+    <script src="{{ asset('/layer/layer.js') }}" ></script>
 
     <!--common script for all pages-->
     <script src="{{ asset('/admins/js/common-scripts.js') }}"></script>
@@ -182,6 +218,10 @@
     <!--script for this page-->
     <script src="{{ asset('/admins/js/sparkline-chart.js') }}"></script>
     <script src="{{ asset('/admins/js/easy-pie-chart.js') }}"></script>
+
+    <!-- layer.js -->
+    <script type="text/javascript" src="{{asset('layer/layer.js')}}"></script>
+
 
   <script>
 

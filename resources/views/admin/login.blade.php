@@ -61,17 +61,7 @@
             </label>
 
             <button class="btn btn-lg btn-login btn-block" type="submit">登录</button>
-            <p>其他方式登录</p>
-            <div class="login-social-link">
-                <a href="index.html" class="facebook">
-                    <i class="icon-facebook"></i>
-                    Facebook
-                </a>
-                <a href="index.html" class="twitter">
-                    <i class="icon-twitter"></i>
-                    Twitter
-                </a>
-            </div>
+            
 
         </div>
 

@@ -5,7 +5,8 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
-use App\Model\Friendlink;
+use App\Http\Model\Friendlink;
+use App\Services\OSS;
 
 class FriendlinkController extends Controller
 {
@@ -49,19 +50,6 @@ class FriendlinkController extends Controller
 	        $friend->lname=$request->lname;
 	        $friend->lurl=$request->lurl;
 	        $friend->status=$request->status;
-
-        	//上传图片
-	     	// if ($request->hasFile('limg')) {
-			    // //文件夹的上传路径
-			    //  $dirname='./Uploads/'.date('Ymd').'/';
-	      //       //获取文件的后缀
-	      //       $ext=$request->file('limg')->getClientOriginalExtension(); 
-	      //       //上传文件的文件名
-	      //       $name=time().rand(100000,999999).'.'.$ext;
-	      //       $request->file('limg')->move($dirname, $name);
-
-	      //       $friend->limg=trim($dirname,'.').$name;
-	      //   }
 	        
 	        //插入数据库
 			if($friend->save()){
@@ -137,20 +125,6 @@ class FriendlinkController extends Controller
         $friend->lurl=$request->lurl;
         $friend->status=$request->status;
 
-        //上传头像
-        // if ($request->hasFile('limg')) {
-        //     //文件夹的上传路径
-        //     $dirname='./Uploads/'.date('Ymd').'/';
-        //     //获取文件的后缀
-        //     $suffix=$request->file('limg')->getClientOriginalExtension(); 
-        //     //上传文件的文件名
-        //     $name=time().rand(100000,999999).'.'.$suffix;
-        //     $request->file('limg')->move($dirname, $name);
-
-        //     //存入数据表
-        //     $friend->limg=trim($dirname,'.').$name;
-        // }
-
         //插入数据表
 		if($friend->save()){
             return redirect('/friendlink')->with('msg','更新链接成功!');
@@ -165,12 +139,56 @@ class FriendlinkController extends Controller
 	 * 删除链接数据
 	 */
 	public function destroy($id){
-		$friend = Friendlink::find($id);
+		$res = Friendlink::find($id)->delete();
 
-		if($friend->delete()){
-			return back()->with('msg','删除链接成功');
-		}else{
-			return back()->with('msg','删除链接失败!!!');
-		}
+		//删除成功后返回到ajax的数据
+		$data=[];
+		if($res){
+            $data['error'] = 0;
+            $data['msg'] ="删除成功";
+        }else{
+            $data['error'] = 1;
+            $data['msg'] ="删除失败";
+        }
+
+		return $data;
 	}
+
+
+
+	/**
+	 * 友情链接Logo上传(处理客户端传过来的图片)
+	 */
+	public function upload(Request $request)
+	{
+
+	    // $file = Input::file('file_upload');
+		 $file = $request->file('file_upload');
+	   
+	    if($file->isValid()){
+	        $entension = $file->getClientOriginalExtension();	//上传文件的后缀名
+	        $newfile = date('YmdHis').mt_rand(1000,9999).'.'.$entension;
+	   		
+	   		//设置上传文件的目录
+            $dirpath = public_path().'/uploads/';
+
+            //将文件移动到本地服务器的指定的位置，并以新文件名命名
+          	//$file->move(移动到的目录, 新文件名);
+            // $file->move($dirpath, $newfile);
+
+            //将文件移动到七牛云，并以新文件名命名
+            //\Storage::disk('qiniu')->writeStream('uploads/'.$newfile, fopen($file->getRealPath(), 'r'));
+
+
+            //将文件移动到阿里OSS
+           	OSS::upload($newfile,$file->getRealPath());
+
+ 			
+            //将上传的图片名称返回到前台，目的是前台显示图片
+            return $newfile;
+
+	    }
+	}
+
+
 }
