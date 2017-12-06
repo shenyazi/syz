@@ -107,12 +107,10 @@ Route::group(['middleware'=>'islogin','namespace'=>'Admin'],function (){
 
 
 
-<<<<<<< HEAD
+
 // 商品模块
  Route::group(['prefix'=>'admin','namespace'=>'Admin'],function (){
 	route::resource('good','GoodController');
 	
 });
-=======
 
->>>>>>> 061643b758401ef52c56a32076de634c042419dd
