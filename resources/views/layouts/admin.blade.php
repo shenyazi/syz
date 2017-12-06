@@ -20,12 +20,16 @@
     <!-- Custom styles for this template -->
     <link href="{{ asset('/admins/css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('/admins/css/style-responsive.css') }}" rel="stylesheet" />
+
+       <script type="text/javascript" src="{{ asset('/js/jquery-1.8.3.min.js')}}"></script>
+
     <script type="text/javascript" src="{{asset('jquery-1.8.3.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('layer/layer.js')}}"></script>
 
 
     <script src="{{ asset('/admins/js/jquery.js') }}"></script>
     <script src="{{ asset('/admins/js/jquery-1.8.3.min.js') }}"></script>
+
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
     <!--[if lt IE 9]>
@@ -122,7 +126,70 @@
                           <li><a class="" href="{{url('admin/cate')}}">类别浏览</a></li>
                       </ul>
                   </li>
-              </ul>
+
+                  <li class="sub-menu">
+                      <a href="javascript:;" class="">
+                          <i class="icon-cogs"></i>
+                          <span>Components</span>
+                          <span class="arrow"></span>
+                      </a>
+                      <ul class="sub">
+                          <li><a class="" href="grids.html">Grids</a></li>
+                          <li><a class="" href="calendar.html">Calendar</a></li>
+                          <li><a class="" href="charts.html">Charts</a></li>
+                      </ul>
+                  </li>
+                  <li class="sub-menu">
+                      <a href="javascript:;" class="">
+                          <i class="icon-tasks"></i>
+                          <span>Form Stuff</span>
+                          <span class="arrow"></span>
+                      </a>
+                      <ul class="sub">
+                          <li><a class="" href="form_component.html">Form Components</a></li>
+                          <li><a class="" href="form_wizard.html">Form Wizard</a></li>
+                          <li><a class="" href="form_validation.html">Form Validation</a></li>
+                      </ul>
+                  </li>
+                  <li class="sub-menu">
+                      <a href="javascript:;" class="">
+                          <i class="icon-th"></i>
+                          <span>商品管理</span>
+                          <span class="arrow"></span>
+                      </a>
+                      <ul class="sub">
+                          <li><a class="" href="{{url('/admin/good/create')}}">添加商品</a></li>
+                          <li><a class="" href="dynamic_table.html">浏览商品</a></li>
+                      </ul>
+                  </li>
+                  <li>
+                      <a class="" href="inbox.html">
+                          <i class="icon-envelope"></i>
+                          <span>Mail </span>
+                          <span class="label label-danger pull-right mail-info">2</span>
+                      </a>
+                  </li>
+                  <li class="sub-menu">
+                      <a href="javascript:;" class="">
+                          <i class="icon-glass"></i>
+                          <span>Extra</span>
+                          <span class="arrow"></span>
+                      </a>
+                      <ul class="sub">
+                          <li><a class="" href="blank.html">Blank Page</a></li>
+                          <li><a class="" href="profile.html">Profile</a></li>
+                          <li><a class="" href="invoice.html">Invoice</a></li>
+                          <li><a class="" href="404.html">404 Error</a></li>
+                          <li><a class="" href="500.html">500 Error</a></li>
+                      </ul>
+                  </li>
+                  <li>
+                      <a class="" href="login.html">
+                          <i class="icon-user"></i>
+                          <span>Login Page</span>
+                      </a>
+                  </li>
+				         </ul>
               <!-- sidebar menu end-->
           </div>
       </aside>
@@ -180,3 +247,6 @@
 
   </body>
 </html>
+
+
+       

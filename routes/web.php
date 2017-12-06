@@ -49,6 +49,7 @@ Route::group(['middleware'=>'islogin','namespace'=>'Admin'],function (){
 	//商城后台的路由
 	Route::get('/admin','LoginController@index');
 
+
 	//修改密码的路由
 	Route::get('admin/passedit','Admin\LoginController@passedit');
 	Route::post('admin/password','Admin\LoginController@password');
@@ -65,6 +66,15 @@ Route::group(['middleware'=>'islogin','namespace'=>'Admin'],function (){
 	// 修改分类的排序
 	Route::post('admin/cate/changeorder', 'CateController@changeOrder');
 
+
+		
+
+	
+
+	
+    
+
+    
 
 
 	//商城后台友情链接模块
@@ -97,4 +107,12 @@ Route::group(['middleware'=>'islogin','namespace'=>'Admin'],function (){
 
 
 
+<<<<<<< HEAD
+// 商品模块
+ Route::group(['prefix'=>'admin','namespace'=>'Admin'],function (){
+	route::resource('good','GoodController');
+	
+});
+=======
 
+>>>>>>> 061643b758401ef52c56a32076de634c042419dd
