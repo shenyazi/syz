@@ -11,7 +11,7 @@
             <div class="row">
                 <div class="col-sm-12">
                     @if(session('msg'))
-                    <div class="alert alert-success alert-block fade in" style="width:150px;">
+                    <div class="alert alert-success alert-block fade in" style="width:200px;text-align:center;">
                         <button data-dismiss="alert" class="close close-sm" type="button">
                             <i class="icon-remove"></i>
                         </button>
@@ -19,7 +19,6 @@
                                 <i class="icon-ok-sign"></i>
                                 {{session('msg')}}
                             </h4>
-
                     </div>
                     @endif
                     <section class="panel">
@@ -44,7 +43,7 @@
                                     </td>
                                     <td class="tc" style="vertical-align: middle;">{{$v->cate_id}}</td>
                                     <td style="vertical-align: middle;">
-                                        <a href="#">{{$v->cate_names}}</a>
+                                        <a href="#">{{$v->_cate_name}}</a>
                                     </td>
                                     <td>
                                         <a href="{{url('admin/cate/'.$v->cate_id.'/edit')}}" class="btn btn-primary" data-toggle="modal">修改</a>

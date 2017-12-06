@@ -11,33 +11,37 @@ class Cate extends Model
     public $guarded = [];
     public $timestamps = false;
 
-    public  static function tree()
+    public function tree()
     {
-        $cates = self::orderBy('cate_order')->get();
-        // 对分类数据进行格式化(排序,缩进)
-        return self::getTree($cates,0);
+        $cates = $this->orderBy('cate_order')->get();
+        return $this->getTree($cates,'cate_name','cate_id','cate_pid');
     }
 
 
-
-    // 对分类数据进行格式化(排序,缩进)
-    public static function getTree($cate,$pid)
+    public function getTree($data,$field_name,$field_id='id',$field_pid='pid',$pid=0)
     {
-        // 存放最终结果的数组
-        $arr = [];
-        foreach($cate as $k=>$v){
-            // 如果当前遍历的类是一级类
-            if($v->cate_pid == $pid){
-                // 复制当前分类的名称给cate_names字段
-                $v->cate_names = $v->cate_name;
-                $arr[] = $v;
+        $arr = array();
+        foreach ($data as $k=>$v){
+            if($v->$field_pid==$pid){
+                $data[$k]["_".$field_name] = $data[$k][$field_name];
+                $arr[] = $data[$k];
+                foreach ($data as $m=>$n){
+                    if($n->$field_pid == $v->$field_id){
+                        $data[$m]["_".$field_name] = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├─ '.$data[$m][$field_name];
+                        $arr[] = $data[$m];
+                        foreach ($data as $s=>$d){
+                            if($d->$field_pid == $n->$field_id){
+                                $data[$s]["_".$field_name] = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├─ '.$data[$s][$field_name];
+                                $arr[] = $data[$s];
 
-                // 找当前一级类下的二级类
-                foreach ($cate as $m=>$n){
-                    // 如果一个分类的pid == $v这个类的id,那这个类就是$v的子类
-                    if($n->cate_pid == $v->cate_id){
-                        $n->cate_names = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|---'.$n->cate_name;
-                        $arr[] = $n;
+                                foreach ($data as $g=>$l){
+                                    if($l->$field_pid == $d->$field_id) {
+                                        $data[$g]["_" . $field_name] = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├─ ' . $data[$g][$field_name];
+                                        $arr[] = $data[$g];
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }

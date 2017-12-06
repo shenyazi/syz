@@ -31,10 +31,6 @@ Route::get('home/login','Home\LoginController@login');
 
 
 
-
-
-
-
 //后台的登录的路由
 Route::get('admin/login','Admin\LoginController@login');
 Route::post('admin/dologin','Admin\LoginController@doLogin');

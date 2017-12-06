@@ -9,7 +9,7 @@
         <section class="wrapper">
             <!-- page start-->
             <div class="row">
-                <div class="col-lg-6">
+                <div class="col-lg-12">
                     <section class="panel">
                         <header class="panel-heading">
                             类别修改
@@ -31,11 +31,11 @@
                                     </div>
                                 @endif
 
-                                <div class="form-group">
+                                <div class="form-group" style="margin-bottom: 30px;">
                                     {{csrf_field()}}
                                     {{method_field('put')}}
-                                    <label for="exampleInputEmail1">分类名称</label>
-                                    <input type="text" style="width:300px;" class="form-control" name="cate_name" value="{{$cate -> cate_name}}" placeholder="填写分类">
+                                    <label for="exampleInputEmail1" style="margin-bottom: 15px;">分类名称</label>
+                                    <input type="text"  style="width:400px;" class="form-control" name="cate_name" value="{{$cate -> cate_name}}" placeholder="填写分类">
                                 </div>
                                 <button type="submit" class="btn btn-info" style="margin-right: 5px;">提交</button>
                                 <button type="text" class="btn btn-info" ><a href="{{url('admin/cate')}}" style="color:white;">返回</a></button>
