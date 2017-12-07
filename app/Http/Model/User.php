@@ -11,5 +11,4 @@ class User extends Model
     public $guarded = [];
     public $timestamps = false;
 
-
 }
