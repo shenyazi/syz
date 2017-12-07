@@ -49,10 +49,13 @@ class GoodController extends Controller
      * @return \Illuminate\Http\Response
      * 
      */
-    public function index()
+    public function index(Request $request)
     {
         $title = '商品列表页';
-        return view('admin.good.index',compact('title'));
+        $goods = Good::paginate(5);
+
+        //dd($goods);
+        return view('admin.good.index',compact('title','goods','request'));
     }
 
     /**
@@ -64,9 +67,23 @@ class GoodController extends Controller
     {
         $title = '添加商品';
         // 获取所有的分类名称
-        $cates = Cate::tree();
+        // $cates = Cate::all();
+        $cates = (new Cate) -> tree();
+        // $cates = Cate::select(['cate_pid'])->get();
+     //  dd($cates);
+        $cate = [];
+        $id = [];
+        foreach($cates as $k => $v)
+        {
+            $cate[] =  $v -> cate_pid;
+            $id[] = $v -> cate_id;
+        }
+        // dd($cate);
+        $cate = array_unique($cate);
+        
+        
 
-        return view('admin.good.add',compact('title','cates'));
+        return view('admin.good.add',compact('title','cates','id','cate'));
     }
 
     /**
@@ -112,7 +129,7 @@ class GoodController extends Controller
          }
 
         if($good->save()){
-            return redirect('/admin/good')->with('success','添加文章成功!');
+            return redirect('/admin/good')->with('success','添加商品成功!');
         }else{
             return back()->with('errors','添加文章失败!!!');
         }

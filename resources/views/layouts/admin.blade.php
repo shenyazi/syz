@@ -135,7 +135,7 @@
                           <li><a class="" href="{{url('lunbo/index')}}">轮播图浏览</a></li>
                       </ul>
                   </li>
-<<<<<<< HEAD
+
 
                   
                   
@@ -147,17 +147,14 @@
                       </a>
                       <ul class="sub">
                           <li><a class="" href="{{url('/admin/good/create')}}">添加商品</a></li>
-                          <li><a class="" href="dynamic_table.html">浏览商品</a></li>
+                          <li><a class="" href="{{url('admin/good')}}">浏览商品</a></li>
                       </ul>
                   </li>
                  
                  
                   
 				         </ul>
-=======
-                  
-              </ul>
->>>>>>> cd328943ffd1b5addbf87252107c67fdc53db46e
+
               <!-- sidebar menu end-->
           </div>
       </aside>

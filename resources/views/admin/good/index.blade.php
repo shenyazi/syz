@@ -10,76 +10,84 @@
                   <div class="col-lg-12">
                       <ul class="breadcrumb">
                           <li><a href="#"><i class="icon-home"></i> Home</a></li>
-                          <li><a href="#">文章管理模块</a></li>
-                          <li class="active">添 加</li>
+                          <li><a href="#"></a></li>
+                          <li class="active"></li>
                       </ul>
                   </div>
               </div>
-              <div class="row">
-                 	@if (count($errors) > 0)
-        						<div class="alert alert-danger">
-        							<ul>
-        								@if(is_object($errors))
-        									@foreach ($errors->all() as $error)
-        										<li style="color:red">{{ $error }}</li>
-        									@endforeach
-        								@else
-        									<li style="color:red">{{ $errors }}</li>
-        								@endif
-        							</ul>
-        						</div>
-        					@endif
-                  <div class="col-lg-12">
-                      <section class="panel">
+               @if (Session('success'))
+                        <div class="alert alert-danger">
+                          <ul>
+                              <li style="color:blue">{{ Session('success') }}</li>
+                          </ul>
+                        </div>
+               @endif
+                <section class="panel">
                           <header class="panel-heading">
-                             <b>添加文章的表单</b>
+                              <b>商品列表</b>
                           </header>
+               <form  action="{{url('friendlink')}}" method='get' style='padding:12px;margin-left:300px'>
+                             
+                             <input type="text" name="lname" value="">
+                              <button class="btn btn-primary btn-xm">查 询</button>
+                          </form>  
+                         
+                          <table   class="table table-striped table-advance table-hover">
+                              <thead>
+                              <tr>
+                                  <th><i class="icon-bullhorn"></i>ID</th>
+                                  <th class="hidden-phone"><i class="icon-question-sign"></i>商品名称</th>
+                                  <th><i class="icon-bookmark"></i>商品价格</th>
+                                  <th><i class=" icon-edit"></i>库存</th>
+                                  <th><i class=" icon-edit"></i>商品图片</th>
+                                  <th><i class=" icon-edit"></i>商品状态</th>
+                                  <th>操作</th>
+                              </tr>
+                              </thead>
+                              <tbody>
+                              @foreach($goods as $k=>$v)
+                              <tr>
+                                  <td>{{$v->id}}</td>
+                                  <td>{{$v->gname}}</td>
+                                  <td>{{$v->gprice}}</td>
+                                  <td>{{$v->goodsNum}}</td>
+                                  @if($v->gpic)
+                                  <td><img style = "width:100px;height:50px;" src="{{$v->gpic}}"> </td>
+                                  @else
+                                  <td style = "width:100px;height:50px;">该商品没有上传图片</td>
+                                  @endif
+                                  <td> 
+                                  <div @if($v->gstatus == 1) class="label label-warning label-mini" @elseif($v->gstatus == 2) class="label label-danger label-mini" @elseif($v->gstatus==3) class="label label-primary label-mini" @endif>
+                                  @if($v->gstatus == 1) 新品@elseif($v->gstatus == 2)上架@elseif($v->gstatus == 3)下架@endif
+                                  </div>
+                                  </td>
+                                  <td> <a href="{{url('friendlink/'.$v->id.'/edit')}}" style='margin-right:3px;float:left'><button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button></a>
+                                   <a href="javascript:;" onclick="del({{$v->id}})" style='margin-right:3px;float:left'><button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button></a>
+                                   <a  href="" >
+                                  <div @if($v->gstatus == 1 || $v->gstatus == 3)class="label label-danger label-mini " @else($v->gstatus==2) class="label label-primary label-mini" @endif>
+                                   @if($v->gstatus == 1 || $v->gstatus == 3) 上架@else 下架 @endif
+                                  </div>
+                                  </a>
+                                   </td>
 
-                          <div class="panel-body">
-                              <form class="form-horizontal" role="form" action="{{url('work')}}" method='post' enctype='multipart-data'>
-                                  <div class="form-group">
-                                      <label for="inputEmail1" class="col-lg-2 control-label">文章标题:	</label>
-                                      <div class="col-lg-6">
-                                          <input type="text" class="form-control"  name='wtitle' value="{{old('wtitle')}}">
-                                      </div>
-                                  </div>
-                                  <div class="form-group">
-                                      <label for="inputPassword1" class="col-lg-2 control-label">文章描述:</label>
-                                      <div class="col-lg-6">
-                                          <textarea rows="5" cols="67" name='wdesc'>{{old('wdesc')}}</textarea>
-                                      </div>
-                                  </div>
-                                 <div class="form-group">
-                                      <label for="inputPassword1" class="col-lg-2 control-label">文章内容:</label>
-                                      <div class="col-lg-10">
-                                          <script type="text/javascript" charset="utf-8" src="/ueditor/ueditor.config.js"></script>
-                                          <script type="text/javascript" charset="utf-8" src="/ueditor/ueditor.all.min.js"> </script>
-                                          <script type="text/javascript" charset="utf-8" src="/ueditor/lang/zh-cn/zh-cn.js"></script>
+                              </tr>
+                              
+                              @endforeach
 
-                                          <script id="editor" name="wcontent" type="text/plain" style="width:800px;height:300px;">{!! old('wcontent') !!}</script>
-                                          <script>
-                                              var ue = UE.getEditor('editor');
-                                          </script>
-                                          <style>
-                                              .edui-default{line-height: 28px;}
-                                              div.edui-combox-body,div.edui-button-body,div.edui-splitbutton-body
-                                              {overflow: hidden; height:20px;}
-                                              div.edui-box{overflow: hidden; height:22px;}
-                                          </style>
-                                      </div>
-                                  </div>
-                                  <div class="form-group">
-                                      <div class="col-lg-offset-2 col-lg-10">
-                                      			{{csrf_field()}}
-                                          <button type="submit" class="btn btn-danger">添 加</button>
-                                      </div>
-                                  </div>
-                              </form>
-                          </div>
+                              </tbody>
+                              </table>
+                              <div style="text-align: center">
+                                  {{ $goods->links() }}
+                              </div>
+                              
+                             
+                              
+                    
                       </section>
                      
                   </div>
               </div>
+
 
             
               <!-- page end-->

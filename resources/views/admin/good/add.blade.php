@@ -51,7 +51,11 @@
                                         
                                       <select class="form-control" id="inputPassword2" name='pid'  ">  
                                            @foreach($cates as $k=>$v)
-                                        <option value="{{$v->cate_pid}}" >{{$v->cate_name}}</option>  
+                                            @if(in_array($v->cate_id,$cate))
+                                              <option disabled="disabled" value="{{$v->cate_pid}}">{{$v->_cate_name}}</option>  
+                                            @else if
+                                            <option value="{{$v->cate_pid}}" >{{$v->_cate_name}}</option>  
+                                            @endif
                                           @endforeach
                                        </select>  
 
