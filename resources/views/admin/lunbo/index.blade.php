@@ -1,7 +1,7 @@
 @extends('layouts.admin')
-
-@section('title',$title)
-
+@section('title')
+    后台轮播图列表页面
+@endsection
 @section('content')
   <section id="main-content">
           <section class="wrapper">

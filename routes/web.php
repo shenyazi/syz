@@ -84,7 +84,7 @@ Route::group(['middleware'=>['islogin','hasrole'],'namespace'=>'Admin'],function
 	Route::resource('work','WorkController');
    
 	//商城后台轮播图管理模块
-  	Route::resource('lunbo','LunboController')
+  	Route::resource('lunbo','LunboController');
    
 });
 
