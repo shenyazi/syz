@@ -60,6 +60,7 @@
                                   <td class="hidden-phone">{{$v->username}}</td>
                                   <td>{{$v->password}}</td>
                                   <td>
+                                      <a href="{{url('user/auth/'.$v->id)}}">授权</a>
                                       <a href="{{url('user/'.$v->id.'/edit')}}">修改</a>
                                       <a href="javascript:;" onclick="userDel({{$v->id}})">删除</a>
                                   </td>

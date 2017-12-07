@@ -30,8 +30,7 @@ Route::get('/home',function(){
 Route::get('home/login','Home\LoginController@login');
 
 
-//后台登录时的验证码
-Route::get('admin/yzm','Admin\LoginController@yzm');
+
 
 
 
@@ -41,49 +40,62 @@ Route::get('admin/yzm','Admin\LoginController@yzm');
 Route::get('admin/login','Admin\LoginController@login');
 Route::post('admin/dologin','Admin\LoginController@doLogin');
 
-//后台用户退出的路由
-Route::get('admin/logout','Admin\LoginController@logout');
+//后台登录时的验证码
+Route::get('admin/yzm','Admin\LoginController@yzm');
 
-//修改密码的路由
-Route::get('admin/passedit','Admin\LoginController@passedit');
-Route::get('admin/password','Admin\LoginController@password');
-Route::group(['middleware'=>'islogin','namespace'=>'Admin'],function (){
+
+Route::group(['middleware'=>['islogin','hasrole'],'namespace'=>'Admin'],function (){
 	
 	//商城后台的路由
 	Route::get('/admin','LoginController@index');
+
+	//修改密码的路由
+	Route::get('admin/passedit','LoginController@passedit');
+	Route::get('admin/password','LoginController@password');
 		
-<<<<<<< HEAD
-	
+  	//后台用户登出的路由
+    Route::get('admin/logout','LoginController@logout');
+
+	// 用户模块路由
+ 	Route::resource('user','UserController');
+ 	Route::get('user/auth/{id}','UserController@auth');
+ 	Route::post('user/doauth','UserController@doauth');
+
+ 	//角色管理
+ 	Route::resource('role','RoleController');
+ 	Route::get('role/auth/{id}','RoleController@auth');
+    Route::post('role/doauth','RoleController@doauth');
+   
+
+    //权限管理
+    Route::resource('auth','AuthController');
 
 	
-    
-=======
-    //后台用户登出的路由
-    Route::get('logout','LoginController@logout');
->>>>>>> origin/sunlei
+	// 分类管理路由模块
+	Route::resource('admin/cate','CateController');
+	// 修改分类的排序
+	Route::post('admin/cate/changeorder', 'CateController@changeOrder');
 
+	
 	//商城后台友情链接模块
 	Route::resource('friendlink','FriendlinkController');
 	Route::post('/admin/upload','FriendlinkController@upload');
 
-	//商城后台文章管理模块
+	//商城后台购物指南文章管理模块
 	Route::resource('work','WorkController');
    
-   // 用户模块路由
- 	Route::resource('user','UserController');
+   
 });
 
 
-//后台验证用户密码
-// Route::get('crypt','Admin\LoginController@crypt');
+//权限不够时跳转的路径
+Route::get('errors/auth',function(){
+	return view('errors.auth');
+});
 
 
 
 
-// 分类管理路由模块
-Route::resource('admin/cate','Admin\CateController');
-// 修改分类的排序
-Route::post('admin/cate/changeorder', 'Admin\CateController@changeOrder');
 
 
 
