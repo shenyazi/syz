@@ -55,8 +55,8 @@ class CateController extends Controller
 
     public function index()
     {
-//        $cates = Cate::paginate(8);
-        $cates = Cate::tree();
+
+        $cates = (new Cate)->tree();
 
         return view('admin.cate.list', compact('cates'));
     }
@@ -70,9 +70,11 @@ class CateController extends Controller
      */
     public function create()
     {
-        $cateOne = Cate::where('cate_pid',0)->get();
+//        $cateOne = Cate::where('cate_pid',0)->get();
 
-        return view('admin.cate.create',compact('cateOne'));
+        $cates = (new Cate)->tree();
+
+        return view('admin.cate.create',compact('cates'));
     }
 
     /**
