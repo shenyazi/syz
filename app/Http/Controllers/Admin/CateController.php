@@ -73,6 +73,7 @@ class CateController extends Controller
 //        $cateOne = Cate::where('cate_pid',0)->get();
 
         $cates = (new Cate)->tree();
+       // dd($cates);
 
         return view('admin.cate.create',compact('cates'));
     }
