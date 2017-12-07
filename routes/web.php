@@ -32,16 +32,13 @@ Route::get('home/login','Home\LoginController@login');
 
 
 
-
-
-
-
 //后台的登录的路由
 Route::get('admin/login','Admin\LoginController@login');
 Route::post('admin/dologin','Admin\LoginController@doLogin');
 
 //后台登录时的验证码
 Route::get('admin/yzm','Admin\LoginController@yzm');
+
 
 
 Route::group(['middleware'=>['islogin','hasrole'],'namespace'=>'Admin'],function (){
@@ -70,11 +67,13 @@ Route::group(['middleware'=>['islogin','hasrole'],'namespace'=>'Admin'],function
     //权限管理
     Route::resource('auth','AuthController');
 
-	
 	// 分类管理路由模块
 	Route::resource('admin/cate','CateController');
 	// 修改分类的排序
 	Route::post('admin/cate/changeorder', 'CateController@changeOrder');
+
+
+
 
 	
 	//商城后台友情链接模块
@@ -84,6 +83,8 @@ Route::group(['middleware'=>['islogin','hasrole'],'namespace'=>'Admin'],function
 	//商城后台购物指南文章管理模块
 	Route::resource('work','WorkController');
    
+	//商城后台轮播图管理模块
+  	Route::resource('lunbo','LunboController')
    
 });
 
@@ -92,6 +93,15 @@ Route::group(['middleware'=>['islogin','hasrole'],'namespace'=>'Admin'],function
 Route::get('errors/auth',function(){
 	return view('errors.auth');
 });
+
+  	
+
+
+ 	
+
+
+
+
 
 
 
