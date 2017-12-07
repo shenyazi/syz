@@ -47,28 +47,26 @@
                 <div data-original-title="Toggle Navigation" data-placement="right" class="icon-reorder tooltips"></div>
             </div>
             <!--logo start-->
-            <a href="#" class="logo">Flat<span>lab</span></a>
+            <a href="#" class="logo"><span>PANDA</span></a>
             <!--logo end-->
            
             <div class="top-nav ">
                 <!--search & user info start-->
                 <ul class="nav pull-right top-menu">
-                    <li>
-                        <input type="text" class="form-control search" placeholder="Search">
-                    </li>
-                    <!-- user login dropdown start-->
+                                        <!-- user login dropdown start-->
+                    
                     <li class="dropdown">
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <img alt="" src="{{ asset('/admins/img/avatar1_small.jpg') }}">
-                            <span class="username">Jhon Doue</span>
+                            <span class="username">{{session('user.username')}}</span>
                             <b class="caret"></b>
+                            <ul class="dropdown-menu extended logout">
+                            <!-- <div class="log-arrow-up"></div> -->
+                            <li><a href="{{url('admin/passedit')}}"><i class="icon-bell-alt"></i>修改密码</a></li>
+                            <li><a href="{{url('admin/logout')}}"><i class="icon-key"></i>退出</a></li>
+                            </ul>
                         </a>
-                        <ul class="dropdown-menu extended logout">
-                            <div class="log-arrow-up"></div>
-                            
-                            <li><a href="{{url('admin/passedit')}}"><i class="icon-bell-alt"></i> 修改密码</a></li>
-                            <li><a href="{{url('admin/logout')}}"><i class="icon-key"></i> 退 出</a></li>
-                        </ul>
+                        
                     </li>
                     <!-- user login dropdown end -->
                 </ul>
@@ -91,6 +89,17 @@
                       <ul class="sub">
                           <li><a class="" href="{{url('user/create')}}">用户添加</a></li>
                           <li><a class="" href="{{url('user')}}">用户浏览</a></li>
+                      </ul>
+                  </li>
+                  <li class="sub-menu">
+                      <a href="javascript:;" class="">
+                          <i class="icon-tasks"></i>
+                          <span>类别管理</span>
+                          <span class="arrow"></span>
+                      </a>
+                      <ul class="sub">
+                          <li><a class="" href="{{url('admin/cate/create')}}">类别添加</a></li>
+                          <li><a class="" href="{{url('admin/cate')}}">类别浏览</a></li>
                       </ul>
                   </li>
                    <li class="sub-menu">
@@ -117,15 +126,16 @@
                   </li>
                   <li class="sub-menu">
                       <a href="javascript:;" class="">
-                          <i class="icon-tasks"></i>
-                          <span>类别管理</span>
+                          <i class="icon-book"></i>
+                          <span>轮播图管理模块</span>
                           <span class="arrow"></span>
                       </a>
                       <ul class="sub">
-                          <li><a class="" href="{{url('admin/cate/create')}}">类别添加</a></li>
-                          <li><a class="" href="{{url('admin/cate')}}">类别浏览</a></li>
+                          <li><a class="" href="{{url('lunbo/create')}}">轮播图添加</a></li>
+                          <li><a class="" href="{{url('lunbo/index')}}">轮播图浏览</a></li>
                       </ul>
                   </li>
+<<<<<<< HEAD
 
                   
                   
@@ -144,6 +154,10 @@
                  
                   
 				         </ul>
+=======
+                  
+              </ul>
+>>>>>>> cd328943ffd1b5addbf87252107c67fdc53db46e
               <!-- sidebar menu end-->
           </div>
       </aside>

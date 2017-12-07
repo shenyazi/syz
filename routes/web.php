@@ -31,10 +31,6 @@ Route::get('home/login','Home\LoginController@login');
 
 
 
-
-
-
-
 //后台的登录的路由
 Route::get('admin/login','Admin\LoginController@login');
 Route::post('admin/dologin','Admin\LoginController@doLogin');
@@ -51,8 +47,8 @@ Route::group(['middleware'=>'islogin','namespace'=>'Admin'],function (){
 
 
 	//修改密码的路由
-	Route::get('admin/passedit','Admin\LoginController@passedit');
-	Route::post('admin/password','Admin\LoginController@password');
+	Route::get('admin/passedit','LoginController@passedit');
+	Route::post('admin/password','LoginController@password');
 
 	//后台用户登出的路由
     Route::get('admin/logout','LoginController@logout');
@@ -88,7 +84,8 @@ Route::group(['middleware'=>'islogin','namespace'=>'Admin'],function (){
 	//商城后台文章管理模块
 	Route::resource('work','WorkController');
    
-  
+  	//商城后台轮播图管理模块
+  	Route::resource('lunbo','LunboController');
 
 
  	
