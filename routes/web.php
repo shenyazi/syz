@@ -39,8 +39,11 @@ Route::post('admin/dologin','Admin\LoginController@doLogin');
 //后台登录时的验证码
 Route::get('admin/yzm','Admin\LoginController@yzm');
 
+//后台用户登出的路由
+Route::get('admin/logout','Admin\LoginController@logout');
 
 
+//后台路由组
 Route::group(['middleware'=>['islogin','hasrole'],'namespace'=>'Admin'],function (){
 	
 	//商城后台的路由
@@ -50,9 +53,7 @@ Route::group(['middleware'=>['islogin','hasrole'],'namespace'=>'Admin'],function
 	Route::get('admin/passedit','LoginController@passedit');
 	Route::get('admin/password','LoginController@password');
 		
-  	//后台用户登出的路由
-    Route::get('admin/logout','LoginController@logout');
-
+  	
 	// 用户模块路由
  	Route::resource('user','UserController');
  	Route::get('user/auth/{id}','UserController@auth');
@@ -83,12 +84,12 @@ Route::group(['middleware'=>['islogin','hasrole'],'namespace'=>'Admin'],function
 	//商城后台购物指南文章管理模块
 	Route::resource('work','WorkController');
    
-	//商城后台轮播图管理模块
-  	Route::resource('lunbo','LunboController');
+
    
 });
 
-
+//商城后台轮播图管理模块
+Route::resource('lunbo','Admin\LunboController');
 //权限不够时跳转的路径
 Route::get('errors/auth',function(){
 	return view('errors.auth');

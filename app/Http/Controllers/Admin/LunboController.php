@@ -13,14 +13,14 @@ class LunboController extends Controller
 	 */
 	public function index(Request $request)
 	{
-		//分页数据
-		$count = $request -> input('count',4);
-		$search = $request ->input('search','');
-		$request=$request->all();
+		$lunbos = Lunbo::orderBy('id','asc') -> where(function($query)) use($request){
+			$btitle = $request->input('btitle');
 
-		//获取一页展示几条信息
-		$data = lunbo::where('btitle','like','%'.$search.'%')->paginate($count);
-		
+			//如果标题不为空
+			if(!empty($btitle)){
+				$query->where('')
+			}
+		}
 		
 		
 		//加载页面
@@ -31,6 +31,12 @@ class LunboController extends Controller
 	public function create()
 	{
 		return view('admin.lunbo.create');
+	}
+
+
+	public function store(Request $request)
+	{
+
 	}
 	public function show($id)
     {

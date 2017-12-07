@@ -34,21 +34,21 @@
                           <div class="panel-body">
                               <form class="form-horizontal" role="form" id="art_form" action="{{url('lunbo')}}" method='post' enctype='multipart/form-data'>
                                   <div class="form-group">
-                                      <label for="inputEmail1" class="col-lg-2 control-label">:	</label>
+                                      <label for="inputEmail1" class="col-lg-2 control-label">标题:	</label>
                                       <div class="col-lg-6">
-                                          <input type="text" class="form-control"  name='lname' value="{{old('lname')}}">
+                                          <input type="text" class="form-control"  name='btitle' value="{{old('btitle')}}">
                                       </div>
                                   </div>
                                   <div class="form-group">
                                       <label for="inputPassword1" class="col-lg-2 control-label">链接地址:</label>
                                       <div class="col-lg-6">
-                                          <input type="text" class="form-control"  name='lurl' value="{{old('lurl')}}">
+                                          <input type="text" class="form-control"  name='burl' value="{{old('burl')}}">
                                       </div>
                                   </div>
                                    <div class="form-group">
-                                      <label for="inputPassword1" class="col-lg-2 control-label">链接Logo:</label>
+                                      <label for="inputPassword1" class="col-lg-2 control-label">图片:</label>
                                       <div class="col-lg-6">
-                                          <input type="text" size="40" id="limg" name="limg" >
+                                          <input type="text" size="40" id="bimg" name="bimg" >
                                           <input id="file_upload" name="file_upload" type="file" multiple='true' >
                                           <img src="" id="img1" alt="" style="width:80px;height:80px">
                                            <script type="text/javascript">
@@ -100,10 +100,10 @@
                                       </div>
                                   </div>
                                   <div class="form-group">
-                                      <label for="inputPassword1" class="col-lg-2 control-label">链接状态:</label>
+                                      <label for="inputPassword1" class="col-lg-2 control-label">状态:</label>
                                       <div class="col-lg-6">
-                                          <input type="radio" id="inputPassword1" name='status' value='1'>开启&nbsp;
-                                          <input type="radio" id="inputPassword1" name='status' value='0'>关闭
+                                          <input type="radio" id="inputPassword1" name='bstatus' value='1'>开启&nbsp;
+                                          <input type="radio" id="inputPassword1" name='bstatus' value='0'>关闭
                                       </div>
                                   </div>
                                   <div class="form-group">
