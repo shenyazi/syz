@@ -4,9 +4,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Model\User;
+use App\Http\Model\Role;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests;
+use DB;
 /**
 * 
 */
@@ -169,4 +171,60 @@ class UserController extends Controller
 
         return $data;
     }
+
+
+
+
+
+
+    /**
+    * 用户授权页面
+    **/
+    public function auth($id){
+        $title='用户授权';
+
+        //要授权用户的id
+        $user=User::find($id);
+
+        //查看所有的角色表
+        $roles=Role::get();
+
+        //获取要授权用户已经拥有的角色
+        $own_role=DB::table('user_role')->where('user_id',$id)->pluck('role_id')->all();
+
+        return view('admin.user.auth',compact('user','roles','title','own_role'));
+    }
+
+
+    /**
+    * 用户授权
+    **/
+    public function doauth(Request $request){
+        //接收表单传过来的数据
+        $input=$request->except('_token');
+
+        DB::beginTransaction();
+
+        try{
+            //删除用户以前拥有的角色
+            DB::table('user_role')->where('user_id',$input['user_id'])->delete();
+
+            // 将角色数据添加到user_role表中
+            if(isset($input['role_id'])){
+                foreach ($input['role_id'] as $k=>$v){
+                    DB::table('user_role')->insert(['user_id'=>$input['user_id'],'role_id'=>$v]);
+                }
+            }
+
+        }catch (Exception $e){
+            DB::rollBack();
+        }
+
+        DB::commit();
+
+        //添加成功后，跳转到列表页
+        return redirect('user')->with('msg','授权成功');
+    }
+
+
 }

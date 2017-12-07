@@ -31,6 +31,7 @@ Route::get('home/login','Home\LoginController@login');
 
 
 
+
 //后台的登录的路由
 Route::get('admin/login','Admin\LoginController@login');
 Route::post('admin/dologin','Admin\LoginController@doLogin');
@@ -40,21 +41,31 @@ Route::get('admin/yzm','Admin\LoginController@yzm');
 
 
 
-Route::group(['middleware'=>'islogin','namespace'=>'Admin'],function (){
+Route::group(['middleware'=>['islogin','hasrole'],'namespace'=>'Admin'],function (){
 	
 	//商城后台的路由
 	Route::get('/admin','LoginController@index');
 
 	//修改密码的路由
 	Route::get('admin/passedit','LoginController@passedit');
-	Route::post('admin/password','LoginController@password');
-
-	//后台用户登出的路由
+	Route::get('admin/password','LoginController@password');
+		
+  	//后台用户登出的路由
     Route::get('admin/logout','LoginController@logout');
-
 
 	// 用户模块路由
  	Route::resource('user','UserController');
+ 	Route::get('user/auth/{id}','UserController@auth');
+ 	Route::post('user/doauth','UserController@doauth');
+
+ 	//角色管理
+ 	Route::resource('role','RoleController');
+ 	Route::get('role/auth/{id}','RoleController@auth');
+    Route::post('role/doauth','RoleController@doauth');
+   
+
+    //权限管理
+    Route::resource('auth','AuthController');
 
 	// 分类管理路由模块
 	Route::resource('admin/cate','CateController');
@@ -63,19 +74,30 @@ Route::group(['middleware'=>'islogin','namespace'=>'Admin'],function (){
 
 
 
+
+	
 	//商城后台友情链接模块
 	Route::resource('friendlink','FriendlinkController');
 	Route::post('/admin/upload','FriendlinkController@upload');
 
-	//商城后台文章管理模块
+	//商城后台购物指南文章管理模块
 	Route::resource('work','WorkController');
    
-  	//商城后台轮播图管理模块
-  	Route::resource('lunbo','LunboController');
+	//商城后台轮播图管理模块
+  	Route::resource('lunbo','LunboController')
+   
+});
+
+
+//权限不够时跳转的路径
+Route::get('errors/auth',function(){
+	return view('errors.auth');
+});
+
+  	
 
 
  	
-});
 
 
 
