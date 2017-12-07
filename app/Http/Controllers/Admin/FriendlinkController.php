@@ -26,7 +26,7 @@ class FriendlinkController extends Controller
 	public function store(Request $request){
 		
 		$input = $request->except('_token');
-
+		//dd($input);
 		//表单验证
         $rule = [
             'lname'=>'required|regex:/^[\x{4e00}-\x{9fa5}A-Za-z0-9_]+$/u|between:2,20',
@@ -174,7 +174,7 @@ class FriendlinkController extends Controller
 
             //将文件移动到本地服务器的指定的位置，并以新文件名命名
           	//$file->move(移动到的目录, 新文件名);
-            // $file->move($dirpath, $newfile);
+           //  $file->move($dirpath, $newfile);
 
             //将文件移动到七牛云，并以新文件名命名
             //\Storage::disk('qiniu')->writeStream('uploads/'.$newfile, fopen($file->getRealPath(), 'r'));

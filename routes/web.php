@@ -66,6 +66,10 @@ Route::group(['middleware'=>'islogin','namespace'=>'Admin'],function (){
 	// 修改分类的排序
 	Route::post('admin/cate/changeorder', 'CateController@changeOrder');
 
+	// 商品路由模块
+	Route::resource('admin/good','GoodController');
+	Route::post('admin/uploadd','GoodController@upload');
+
 
 		
 
@@ -109,8 +113,8 @@ Route::group(['middleware'=>'islogin','namespace'=>'Admin'],function (){
 
 
 // 商品模块
- Route::group(['prefix'=>'admin','namespace'=>'Admin'],function (){
-	route::resource('good','GoodController');
+//  Route::group(['prefix'=>'admin','namespace'=>'Admin'],function (){
+// 	route::resource('good','GoodController');
 	
-});
+// });
 

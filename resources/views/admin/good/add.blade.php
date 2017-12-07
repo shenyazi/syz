@@ -14,8 +14,10 @@
                   th{
                       text-align:center;
                       vertical-align:middle
+
+
                   }
-                  
+
               </style>
               <div class="row ">
                   <div class="col-sm-12">
@@ -36,8 +38,9 @@
                     </ul>
                 </div>
             @endif
-                          <form id="#bd" action="{{url('/admin/good')}}" method="POST">
-                           {{csrf_field()}}
+                          <form action="{{url('admin/good')}}" method="post" id="bd" enctype='multipart/form-data'>
+
+                           
                            
                           <table class="table table-bordered">
                               
@@ -45,10 +48,13 @@
                                   <th>分类:</th>
                                   
                                   <td>
-                                      <select class="form-control" id="inputPassword2">  
-                                        <option  value="请选择" >请选择</option>  
-                                       
+                                        
+                                      <select class="form-control" id="inputPassword2" name='pid'  ">  
+                                           @foreach($cates as $k=>$v)
+                                        <option value="{{$v->cate_pid}}" >{{$v->cate_name}}</option>  
+                                          @endforeach
                                        </select>  
+
                                   </td>
                                  
                               </tr>
@@ -56,7 +62,7 @@
                                   <th>商品名称:</th>
                                   <td>
 
-                                      <input class="form-control" id="inputPassword3" type="text" name="gname" placeholder="请填写您的商品名称">
+                                      <input class="form-control " id="inputPassword3" type="text" name="gname" placeholder="请填写您的商品名称">
                                      
                                   </td>
                               </tr>
@@ -73,24 +79,90 @@
                                       <input class="form-control" id="inputPassword2" type="text" name="goodsNum" placeholder="请填写您的商品数量">
                                   </td>
                               </tr>
+                              {{csrf_field()}}
                               <tr>
                                   <th>商品图片:</th>
                                   <td>
-                                      <input type="file" name="gpic">
+                                  <input type="text" size="40" id="limg" name="gpic" >
+                                      <input  id="tp" type="file" name="gpicc" 
+                                      multiple='true'>
+                                      <img src="" id="img1" alt="" style="width:80px;height:80px">
+                                      <script type="text/javascript">
+                                    
+                                              $(function () {
+                                                  $("#tp").change(function () {
+
+                                                      $('img1').show();
+                                                      uploadImage();
+                                                     
+                                                  });
+                                              });
+                                              function uploadImage() {
+                                                  // 判断是否有选择上传文件
+                                                  var imgPath = $("#tp").val();
+                                                  if (imgPath == "") {
+                                                      alert("请选择上传图片！");
+                                                      return;
+                                                  }
+                                                  //判断上传文件的后缀名
+              var strExtension = imgPath.substr(imgPath.lastIndexOf('.') + 1);
+                                                  if (strExtension != 'jpg' && strExtension != 'gif'
+                                                      && strExtension != 'png' && strExtension != 'bmp') {
+                                                      alert("请选择图片文件");
+                                                      return;
+                                                  }
+                                                 
+                                                 var formData = new FormData($('#bd')[0]);
+                                                
+                                                  $.ajax({
+                                                      type: "POST",
+                                                      url: "/admin/uploadd",
+                                                      data: formData,
+                                                      async: true,
+                                                      cache: false,
+                                                      contentType: false,
+                                                      processData: false,
+                                                      success: function(data) {
+                                                          // $('#img1').attr('src','/uploads/'+data);
+                                                       //$('#img1').attr('src','http://p09v2gc7p.bkt.clouddn.com/uploads/'+data);
+                                                         $('#img1').attr('src','/uploads/'+data);
+                                                          $('#img1').show();
+                                                          $('#limg').val('/uploads/'+data);
+                                                      },
+                                                      error: function(XMLHttpRequest, textStatus, errorThrown) {
+                                                          alert("上传失败，请检查网络后重试");
+                                                      }
+                                                  });
+                                              }
+                                      </script>
                                   </td>
                               </tr>
                                <tr>
                                   <th>商品描述:</th>
                                   <td>
-                                      <textarea class="form-control" id="inputPassword2" name="goodsDes" placeholder="请对您的商品进行描述"></textarea>
+<!--                                       <textarea class="form-control" id="inputPassword2" name="goodsDes" placeholder="请对您的商品进行描述"></textarea> -->
+                                        <script type="text/javascript" charset="utf-8" src="/ueditor/ueditor.config.js"></script>
+                                          <script type="text/javascript" charset="utf-8" src="/ueditor/ueditor.all.min.js"> </script>
+                                          <script type="text/javascript" charset="utf-8" src="/ueditor/lang/zh-cn/zh-cn.js"></script>
+
+                                          <script id="editor" name="goodsDes" type="text/plain" style="width:600px;height:30px;"></script>
+                                          <script>
+                                              var ue = UE.getEditor('editor');
+                                          </script>
+                                          <style>
+                                              .edui-default{line-height: 28px;}
+                                              div.edui-combox-body,div.edui-button-body,div.edui-splitbutton-body
+                                              {overflow: hidden; height:20px;}
+                                              div.edui-box{overflow: hidden; height:22px;}
+                                          </style>
                                   </td>
                               </tr>
                                <tr>
                                   <th>状态:</th>
                                   <td>
                                       <input type="radio" name="gstatus" value="1" checked>新品
-                                      <input type="radio" name="gstatus" value="1">上架
-                                      <input type="radio" name="gstatus" value="1">下架
+                                      <input type="radio" name="gstatus" value="2">上架
+                                      <input type="radio" name="gstatus" value="3">下架
                                   </td>
                               </tr>
                               <tr>
@@ -106,49 +178,7 @@
                       </section>
                   </div>
                   </form>
-                   <script type="text/javascript">
                    
-
-                    
-                        $("input").focus(function(){
-
-                               $(this).attr('placeholder','');
-                              
-                        });
-                        
-                        // $("input").blur(function(){
-                          
-                            
-                        //    var data = new FormData($('#bd')[0]);
-                        //    data.append('_token',"{{csrf_token()}}");
-                          
-                        //   $.ajax({
-                        //     type:"POST",
-                            
-                        //     url:"{{url('/admin/good')}}",
-                        //     data:data,
-                        //     async: true,
-                            
-                        //     cache: false,
-                        //     contentType: false,
-                        //     processData: false,
-                        //     success:function(data)
-                        //     {
-                              
-                        //       console.log(1);
-                        //     },
-                        //     error: function(XMLHttpRequest, textStatus, errorThrown) {
-                        //                     alert("上传失败，请检查网络后重试");
-                        //                 }
-                        //   });
-
-
-                        // });
-
-
-                            
-                   </script>
-                  
              
 
               <!-- page end-->
