@@ -20,10 +20,8 @@ Route::get('/', function () {
 
 
 //商城前台的路由
-Route::get('/home',function(){
-	$title='商城前台首页';
-	return view('home.index',['title'=>$title]);	
-});
+Route::get('/home','Home\HomeController@index');	
+
 
 
 //商城前台登录的路由
@@ -39,9 +37,11 @@ Route::post('admin/dologin','Admin\LoginController@doLogin');
 //后台登录时的验证码
 Route::get('admin/yzm','Admin\LoginController@yzm');
 
-
+//后台用户登出的路由
+Route::get('admin/logout','Admin\LoginController@logout');
 
 Route::group(['middleware'=>['islogin','hasrole'],'namespace'=>'Admin'],function (){
+// Route::group(['middleware'=>'islogin','namespace'=>'Admin'],function (){
 	
 	//商城后台的路由
 	Route::get('/admin','LoginController@index');
@@ -50,8 +50,7 @@ Route::group(['middleware'=>['islogin','hasrole'],'namespace'=>'Admin'],function
 	Route::get('admin/passedit','LoginController@passedit');
 	Route::get('admin/password','LoginController@password');
 		
-  	//后台用户登出的路由
-    Route::get('admin/logout','LoginController@logout');
+  	
 
 	// 用户模块路由
  	Route::resource('user','UserController');

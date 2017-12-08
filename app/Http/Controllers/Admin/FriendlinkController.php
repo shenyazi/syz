@@ -26,7 +26,7 @@ class FriendlinkController extends Controller
 	public function store(Request $request){
 		
 		$input = $request->except('_token');
-
+		// dd($input);
 		//表单验证
         $rule = [
             'lname'=>'required|regex:/^[\x{4e00}-\x{9fa5}A-Za-z0-9_]+$/u|between:2,20',
@@ -50,6 +50,7 @@ class FriendlinkController extends Controller
 	        $friend->lname=$request->lname;
 	        $friend->lurl=$request->lurl;
 	        $friend->status=$request->status;
+	        $friend->limg=$request->limg;
 	        
 	        //插入数据库
 			if($friend->save()){
@@ -181,7 +182,7 @@ class FriendlinkController extends Controller
 
 
             //将文件移动到阿里OSS
-           	OSS::upload($newfile,$file->getRealPath());
+           	OSS::upload('uploads/'.$newfile,$file->getRealPath());
 
  			
             //将上传的图片名称返回到前台，目的是前台显示图片

@@ -87,7 +87,7 @@
                                                       success: function(data) {
                                                           // $('#img1').attr('src','/uploads/'+data);
                                                        //$('#img1').attr('src','http://p09v2gc7p.bkt.clouddn.com/uploads/'+data);
-                                                         $('#img1').attr('src','http://php193.oss-cn-beijing.aliyuncs.com/'+data);
+                                                         $('#img1').attr('src','http://php193.oss-cn-beijing.aliyuncs.com/uploads/'+data);
                                                           $('#img1').show();
                                                           $('#limg').val('/uploads/'+data);
                                                       },

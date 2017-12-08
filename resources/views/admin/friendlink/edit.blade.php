@@ -47,8 +47,8 @@
                                   </div>
                                  <div class="form-group">
                                       <label for="inputPassword1" class="col-lg-2 control-label">链接图标:</label>
-                                      <div class="col-lg-6">
-                                          <img src="" alt='链接图片'>
+                                      <div class="col-lg-4">
+                                          <img src="http://php193.oss-cn-beijing.aliyuncs.com/.{{$friend->limg}}" width=100 alt='链接图片'>
                                           <input type="file" class="form-control"  name='limg'>
                                       </div>
                                   </div>

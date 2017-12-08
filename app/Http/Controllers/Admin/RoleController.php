@@ -101,7 +101,7 @@ class RoleController extends Controller
     public function auth($id){
     	$title='角色授权';
 
-        return  \Route::current()->getActionName();
+        // return  \Route::current()->getActionName();
 
         //要授权的角色名
         $role=Role::find($id);

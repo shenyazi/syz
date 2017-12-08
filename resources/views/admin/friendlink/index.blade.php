@@ -55,7 +55,7 @@
                                   <td class="hidden-phone">{{$v->lname}}</td>
                                   <td>{{$v->lurl}} </td>
                                   <td>{{$v->status ==1? '开启' :'关闭' }}</td>
-                                  <td>{{$v->limg}}</td>
+                                  <td><img src="http://php193.oss-cn-beijing.aliyuncs.com/.{{$v->limg}}" width='100'></td>
                                   <td>
                                       <a href="{{url('friendlink/'.$v->id.'/edit')}}" style='margin-right:3px;float:left'><button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button></a>
                                       <a href="javascript:;" onclick="del({{$v->id}})" style='margin-right:3px;float:left'><button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button></a>

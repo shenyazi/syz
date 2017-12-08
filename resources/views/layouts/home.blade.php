@@ -5,7 +5,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>首页</title>
+		<title>@yield('title')</title>
 
 		<link href="/homes/AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet" type="text/css" />
 		<link href="/homes/AmazeUI-2.4.2/assets/css/admin.css" rel="stylesheet" type="text/css" />
@@ -32,7 +32,7 @@
 				</ul>
 				<ul class="message-r">
 					<div class="topMessage home">
-						<div class="menu-hd"><a href="#" target="_top" class="h">商城首页</a></div>
+						<div class="menu-hd"><a href="/home" target="_top" class="h">商城首页</a></div>
 					</div>
 					<div class="topMessage my-shangcheng">
 						<div class="menu-hd MyShangcheng"><a href="#" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a></div>
@@ -50,7 +50,7 @@
 				<div class="nav white">
 					<div class="logo"><img src="/homes/images/logo.png" /></div>
 					<div class="logoBig">
-						<li><img src="/homes/images/logobig.png" /></li>
+						<li><img src="/homes/images/logo/panda.jpg" style='width:55%' /></li>
 					</div>
 
 					<div class="search-bar pr">
@@ -67,21 +67,34 @@
 			
 		@section('content')
 			
+			<div class="long-title"><span class="all-goods">全部分类</span></div>
+		   	<div class="nav-cont">
+				<ul>
+					<li class="index"><a href="#">首页</a></li>
+                    <li class="qc"><a href="#">闪购</a></li>
+                    <li class="qc"><a href="#">限时抢</a></li>
+                    <li class="qc"><a href="#">团购</a></li>
+                    <li class="qc last"><a href="#">大包装</a></li>
+				</ul>
+			</div>
+
 		@show	
 					<div class="footer ">
 						<div class="footer-hd ">
-							<p>
-								<a href="# ">恒望科技</a>
-								<b>|</b>
-								<a href="# ">商城首页</a>
-								<b>|</b>
-								<a href="# ">支付宝</a>
-								<b>|</b>
-								<a href="# ">物流</a>
+							<p style='text-align:center'>
+							@foreach($friendlinks as $v)
+								@if($v->status==1)
+									<a href="{{$v->lurl}}">
+										{{$v->lname}}
+										<img src="http://php193.oss-cn-beijing.aliyuncs.com/.{{$v->limg}}" style='width:8%'>
+									</a>
+									<b>|</b>
+								@endif
+							@endforeach
 							</p>
 						</div>
-						<div class="footer-bd ">
-							<p>
+						<div class="footer-bd " >
+							<p style='text-align:center'>
 								<a href="# ">关于恒望</a>
 								<a href="# ">合作伙伴</a>
 								<a href="# ">联系我们</a>
