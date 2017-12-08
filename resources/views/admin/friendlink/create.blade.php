@@ -73,6 +73,7 @@
                                                       return;
                                                   }
                                                   var formData = new FormData($('#art_form')[0]);
+                                                 // alert(formData);
                                                   // var formData = new FormData();
                                                   // formData.append('file_upload', $('#file_upload')[0].files[0]);
                                                   // formData.append('_token',"{{csrf_token()}}");

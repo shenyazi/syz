@@ -40,11 +40,17 @@ Route::get('admin/yzm','Admin\LoginController@yzm');
 //后台用户登出的路由
 Route::get('admin/logout','Admin\LoginController@logout');
 
-Route::group(['middleware'=>['islogin','hasrole'],'namespace'=>'Admin'],function (){
-// Route::group(['middleware'=>'islogin','namespace'=>'Admin'],function (){
-	
+
+
+
+
+//后台路由组
+// Route::group(['middleware'=>['islogin','hasrole'],'namespace'=>'Admin'],function (){
+Route::group(['middleware'=>['islogin'],'namespace'=>'Admin'],function (){
+
 	//商城后台的路由
 	Route::get('/admin','LoginController@index');
+
 
 	//修改密码的路由
 	Route::get('admin/passedit','LoginController@passedit');
@@ -71,7 +77,9 @@ Route::group(['middleware'=>['islogin','hasrole'],'namespace'=>'Admin'],function
 	// 修改分类的排序
 	Route::post('admin/cate/changeorder', 'CateController@changeOrder');
 
-
+	// 商品路由模块
+	Route::resource('admin/good','GoodController');
+	Route::post('admin/uploadd','GoodController@upload');
 
 
 	
@@ -82,12 +90,12 @@ Route::group(['middleware'=>['islogin','hasrole'],'namespace'=>'Admin'],function
 	//商城后台购物指南文章管理模块
 	Route::resource('work','WorkController');
    
-	//商城后台轮播图管理模块
-  	Route::resource('lunbo','LunboController');
+
    
 });
 
-
+//商城后台轮播图管理模块
+Route::resource('lunbo','Admin\LunboController');
 //权限不够时跳转的路径
 Route::get('errors/auth',function(){
 	return view('errors.auth');
@@ -115,4 +123,10 @@ Route::get('errors/auth',function(){
 
 
 
+
+// 商品模块
+//  Route::group(['prefix'=>'admin','namespace'=>'Admin'],function (){
+// 	route::resource('good','GoodController');
+	
+// });
 
