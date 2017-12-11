@@ -171,13 +171,12 @@
 				<div class="shopMain" id="shopmain">
 
 					<!--今日推荐 -->
-
-					<div class="am-g am-g-fixed recommendation">
+						<div class="am-g am-g-fixed recommendation">
 						<div class="clock am-u-sm-3" ">
 							<img src="/homes/images/2016.png "></img>
 							<p>今日<br>推荐</p>
 						</div>
-						<!-- <div class="am-u-sm-4 am-u-lg-3 ">
+						<div class="am-u-sm-4 am-u-lg-3 ">
 							<div class="info ">
 								<h3>真的有鱼</h3>
 								<h4>开年福利篇</h4>
@@ -185,12 +184,41 @@
 							<div class="recommendationMain ">
 								<img src="/homes/images/tj.png "></img>
 							</div>
-						</div> -->
+						</div>
 
 					</div>
 					<div class="clear "></div>
-					<!--热门活动 -->
+					
+					
+					<!-- 限时秒杀 -->
+					<div class="am-container">
+                     <div class="sale-mt">
+		                   <i></i>
+		                   <em class="sale-title">限时秒杀</em>
+		                   <div class="s-time" id="countdown">
+			                    <span class="hh">01</span>
+			                    <span class="mm">20</span>
+			                    <span class="ss">59</span>
+		                   </div>
+	                  </div>
+					  <div class="am-g am-g-fixed sale">
+						<div class="am-u-sm-3 sale-item">
+							<div class="s-img">
+								<a href="# "><img src="{{url('homes/images/sale3.jpg')}}" /></a>
+							</div>
+                           <div class="s-info">
+                           	   <a href="#"><p class="s-title">ZEK 原味海苔</p></a>
+                           	   <div class="s-price">￥<b>9.90</b>
+                           	   	  <a class="s-buy" href="#">秒杀</a>
+                           	   </div>                          	  
+                           </div>								
+						</div>
+					  </div>
+                   </div>
+					<div class="clear "></div>
 
+				
+               		<!--热门活动 -->
 					<div class="am-container activity ">
 						<div class="shopTitle ">
 							<h4>活动</h4>
@@ -203,7 +231,7 @@
 					 	<div class="am-g am-g-fixed ">
 							<div class="am-u-sm-3 ">
 								<div class="icon-sale one "></div>	
-									<h4>秒杀</h4>							
+									<h4>团购</h4>							
 								<div class="activityMain ">
 									<img src="/homes/images/activity1.jpg "></img>
 								</div>
@@ -215,9 +243,8 @@
                    	</div>
 					<div class="clear "></div>
 
-				
-                 <div class="clear "></div>
-					<!--坚果-->
+
+					<!-- 文章 -->
 					<div class="am-container ">
 						<div class="shopTitle ">
 							<h4>购物指南文章</h4>
@@ -239,25 +266,6 @@
 							@endforeach
 						</ul>
 					</div>
-					
-					<!-- <div class="am-g am-g-fixed floodTwo ">
-						
-						<div class="am-u-sm-7 am-u-md-4 am-u-lg-2 text-two">
-								<div class="outer-con ">
-									<div class="title ">
-										雪之恋和风大福
-									</div>
-									
-									<div class="sub-title ">
-										仅售：¥13.8
-									</div>
-								</div>
-								<a href="# "><img src="/homes/images/5.jpg " /></a>						
-						</div>
-						
-											
-					</div> -->
-
 					<div class="clear "></div>
 
 
