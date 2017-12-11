@@ -10,7 +10,7 @@
                 <div class="col-lg-12">
                       <ul class="breadcrumb">
                           <li><a href="#"><i class="icon-home"></i> Home</a></li>
-                          <li><a href="#">友情链接</a></li>
+                          <li><a href="#">轮播图</a></li>
                           <li class="active">列 表</li>
                       </ul>
                   </div>
@@ -25,7 +25,7 @@
                       @endif
                       <section class="panel">
                           <header class="panel-heading">
-                              <b>友情链接列表</b>
+                              <b>轮播图列表</b>
                           </header>
                           <form action="{{url('friendlink')}}" method='get' style='padding:12px;margin-left:55px'>
                               <b >每页显示条数:</b>
@@ -34,30 +34,32 @@
                                     <option value='10' @if($request['num'] == 10)  selected  @endif>10</option>
                                     <option value='20' @if($request['num'] == 20)  selected  @endif>20</option>
                                 </select>
-                              <b style='margin-left:50px'>链接名:</b><input type="text" name="lname" value="{{$request->lname}}">
+                              <b style='margin-left:50px'>关键字:</b><input type="text" name="btitle" value="{{$request->btitle}}">
                               <button class="btn btn-primary btn-xm">查 询</button>
                           </form>  
                           <table class="table table-striped table-advance table-hover">
                               <thead>
                               <tr>
                                   <th><i class="icon-bullhorn"></i>ID</th>
-                                  <th class="hidden-phone"><i class="icon-question-sign"></i>链接名称</th>
+                                  <th class="hidden-phone"><i class="icon-question-sign"></i>标题</th>
                                   <th><i class="icon-bookmark"></i>链接地址</th>
-                                  <th><i class=" icon-edit"></i>链接状态</th>
-                                  <th><i class=" icon-edit"></i>链接图片</th>
+                                  <th><i class=" icon-edit"></i>图片</th>
+                                  <th><i class=" icon-edit"></i>状态</th>
+                                  
                                   <th>操作</th>
                               </tr>
                               </thead>
                               <tbody>
-                            @foreach($friends as $v)
+                            @foreach($lunbo as $v)
                               <tr>
                                   <td>{{$v->id}}</td>
-                                  <td class="hidden-phone">{{$v->lname}}</td>
-                                  <td>{{$v->lurl}} </td>
-                                  <td>{{$v->status ==1? '开启' :'关闭' }}</td>
-                                  <td>{{$v->limg}}</td>
+                                  <td class="hidden-phone">{{$v->btitle}}</td>
+                                  <td>{{$v->burl}} </td>
+                                  <td>{{$v->bimg}}</td>
+
+                                  <td>{{$v->bstatus ==1? '开启' :'关闭' }}</td>
                                   <td>
-                                      <a href="{{url('friendlink/'.$v->id.'/edit')}}" style='margin-right:3px;float:left'><button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button></a>
+                                      <a href="{{url('lunbo/'.$v->id.'/edit')}}" style='margin-right:3px;float:left'><button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button></a>
                                       <a href="javascript:;" onclick="del({{$v->id}})" style='margin-right:3px;float:left'><button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button></a>
                                   </td>
                               </tr>
@@ -71,7 +73,7 @@
              
              <!-- 分页列表 -->
               <div class="dataTables_paginate paging_bootstrap pagination">
-                 {!! $friends->appends($request->all())->render() !!}
+                 {!! $lunbo->appends($request->all())->render() !!}
               </div>
           </section>
       </section>
@@ -83,7 +85,7 @@
               btn: ['确定','取消'] 
             }, function(){
               //$.post("请求服务器的路径","携带的参数", 获取执行成功后的额返回数据);
-              $.post("{{url('friendlink')}}/"+id,{"_method":'delete',"_token":"{{csrf_token()}}"},function(data){
+              $.post("{{url('lunbo')}}/"+id,{"_method":'delete',"_token":"{{csrf_token()}}"},function(data){
                 //删除成功
                 if(data.error==0){
                   layer.msg(data.msg, {icon: 6});

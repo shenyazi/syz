@@ -54,7 +54,7 @@ Route::group(['middleware'=>['islogin'],'namespace'=>'Admin'],function (){
 
 	//修改密码的路由
 	Route::get('admin/passedit','LoginController@passedit');
-	Route::get('admin/password','LoginController@password');
+	Route::post('admin/password','LoginController@password');
 		
   	
 

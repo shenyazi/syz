@@ -176,14 +176,14 @@ class FriendlinkController extends Controller
 
             //将文件移动到本地服务器的指定的位置，并以新文件名命名
           	//$file->move(移动到的目录, 新文件名);
-           //  $file->move($dirpath, $newfile);
+            $file->move($dirpath, $newfile);
 
             //将文件移动到七牛云，并以新文件名命名
             //\Storage::disk('qiniu')->writeStream('uploads/'.$newfile, fopen($file->getRealPath(), 'r'));
 
 
             //将文件移动到阿里OSS
-           	OSS::upload('uploads/'.$newfile,$file->getRealPath());
+           	// OSS::upload('uploads/'.$newfile,$file->getRealPath());
 
  			
             //将上传的图片名称返回到前台，目的是前台显示图片

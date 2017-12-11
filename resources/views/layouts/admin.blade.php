@@ -154,7 +154,7 @@
                       </a>
                       <ul class="sub">
                           <li><a class="" href="{{url('lunbo/create')}}">轮播图添加</a></li>
-                          <li><a class="" href="{{url('lunbo/index')}}">轮播图浏览</a></li>
+                          <li><a class="" href="{{url('lunbo')}}">轮播图浏览</a></li>
                       </ul>
                   </li>
 
