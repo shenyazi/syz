@@ -148,15 +148,7 @@
 						</p>
 						<p class="cart_num ">0</p>
 					</div>
-					<div id="asset " class="item ">
-						<a href="# ">
-							<span class="view "></span>
-						</a>
-						<div class="mp_tooltip ">
-							我的资产
-							<i class="icon_arrow_right_black "></i>
-						</div>
-					</div>
+					
 
 					<div id="foot " class="item ">
 						<a href="# ">
@@ -174,16 +166,6 @@
 						</a>
 						<div class="mp_tooltip ">
 							我的收藏
-							<i class="icon_arrow_right_black "></i>
-						</div>
-					</div>
-
-					<div id="broadcast " class="item ">
-						<a href="# ">
-							<span class="chongzhi "><img src="/homes/images/chongzhi.png " /></span>
-						</a>
-						<div class="mp_tooltip ">
-							我要充值
 							<i class="icon_arrow_right_black "></i>
 						</div>
 					</div>

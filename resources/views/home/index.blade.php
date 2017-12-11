@@ -26,13 +26,12 @@
 						<div id="nav" class="navfull">
 							<div class="area clearfix">
 								<div class="category-content" id="guide_2">
-									
 									<div class="category">
 										<ul class="category-list" id="js_climit_li">
-										@foreach($cates as $v)
+										@foreach($data as $key=>$value)
 											<li class="appliance js_toggle relative first">
 												<div class="category-info">
-													<h3 class="category-name b-category-name"><i><img src="{{url('homes/images/cake.png')}}"></i><a class="ml-22" title="点心">{{$v->cate_name}}</a></h3>
+													<h3 class="category-name b-category-name"><i><img src="{{url('homes/images/cake.png')}}"></i><a class="ml-22" title="点心">{{$value->cate_name}}</a></h3>
 													<em>&gt;</em></div>
 												<div class="menu-item menu-in top" style="display: none;">
 													<div class="area-in">
@@ -40,39 +39,9 @@
 															<div class="menu-srot">
 																<div class="sort-side">
 																	<dl class="dl-sort">
-																		<dt><span title="蛋糕">蛋糕</span></dt>
-																		<dd><a title="蒸蛋糕" href="#"><span>蒸蛋糕</span></a></dd>
-																		<dd><a title="脱水蛋糕" href="#"><span>脱水蛋糕</span></a></dd>
-																		<dd><a title="瑞士卷" href="#"><span>瑞士卷</span></a></dd>
-																		<dd><a title="软面包" href="#"><span>软面包</span></a></dd>
-																		<dd><a title="马卡龙" href="#"><span>马卡龙</span></a></dd>
-																		<dd><a title="千层饼" href="#"><span>千层饼</span></a></dd>
-																		<dd><a title="甜甜圈" href="#"><span>甜甜圈</span></a></dd>
-																		<dd><a title="蒸三明治" href="#"><span>蒸三明治</span></a></dd>
-																		<dd><a title="铜锣烧" href="#"><span>铜锣烧</span></a></dd>
-																	</dl>
-																	<dl class="dl-sort">
-																		<dt><span title="蛋糕">点心</span></dt>
-																		<dd><a title="蒸蛋糕" href="#"><span>蒸蛋糕</span></a></dd>
-																		<dd><a title="脱水蛋糕" href="#"><span>脱水蛋糕</span></a></dd>
-																		<dd><a title="瑞士卷" href="#"><span>瑞士卷</span></a></dd>
-																		<dd><a title="软面包" href="#"><span>软面包</span></a></dd>
-																		<dd><a title="马卡龙" href="#"><span>马卡龙</span></a></dd>
-																		<dd><a title="千层饼" href="#"><span>千层饼</span></a></dd>
-																		<dd><a title="甜甜圈" href="#"><span>甜甜圈</span></a></dd>
-																		<dd><a title="蒸三明治" href="#"><span>蒸三明治</span></a></dd>
-																		<dd><a title="铜锣烧" href="#"><span>铜锣烧</span></a></dd>
-																	</dl>
-
-																</div>
-																<div class="brand-side">
-																	<dl class="dl-sort"><dt><span>实力商家</span></dt>
-																		<dd><a rel="nofollow" title="呵官方旗舰店" target="_blank" href="#"><span class="red">呵官方旗舰店</span></a></dd>
-																		<dd><a rel="nofollow" title="格瑞旗舰店" target="_blank" href="#"><span>格瑞旗舰店</span></a></dd>
-																		<dd><a rel="nofollow" title="飞彦大厂直供" target="_blank" href="#"><span class="red">飞彦大厂直供</span></a></dd>
-																		<dd><a rel="nofollow" title="红e·艾菲妮" target="_blank" href="#"><span>红e·艾菲妮</span></a></dd>
-																		<dd><a rel="nofollow" title="本真旗舰店" target="_blank" href="#"><span class="red">本真旗舰店</span></a></dd>
-																		<dd><a rel="nofollow" title="杭派女装批发网" target="_blank" href="#"><span class="red">杭派女装批发网</span></a></dd>
+																	@foreach($value->sub as $k=>$v)
+																		<dd><a href="{{$v->cate_id}}"><span>{{$v->cate_name}}</span></a></dd>
+																	@endforeach
 																	</dl>
 																</div>
 															</div>
@@ -82,13 +51,6 @@
 											<b class="arrow"></b>	
 											</li>
 										@endforeach	
-											
-											
-											
-											
-										
-											
-									
 										</ul>
 									</div>
 								</div>
@@ -155,35 +117,35 @@
 								     <p>XXXXXXXXXXXXXXXXXX</p>
 							    </a></li>
 							    
-						<div class="mod-vip">
-							<div class="m-baseinfo">
-								<a href="/homes/person/index.html">
-									<img src="/homes/images/getAvatar.do.jpg">
-								</a>
-								<em>
-									Hi,<span class="s-name">小叮当</span>
-									<a href="#"><p>点击更多优惠活动</p></a>									
-								</em>
-							</div>
-							<div class="member-logout">
-								<a class="am-btn-warning btn" href="login.html">登录</a>
-								<a class="am-btn-warning btn" href="register.html">注册</a>
-							</div>
-							<div class="member-login">
-								<a href="#"><strong>0</strong>待收货</a>
-								<a href="#"><strong>0</strong>待发货</a>
-								<a href="#"><strong>0</strong>待付款</a>
-								<a href="#"><strong>0</strong>待评价</a>
-							</div>
-							<div class="clear"></div>	
-						</div>																	    
+								<div class="mod-vip">
+									<div class="m-baseinfo">
+										<a href="/homes/person/index.html">
+											<img src="/homes/images/getAvatar.do.jpg">
+										</a>
+										<em>
+											Hi,<span class="s-name">小叮当</span>
+											<a href="#"><p>点击更多优惠活动</p></a>									
+										</em>
+									</div>
+									<div class="member-logout">
+										<a class="am-btn-warning btn" href="login.html">登录</a>
+										<a class="am-btn-warning btn" href="register.html">注册</a>
+									</div>
+									<div class="member-login">
+										<a href="#"><strong>0</strong>待收货</a>
+										<a href="#"><strong>0</strong>待发货</a>
+										<a href="#"><strong>0</strong>待付款</a>
+										<a href="#"><strong>0</strong>待评价</a>
+									</div>
+									<div class="clear"></div>	
+								</div>																	    
 							    
 								<li><a target="_blank" href="#"><span>[特惠]</span>洋河年末大促，低至两件五折</a></li>
 								<li><a target="_blank" href="#"><span>[公告]</span>华北、华中部分地区配送延迟</a></li>
 								<li><a target="_blank" href="#"><span>[特惠]</span>家电狂欢千亿礼券 买1送1！</a></li>
 								
 							</ul>
-                        <div class="advTip"><img src="/homes/images/advTip.jpg"/></div>
+                       		<div class="advTip"><img src="/homes/images/advTip.jpg"/></div>
 						</div>
 					</div>
 					<div class="clear"></div>
@@ -238,20 +200,19 @@
                             </span>
 						</div>
 					
-					  <div class="am-g am-g-fixed ">
-						<div class="am-u-sm-3 ">
-							<div class="icon-sale one "></div>	
-								<h4>秒杀</h4>							
-							<div class="activityMain ">
-								<img src="/homes/images/activity1.jpg "></img>
+					 	<div class="am-g am-g-fixed ">
+							<div class="am-u-sm-3 ">
+								<div class="icon-sale one "></div>	
+									<h4>秒杀</h4>							
+								<div class="activityMain ">
+									<img src="/homes/images/activity1.jpg "></img>
+								</div>
+								<div class="info ">
+									<h3>春节送礼优选</h3>
+								</div>														
 							</div>
-							<div class="info ">
-								<h3>春节送礼优选</h3>
-							</div>														
-						</div>
-
-					  </div>
-                   </div>
+					  	</div>
+                   	</div>
 					<div class="clear "></div>
 
 				
@@ -259,22 +220,27 @@
 					<!--坚果-->
 					<div class="am-container ">
 						<div class="shopTitle ">
-							<h4>坚果</h4>
-							<h3>酥酥脆脆，回味无穷</h3>
+							<h4>购物指南文章</h4>
+							<h3>您身边最实用的指导性文章</h3>
 							<div class="today-brands ">
-								<a href="# ">腰果</a>
-								<a href="# ">松子</a>
-								<a href="# ">夏威夷果 </a>
-								<a href="# ">碧根果</a>
-								<a href="# ">开心果</a>
-								<a href="# ">核桃仁</a>
+								<a href="# ">入坑</a>
+								<a href="# ">脱坑</a>
+								<a href="# ">弃坑 </a>
 							</div>
 							<span class="more ">
-                    <a class="more-link " href="# ">更多美味</a>
-                        </span>
+                    			<a class="more-link " href="# ">剁手</a>
+                        	</span>
 						</div>
 					</div>
-					<div class="am-g am-g-fixed floodTwo ">
+					<div class="am-g am-g-fixed title" >
+						<ul >
+							@foreach($works as $v)
+							<li style="padding:5px"><b>* </b><a target="_blank" href="#"><span>{{$v->wtitle}}</span></a></li>
+							@endforeach
+						</ul>
+					</div>
+					
+					<!-- <div class="am-g am-g-fixed floodTwo ">
 						
 						<div class="am-u-sm-7 am-u-md-4 am-u-lg-2 text-two">
 								<div class="outer-con ">
@@ -288,8 +254,9 @@
 								</div>
 								<a href="# "><img src="/homes/images/5.jpg " /></a>						
 						</div>
+						
 											
-					</div>
+					</div> -->
 
 					<div class="clear "></div>
 
