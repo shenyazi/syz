@@ -25,13 +25,7 @@
                           <form action="/user" method='get'>
                           <table class="search_tab">
                               <tr>
-                                  <th>每页个数:</th>
-                                  <td width="120">
-                                      <select name="num">
-                                          <option value="5" @if($request['num'] == 5)  selected  @endif>5</option>
-                                          <option value="10" @if($request['num'] == 10)  selected  @endif >10</option>
-                                      </select>
-                                  </td>
+                                 
                                   
                                   <th>关键字:</th>
                                   <td width="">
@@ -60,6 +54,7 @@
                                   <td class="hidden-phone">{{$v->username}}</td>
                                   <td>{{$v->password}}</td>
                                   <td>
+                                      <a href="{{url('user/auth/'.$v->id)}}">授权</a>
                                       <a href="{{url('user/'.$v->id.'/edit')}}">修改</a>
                                       <a href="javascript:;" onclick="userDel({{$v->id}})">删除</a>
                                   </td>

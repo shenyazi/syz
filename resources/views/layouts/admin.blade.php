@@ -93,6 +93,28 @@
                   </li>
                   <li class="sub-menu">
                       <a href="javascript:;" class="">
+                          <i class="icon-book"></i>
+                          <span>角色管理</span>
+                          <span class="arrow"></span>
+                      </a>
+                      <ul class="sub">
+                          <li><a class="" href="{{url('role/create')}}">角色添加</a></li>
+                          <li><a class="" href="{{url('role')}}">角色浏览</a></li>
+                      </ul>
+                  </li>
+                  <li class="sub-menu">
+                      <a href="javascript:;" class="">
+                          <i class="icon-book"></i>
+                          <span>权限管理</span>
+                          <span class="arrow"></span>
+                      </a>
+                      <ul class="sub">
+                          <li><a class="" href="{{url('auth/create')}}">权限添加</a></li>
+                          <li><a class="" href="{{url('auth')}}">权限浏览</a></li>
+                      </ul>
+                  </li>
+                   <li class="sub-menu">
+                      <a href="javascript:;" class="">
                           <i class="icon-tasks"></i>
                           <span>类别管理</span>
                           <span class="arrow"></span>
@@ -105,7 +127,7 @@
                    <li class="sub-menu">
                       <a href="javascript:;" class="">
                           <i class="icon-book"></i>
-                          <span>文章管理模块</span>
+                          <span>购物指南文章模块</span>
                           <span class="arrow"></span>
                       </a>
                       <ul class="sub">

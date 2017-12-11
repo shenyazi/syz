@@ -50,12 +50,22 @@ class GoodController extends Controller
      * 
      */
     public function index(Request $request)
-    {
+    {//dd($request->input('num'));
+        $goods = Good::orderBy('id','asc')
+        ->where(function($query) use($request){
+                //检测关键字
+                $gname = $request->input('gname');
+                //如果商品名称不为空
+                if(!empty($gname)) {
+                    $query->where('gname','like','%'.$gname.'%');
+                }
+            })->paginate($request->input('num',5));
         $title = '商品列表页';
-        $goods = Good::paginate(5);
+        // $goods = Good::paginate(5);
 
-        //dd($goods);
+        // dd($goods);
         return view('admin.good.index',compact('title','goods','request'));
+
     }
 
     /**
@@ -95,6 +105,7 @@ class GoodController extends Controller
     public function store(Request $request)
     {
         // 获取提交的数据
+       // dd($request->pid);
          $input = $request->except('_token','gpicc');
         // dd($input);
         $rule = [
@@ -131,7 +142,7 @@ class GoodController extends Controller
         if($good->save()){
             return redirect('/admin/good')->with('success','添加商品成功!');
         }else{
-            return back()->with('errors','添加文章失败!!!');
+            return back()->with('errors','添加商品失败!!!');
         }
         
     
@@ -155,9 +166,25 @@ class GoodController extends Controller
      */
     public function edit($id)
     {
-        //
-    }
+       
+        $good = Good::find($id);
+      
+       
+        $cates = (new Cate) -> tree();
+       
+        $cate = [];
+      
+        foreach($cates as $k => $v)
+        {
+            $cate[] =  $v -> cate_pid;
+           
+        }
+        $cate = array_unique($cate);
+       // dd($cate);
+        $title = '更新商品';
+        return view('admin.good.edit',compact('title','id','good','cate','cates'));
 
+    }
     /**
      * Update the specified resource in storage.
      *
@@ -165,9 +192,46 @@ class GoodController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    
     public function update(Request $request, $id)
     {
-        //
+        
+        $goods = $request->except('_token','_method','gpicc');
+         $rule = [
+            'gname'=>'required',
+            "gprice"=>'required|numeric',
+            "goodsNum"=>'required',
+            
+
+        ];
+
+        $mess = [
+            'gname.required'=>'商品名称必须输入',
+            'gprice.required'=>'商品价格必须输入',
+            'gprice.numeric'=>'商品价格必须为数字',
+            'goodsNum.required'=>'商品上线数量必须输入',
+            
+            
+        ];
+         
+        $validator = Validator::make($goods,$rule,$mess);
+
+        if ($validator->fails()) {
+            return back()
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+        $r = Good::where('id',$id)->update($goods);
+        if($r){
+          
+            return redirect('/admin/good')->with('msg','更新商品成功!');
+                
+        }else{
+            return back()->with('msg','更新商品失败!!!');
+        }
+
+       // dd($good->id);
+        
     }
 
     /**
@@ -178,6 +242,38 @@ class GoodController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $res = Good::destroy($id);
+        $data=[];
+        if($res){
+            $data['error'] = 0;
+            $data['msg'] ="删除成功";
+        }else{
+            $data['error'] = 1;
+            $data['msg'] ="删除失败";
+        }
+
+        return $data;
+    }
+    public function zt( $id)
+    {
+
+        $goods = Good::find($id);
+        $good = $goods->gstatus;
+        if($good == "1" || $good == "3")
+        {
+            $goods->gstatus = 2;
+        }else{
+            $goods->gstatus = 3;
+        }
+        
+        $a =  $goods -> save();
+        if($a){
+          
+            return redirect('/admin/good');
+                
+        }else{
+            return back()->with('msg','失败');
+        }
+        
     }
 }
