@@ -18,15 +18,15 @@
                                   {{ csrf_field() }}
                                   <div class="form-group">
                                       <label for="exampleInputEmail1">旧密码</label>
-                                      <input type="text" class="form-control" id="exampleInputEmail1" placeholder="oldpassword">
+                                      <input type="text" class="form-control"  name="password" id="exampleInputEmail1" placeholder="oldpassword">
                                   </div>
                                   <div class="form-group">
                                       <label for="exampleInputPassword1">新密码</label>
-                                      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="newpassword">
+                                      <input type="password" class="form-control" name="newpass" id="exampleInputPassword1" placeholder="newpassword">
                                   </div>
                                   <div class="form-group">
                                       <label for="exampleInputPassword1">确认密码</label>
-                                      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="repassword">
+                                      <input type="password" class="form-control" name="repass" id="exampleInputPassword1" placeholder="repassword">
                                   </div>
                                   
                                   <div class="mws-button-row">

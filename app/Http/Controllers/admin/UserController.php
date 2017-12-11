@@ -112,10 +112,10 @@ class UserController extends Controller
         $data = [];
         if($res){
             $data['error'] = 0;
-            $data['msg'] ="删除成功";
+            $data['msg'] ="修改成功";
         }else{
             $data['error'] = 1;
-            $data['msg'] ="删除失败";
+            $data['msg'] ="修改失败";
         }
 
         return $data;
