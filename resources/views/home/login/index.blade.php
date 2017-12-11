@@ -17,7 +17,7 @@
 	<body>
 
 		<div class="login-boxtitle">
-			<a href="home.html"><img alt="logo" src="{{ asset('homes/images/logobig.png')}}" /></a>
+			<!-- <a href="home.html"><img alt="logo" src="{{ asset('<!--  -->')}}" /></a> -->
 		</div>
 
 		<div class="login-banner">
