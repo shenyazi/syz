@@ -3,42 +3,35 @@
 @section('title',$title)
 
 @section('content')
-  
-      <!--sidebar end-->
-      <!--main content start-->
-      <section id="main-content">
+	<section id="main-content">
           <section class="wrapper">
               <!-- page start-->
-              
-              <style type="text/css">
-                  th{
-                      text-align:center;
-                      vertical-align:middle
-
-
-                  }
-
-              </style>
-              <div class="row ">
-                  <div class="col-sm-12">
+              <div class="row">
+                  <div class="col-lg-12">
+                      <ul class="breadcrumb">
+                          <li><a href="#"><i class="icon-home"></i> Home</a></li>
+                          <li><a href="#">友情链接</a></li>
+                          <li class="active">修 改</li>
+                      </ul>
+                  </div>
+              </div>
+              <div class="row">
+                 	@if (count($errors) > 0)
+      						<div class="alert alert-danger">
+      							<ul>
+      								@foreach ($errors->all() as $error)
+      									<li style="color:red">{{ $error }}</li>
+      								@endforeach
+      							</ul>
+      						</div>
+      					@endif
+                  <div class="col-lg-12">
                       <section class="panel">
-                          <header class="panel-heading no-border">
-                              添加商品
+                          <header class="panel-heading">
+                             <b>修改商品</b>        
                           </header>
-                          @if (count($errors) > 0)
-                <div class="alert alert-danger">
-                    <ul>
-                        @if(is_object($errors))
-                            @foreach ($errors->all() as $error)
-                                <li style="color:red">{{ $error }}</li>
-                        @endforeach
-                        @else
-                            <li style="color:red">{{ $errors }}</li>
-                        @endif
-                    </ul>
-                </div>
-            @endif
-                          <form action="{{url('admin/good')}}" method="post" id="bd" enctype='multipart/form-data'>
+
+                         <form action="{{url('admin/good/'.$good->id)}}" method="post" id="bd" enctype='multipart/form-data'>
 
                            
                            
@@ -52,9 +45,9 @@
                                       <select class="form-control" id="inputPassword2" name='pid'  ">  
                                            @foreach($cates as $k=>$v)
                                             @if(in_array($v->cate_id,$cate))
-                                              <option disabled="disabled" value="{{$v->cate_id}}">{{$v->_cate_name}}</option>  
+                                              <option disabled="disabled" @if($v->cate_id == $good->pid) selected @endif value="{{$v->cate_id}}">{{$v->cate_name}}</option>  
                                             @else if
-                                            <option value="{{$v->cate_id}}" >{{$v->cate_name}}</option>  
+                                            <option  @if($v->cate_id == $good->pid) selected @endif value="{{$v->cate_id}}" >{{$v->cate_name}}</option>  
                                             @endif
                                           @endforeach
                                        </select>  
@@ -66,31 +59,31 @@
                                   <th>商品名称:</th>
                                   <td>
 
-                                      <input class="form-control " id="inputPassword3" type="text" name="gname" placeholder="请填写您的商品名称">
+                                      <input class="form-control " id="inputPassword3" type="text" name="gname" value="{{$good->gname}}" placeholder="请输入您想要的商品名称">
                                      
                                   </td>
                               </tr>
                               <tr>
                                   <th>商品价格:</th>
                                   <td>
-                                      <input class="form-control" id="inputPassword2" type="text" name="gprice" placeholder="请标明您的价格">
+                                      <input class="form-control" id="inputPassword2" type="text" name="gprice" value="{{$good->gprice}}" placeholder="请输入您想要的价格">
                                   </td>
                               </tr>
                               <tr>
                                   <th>库存:</th>
                                   <td>
                                    
-                                      <input class="form-control" id="inputPassword2" type="text" name="goodsNum" placeholder="请填写您的商品数量">
+                                      <input class="form-control" id="inputPassword2" type="text" name="goodsNum" value = "{{$good->goodsNum}}"placeholder="请填写您的商品数量">
                                   </td>
                               </tr>
                               {{csrf_field()}}
                               <tr>
                                   <th>商品图片:</th>
                                   <td>
-                                  <input type="text" size="40" id="limg" name="gpic" >
+                                  <input type="text" size="40" id="limg" value ="{{$good->gpic}}"  name="gpic" >
                                       <input  id="tp" type="file" name="gpicc" 
                                       multiple='true'>
-                                      <img src="" id="img1" alt="" style="width:80px;height:80px">
+                                      <img src="{{$good->gpic}}" id="img1" alt="" style="width:80px;height:80px">
                                       <script type="text/javascript">
                                     
                                               $(function () {
@@ -116,7 +109,11 @@
                                                       return;
                                                   }
                                                  
-                                                 var formData = new FormData($('#bd')[0]);
+                                                 var formData = new FormData();
+                                                 formData.append("gpicc", $('#tp')[0].files[0]);
+                                                formData.append("_token", '{{csrf_token()}}');
+
+
                                                 
                                                   $.ajax({
                                                       type: "POST",
@@ -145,11 +142,14 @@
                                   <th>商品描述:</th>
                                   <td>
 <!--                                       <textarea class="form-control" id="inputPassword2" name="goodsDes" placeholder="请对您的商品进行描述"></textarea> -->
-                                        <script type="text/javascript" charset="utf-8" src="/ueditor/ueditor.config.js"></script>
+                                       <div class="form-group">
+                                      
+                                      <div class="col-lg-6">
+                                          <script type="text/javascript" charset="utf-8" src="/ueditor/ueditor.config.js"></script>
                                           <script type="text/javascript" charset="utf-8" src="/ueditor/ueditor.all.min.js"> </script>
                                           <script type="text/javascript" charset="utf-8" src="/ueditor/lang/zh-cn/zh-cn.js"></script>
 
-                                          <script id="editor" name="goodsDes" type="text/plain" style="width:600px;height:30px;"></script>
+                                          <script id="editor" name="goodsDes" type="text/plain" style="width:800px;height:300px;">{!! $good->goodsDes !!}</script>
                                           <script>
                                               var ue = UE.getEditor('editor');
                                           </script>
@@ -159,21 +159,24 @@
                                               {overflow: hidden; height:20px;}
                                               div.edui-box{overflow: hidden; height:22px;}
                                           </style>
+                                      </div>
+                                  </div>
                                   </td>
                               </tr>
                                <tr>
                                   <th>状态:</th>
                                   <td>
-                                      <input type="radio" name="gstatus" value="1" checked>新品
-                                      <input type="radio" name="gstatus" value="2">上架
-                                      <input type="radio" name="gstatus" value="3">下架
+                                      <input type="radio" name="gstatus" @if($good->gstatus == '1') checked @endif value="1" checked>新品
+                                      <input type="radio" name="gstatus"  @if($good->gstatus == '2') checked @endif value="2">上架
+                                      <input type="radio" @if($good->gstatus == '3') checked @endif  name="gstatus" value="3">下架
                                   </td>
                               </tr>
                               <tr>
                                   <th></th>
                                   <td>
-                                      <input style="width:100px;" type="submit" value="提交">
-                                      <input style="width:100px;" onclick="history.go(-1)" type="button" value="返回">
+                                      {{csrf_field()}}
+                                          <input type="hidden" name="_method" value='put'>
+                                          <button type="submit" class="btn btn-danger">更新</button>
                                   </td>
                               </tr>
                              
@@ -182,12 +185,13 @@
                       </section>
                   </div>
                   </form>
-                   
-             
+                      </section>
+                     
+                  </div>
+              </div>
 
+            
               <!-- page end-->
           </section>
       </section>
-
-      <!--main content end-->
-  @endsection
+@endsection
