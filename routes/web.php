@@ -58,6 +58,7 @@ Route::get('admin/yzm','Admin\LoginController@yzm');
 Route::get('admin/logout','Admin\LoginController@logout');
 
 
+<<<<<<< HEAD
 
 
 
@@ -65,13 +66,17 @@ Route::get('admin/logout','Admin\LoginController@logout');
 // Route::group(['middleware'=>['islogin','hasrole'],'namespace'=>'Admin'],function (){
 Route::group(['middleware'=>['islogin'],'namespace'=>'Admin'],function (){
 
+=======
+Route::group(['middleware'=>['islogin'],'namespace'=>'Admin'],function (){
+	
+>>>>>>> origin/wyh
 	//商城后台的路由
 	Route::get('/admin','LoginController@index');
 
 
 	//修改密码的路由
 	Route::get('admin/passedit','LoginController@passedit');
-	Route::get('admin/password','LoginController@password');
+	Route::post('admin/password','LoginController@password');
 		
   	
 
@@ -97,6 +102,7 @@ Route::group(['middleware'=>['islogin'],'namespace'=>'Admin'],function (){
 	// 商品路由模块
 	Route::resource('admin/good','GoodController');
 	Route::post('admin/uploadd','GoodController@upload');
+	Route::get('admin/good/zt/{id}','GoodController@zt');
 
 
 	
