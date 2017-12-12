@@ -41,7 +41,7 @@ Route::get('admin/yzm','Admin\LoginController@yzm');
 Route::get('admin/logout','Admin\LoginController@logout');
 
 
-<<<<<<< HEAD
+
 
 
 
@@ -49,10 +49,7 @@ Route::get('admin/logout','Admin\LoginController@logout');
 // Route::group(['middleware'=>['islogin','hasrole'],'namespace'=>'Admin'],function (){
 Route::group(['middleware'=>['islogin'],'namespace'=>'Admin'],function (){
 
-=======
-Route::group(['middleware'=>['islogin'],'namespace'=>'Admin'],function (){
-	
->>>>>>> origin/wyh
+
 	//商城后台的路由
 	Route::get('/admin','LoginController@index');
 
@@ -86,6 +83,9 @@ Route::group(['middleware'=>['islogin'],'namespace'=>'Admin'],function (){
 	Route::resource('admin/good','GoodController');
 	Route::post('admin/uploadd','GoodController@upload');
 	Route::get('admin/good/zt/{id}','GoodController@zt');
+	Route::get('aaa',function(){
+		return view('/home/Good/xq');
+	});
 
 
 	
