@@ -7,10 +7,11 @@
                       <!--轮播 -->
 						<div class="am-slider am-slider-default scoll" data-am-flexslider id="demo-slider-0">
 							<ul class="am-slides">
-								<li class="banner1"><a href="introduction.html"><img src="/homes/images/ad1.jpg" /></a></li>
-								<li class="banner2"><a><img src="/homes/images/ad2.jpg" /></a></li>
-								<li class="banner3"><a><img src="/homes/images/ad3.jpg" /></a></li>
-								<li class="banner4"><a><img src="/homes/images/ad4.jpg" /></a></li>
+							@foreach($lunbo as $k=>$v)
+								@if($v->bstatus==1)
+								<li class="{{$k+1}}"><img src="{{$v->bimg}}" /></li>
+								@endif
+							@endforeach
 
 							</ul>
 						</div>
@@ -76,33 +77,10 @@
 						</script>
 
 
-					<!--小导航 -->
-					<div class="am-g am-g-fixed smallnav">
-						<div class="am-u-sm-3">
-							<a href="sort.html"><img src="/homes/images/navsmall.jpg" />
-								<div class="title">商品分类</div>
-							</a>
-						</div>
-						<div class="am-u-sm-3">
-							<a href="#"><img src="/homes/images/huismall.jpg" />
-								<div class="title">大聚惠</div>
-							</a>
-						</div>
-						<div class="am-u-sm-3">
-							<a href="#"><img src="/homes/images/mansmall.jpg" />
-								<div class="title">个人中心</div>
-							</a>
-						</div>
-						<div class="am-u-sm-3">
-							<a href="#"><img src="/homes/images/moneysmall.jpg" />
-								<div class="title">投资理财</div>
-							</a>
-						</div>
-					</div>
 
 					<!--走马灯 -->
 
-					<div class="marqueen">
+					<!-- <div class="marqueen">
 						<span class="marqueen-title">商城头条</span>
 						<div class="demo">
 
@@ -147,8 +125,8 @@
 							</ul>
                        		<div class="advTip"><img src="/homes/images/advTip.jpg"/></div>
 						</div>
-					</div>
-					<div class="clear"></div>
+					</div> -->
+					<!-- <div class="clear"></div> -->
 				</div>
 				<script type="text/javascript">
 					if ($(window).width() < 640) {
@@ -171,7 +149,7 @@
 				<div class="shopMain" id="shopmain">
 
 					<!--今日推荐 -->
-						<div class="am-g am-g-fixed recommendation">
+					<!-- <div class="am-g am-g-fixed recommendation">
 						<div class="clock am-u-sm-3" ">
 							<img src="/homes/images/2016.png "></img>
 							<p>今日<br>推荐</p>
@@ -186,7 +164,7 @@
 							</div>
 						</div>
 
-					</div>
+					</div> -->
 					<div class="clear "></div>
 					
 					
@@ -231,7 +209,7 @@
 					 	<div class="am-g am-g-fixed ">
 							<div class="am-u-sm-3 ">
 								<div class="icon-sale one "></div>	
-									<h4>团购</h4>							
+									<h4>团购	</h4>							
 								<div class="activityMain ">
 									<img src="/homes/images/activity1.jpg "></img>
 								</div>
