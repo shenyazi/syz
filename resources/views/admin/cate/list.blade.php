@@ -25,6 +25,27 @@
                         <header class="panel-heading">
                             类别浏览
                         </header>
+                    {{--<form action="{{url('admin/cate')}}" method='get'>--}}
+                        {{--<table class="search_tab">--}}
+                            {{--<tr>--}}
+                                {{--<th>每页个数:</th>--}}
+                                {{--<td width="120">--}}
+                                    {{--<select name="num">--}}
+                                        {{--<option value="5" @if($request['num'] == 5)  selected  @endif>5</option>--}}
+                                        {{--<option value="10" @if($request['num'] == 10)  selected  @endif >10</option>--}}
+                                    {{--</select>--}}
+                                {{--</td>--}}
+
+                                {{--<th>关键字:</th>--}}
+                                {{--<td width="">--}}
+                                    {{--<input type="text" name="cate_name"  placeholder="类别名称">--}}
+                                    {{--<input type="submit"  value="查询">--}}
+                                {{--</td>--}}
+
+                            {{--</tr>--}}
+                        {{--</table>--}}
+
+                    {{--</form>--}}
                     <form action="#" method="post">
                         <table class="table table-hover">
                             <thead>
