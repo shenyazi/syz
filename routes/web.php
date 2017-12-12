@@ -28,6 +28,23 @@ Route::get('/home','Home\HomeController@index');
 Route::get('home/login','Home\LoginController@login');
 
 
+// 前台商品列表页 详情页路由
+Route::group(['prefix'=>'home','namespace' => 'Home'],function () {
+    Route::get('/list', 'ListController@list_');   // 商品列表页
+    Route::get('/list_search', 'ListController@list_Search');   // 商品搜索页
+    Route::get('/detail', 'ListController@detail');   // 商品详情页
+    Route::get('/comment', 'CommentController@comment');   // 商品评论
+});
+
+// 前台用户中心页路由组
+Route::group(['prefix'=>'person','namespace' => 'Person'],function () {
+    Route::get('/index', 'PersonController@index');
+    Route::get('/address', 'AddressController@index');
+    Route::get('/order','OrderController@index');
+    Route::get('/information', 'InformationController@index');
+    Route::get('/collection', 'CollectionController@index');
+
+});
 
 
 //后台的登录的路由
