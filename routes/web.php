@@ -83,9 +83,7 @@ Route::group(['middleware'=>['islogin'],'namespace'=>'Admin'],function (){
 	Route::resource('admin/good','GoodController');
 	Route::post('admin/uploadd','GoodController@upload');
 	Route::get('admin/good/zt/{id}','GoodController@zt');
-	Route::get('aaa',function(){
-		return view('/home/Good/xq');
-	});
+	
 
 
 	
