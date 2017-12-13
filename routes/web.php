@@ -26,9 +26,19 @@ Route::get('/home','Home\HomeController@index');
 
 //商城前台登录的路由
 Route::get('home/login','Home\LoginController@login');
+Route::post('home','Home\LoginController@doLogin');
+//商城前台手机注册
+Route::get('home/register','Home\RegisterController@PhoneRegister');
+//发送验证码
+Route::post('home/sendcode','Home\RegisterController@SendCode');
 
+Route::post('home/phoneregister','Home\RegisterController@doPhoneRegister');
+//邮箱注册
+Route::get('home/emailregister','Home\RegisterController@EmailRegister');
 
-
+Route::post('home/emailregister','Home\RegisterController@doEmailRegister');
+//邮件激活
+Route::get('home/active','Home\RegisterController@active');
 
 //后台的登录的路由
 Route::get('admin/login','Admin\LoginController@login');
@@ -41,7 +51,7 @@ Route::get('admin/yzm','Admin\LoginController@yzm');
 Route::get('admin/logout','Admin\LoginController@logout');
 
 
-<<<<<<< HEAD
+
 
 
 
@@ -49,10 +59,7 @@ Route::get('admin/logout','Admin\LoginController@logout');
 // Route::group(['middleware'=>['islogin','hasrole'],'namespace'=>'Admin'],function (){
 Route::group(['middleware'=>['islogin'],'namespace'=>'Admin'],function (){
 
-=======
-Route::group(['middleware'=>['islogin'],'namespace'=>'Admin'],function (){
-	
->>>>>>> origin/wyh
+
 	//商城后台的路由
 	Route::get('/admin','LoginController@index');
 
