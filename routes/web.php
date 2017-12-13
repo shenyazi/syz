@@ -22,10 +22,13 @@ Route::get('/', function () {
 //商城前台的路由
 Route::get('/home','Home\HomeController@index');	
 
-
+//前台首页文章跳转页
+Route::get('home/work/{id}','Home\HomeController@work');
 
 //商城前台登录的路由
 Route::get('home/login','Home\LoginController@login');
+
+
 
 
 // 前台商品列表页 详情页路由
@@ -58,18 +61,13 @@ Route::get('admin/yzm','Admin\LoginController@yzm');
 Route::get('admin/logout','Admin\LoginController@logout');
 
 
-<<<<<<< HEAD
-
 
 
 //后台路由组
 // Route::group(['middleware'=>['islogin','hasrole'],'namespace'=>'Admin'],function (){
 Route::group(['middleware'=>['islogin'],'namespace'=>'Admin'],function (){
 
-=======
-Route::group(['middleware'=>['islogin'],'namespace'=>'Admin'],function (){
 	
->>>>>>> origin/wyh
 	//商城后台的路由
 	Route::get('/admin','LoginController@index');
 

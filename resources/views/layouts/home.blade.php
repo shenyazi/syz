@@ -16,6 +16,11 @@
 		<script src="/homes/AmazeUI-2.4.2/assets/js/jquery.min.js"></script>
 		<script src="/homes/AmazeUI-2.4.2/assets/js/amazeui.min.js"></script>
 
+		<!-- 跑马灯 -->
+		<link rel="stylesheet" type="text/css" href="/homes/paomadeng/css/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="/homes/paomadeng/css/default.css">
+		<link rel="stylesheet" href="/homes/paomadeng/css/liMarquee.css">
+
 	</head>
 
 	<body>
