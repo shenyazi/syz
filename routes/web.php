@@ -49,6 +49,9 @@ Route::group(['prefix'=>'person','namespace' => 'Person'],function () {
 
 });
 
+// 商城前台商品详情
+	Route::resource('home/xq','Home\GoodController');
+
 
 //后台的登录的路由
 Route::get('admin/login','Admin\LoginController@login');
@@ -61,13 +64,22 @@ Route::get('admin/yzm','Admin\LoginController@yzm');
 Route::get('admin/logout','Admin\LoginController@logout');
 
 
+<<<<<<< HEAD
+
+
+=======
+>>>>>>> f2fd28becc303aa7a3b182b6be199dd247cc275e
 
 
 //后台路由组
 // Route::group(['middleware'=>['islogin','hasrole'],'namespace'=>'Admin'],function (){
 Route::group(['middleware'=>['islogin'],'namespace'=>'Admin'],function (){
 
+<<<<<<< HEAD
+
+=======
 	
+>>>>>>> f2fd28becc303aa7a3b182b6be199dd247cc275e
 	//商城后台的路由
 	Route::get('/admin','LoginController@index');
 
@@ -101,6 +113,7 @@ Route::group(['middleware'=>['islogin'],'namespace'=>'Admin'],function (){
 	Route::resource('admin/good','GoodController');
 	Route::post('admin/uploadd','GoodController@upload');
 	Route::get('admin/good/zt/{id}','GoodController@zt');
+	
 
 
 	
