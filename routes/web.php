@@ -22,7 +22,8 @@ Route::get('/', function () {
 //商城前台的路由
 Route::get('/home','Home\HomeController@index');	
 
-
+//前台首页文章跳转页
+Route::get('home/work/{id}','Home\HomeController@work');
 
 //商城前台登录的路由
 Route::get('home/login','Home\LoginController@login');
@@ -40,6 +41,25 @@ Route::post('home/emailregister','Home\RegisterController@doEmailRegister');
 //邮件激活
 Route::get('home/active','Home\RegisterController@active');
 
+// 前台商品列表页 详情页路由
+Route::group(['prefix'=>'home','namespace' => 'Home'],function () {
+    Route::get('/list', 'ListController@list_');   // 商品列表页
+    Route::get('/list_search', 'ListController@list_Search');   // 商品搜索页
+    Route::get('/detail', 'ListController@detail');   // 商品详情页
+    Route::get('/comment', 'CommentController@comment');   // 商品评论
+});
+
+// 前台用户中心页路由组
+Route::group(['prefix'=>'person','namespace' => 'Person'],function () {
+    Route::get('/index', 'PersonController@index');
+    Route::get('/address', 'AddressController@index');
+    Route::get('/order','OrderController@index');
+    Route::get('/information', 'InformationController@index');
+    Route::get('/collection', 'CollectionController@index');
+
+});
+
+
 //后台的登录的路由
 Route::get('admin/login','Admin\LoginController@login');
 Route::post('admin/dologin','Admin\LoginController@doLogin');
@@ -49,7 +69,6 @@ Route::get('admin/yzm','Admin\LoginController@yzm');
 
 //后台用户登出的路由
 Route::get('admin/logout','Admin\LoginController@logout');
-
 
 
 

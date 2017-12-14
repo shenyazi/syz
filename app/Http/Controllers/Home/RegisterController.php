@@ -8,6 +8,7 @@ use App\Jobs\SendReminderEmail;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Model\Users;
 use App\Http\Requests;
+use Illuminate\Support\Facades\Validator;
 
 use App\SMS\SendTemplateSMS;
 use App\SMS\M3Result;
@@ -71,20 +72,56 @@ class RegisterController extends Controller
     	//获取用户提交的数据
     	$input = $request->except('_token','code');
     	// dd($input);
-    	//向用户表添加注册用户
-    	$input['password'] = Hash::make($input['password']);
-    	$input['is_active'] = 1;
-    	//给token字段赋值
-    	$input['token'] = $input['password'];
+    	// 表单验证
+    	$rule = [
+            'phone'=>'required|unique:home_user,phone',
+            "password"=>'required|between:6,20',
+            'repass' => 'same:password',
+            'code' => 'required'
+        ];
+        $message = [
+            'phone.required'=>'请正确输入手机号',
+            'phone.unique' => '手机号已被注册',
+            'password.required'=>'必须输入密码',
+            'password.between'=>'密码必须在6到20位之间',
+            'repass.same'=>'两次密码输入不一致',
+            'code.required' =>'必须输入验证码' 
+        ];
+        $validators =  Validator::make($input,$rule,$message);
+        // dd($validators->withErrors);
+        if ($validators->fails()) {
+        	// dd(111);
+            return redirect()
+                ->withErrors($validators)
+                ->withInput();
 
-    	$res = Users::create($input);
-    	if($res){
-    		return redirect('home/login');
-    	}else{
-    		return back();
+	         $input = $request->except('repass');
+	         //检查手机是否存在
+	         $phone = Users::where('phone',$input['phone']);
+	         if($phone){
+            		return redirect('home/register')->with('errors','手机已注册');
+     			}
+     		//判断验证码
+     		if($input['code'] != session('phone')){
+	       	// dd(1111);
+	           return redirect('')->with('errors','验证码错误');
+	       }
+
+	    	//向用户表添加注册用户
+	    	$input['phone'] = $input['phone'];
+	    	$input['password'] = Hash::make($input['password']);
+	    	$input['is_active'] = 1;
+	    	//给token字段赋值
+	    	$input['token'] = $input['_token'];
+
+	    	$res = Users::create($input);
+	    	if($res){
+	    		return redirect('home/login');
+	    	}else{
+	    		return back();
+	    	}
     	}
-    }
-
+	}
 
     /**
      * 邮箱注册页面

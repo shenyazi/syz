@@ -7,10 +7,11 @@
                       <!--轮播 -->
 						<div class="am-slider am-slider-default scoll" data-am-flexslider id="demo-slider-0">
 							<ul class="am-slides">
-								<li class="banner1"><a href="introduction.html"><img src="/homes/images/ad1.jpg" /></a></li>
-								<li class="banner2"><a><img src="/homes/images/ad2.jpg" /></a></li>
-								<li class="banner3"><a><img src="/homes/images/ad3.jpg" /></a></li>
-								<li class="banner4"><a><img src="/homes/images/ad4.jpg" /></a></li>
+							@foreach($lunbo as $k=>$v)
+								@if($v->bstatus==1)
+								<li class="{{$k+1}}"><img src="{{$v->bimg}}" /></li>
+								@endif
+							@endforeach
 
 							</ul>
 						</div>
@@ -75,80 +76,6 @@
 							})
 						</script>
 
-
-					<!--小导航 -->
-					<div class="am-g am-g-fixed smallnav">
-						<div class="am-u-sm-3">
-							<a href="sort.html"><img src="/homes/images/navsmall.jpg" />
-								<div class="title">商品分类</div>
-							</a>
-						</div>
-						<div class="am-u-sm-3">
-							<a href="#"><img src="/homes/images/huismall.jpg" />
-								<div class="title">大聚惠</div>
-							</a>
-						</div>
-						<div class="am-u-sm-3">
-							<a href="#"><img src="/homes/images/mansmall.jpg" />
-								<div class="title">个人中心</div>
-							</a>
-						</div>
-						<div class="am-u-sm-3">
-							<a href="#"><img src="/homes/images/moneysmall.jpg" />
-								<div class="title">投资理财</div>
-							</a>
-						</div>
-					</div>
-
-					<!--走马灯 -->
-
-					<div class="marqueen">
-						<span class="marqueen-title">商城头条</span>
-						<div class="demo">
-
-							<ul>
-								<li class="title-first"><a target="_blank" href="#">
-									<img src="/homes/images/TJ2.jpg"></img>
-									<span>[特惠]</span>商城爆品1分秒								
-								</a></li>
-								<li class="title-first"><a target="_blank" href="#">
-									<span>[公告]</span>商城与广州市签署战略合作协议
-								     <img src="/homes/images/TJ.jpg"></img>
-								     <p>XXXXXXXXXXXXXXXXXX</p>
-							    </a></li>
-							    
-								<div class="mod-vip">
-									<div class="m-baseinfo">
-										<a href="/homes/person/index.html">
-											<img src="/homes/images/getAvatar.do.jpg">
-										</a>
-										<em>
-											Hi,<span class="s-name">小叮当</span>
-											<a href="#"><p>点击更多优惠活动</p></a>									
-										</em>
-									</div>
-									<div class="member-logout">
-										<a class="am-btn-warning btn" href="login.html">登录</a>
-										<a class="am-btn-warning btn" href="register.html">注册</a>
-									</div>
-									<div class="member-login">
-										<a href="#"><strong>0</strong>待收货</a>
-										<a href="#"><strong>0</strong>待发货</a>
-										<a href="#"><strong>0</strong>待付款</a>
-										<a href="#"><strong>0</strong>待评价</a>
-									</div>
-									<div class="clear"></div>	
-								</div>																	    
-							    
-								<li><a target="_blank" href="#"><span>[特惠]</span>洋河年末大促，低至两件五折</a></li>
-								<li><a target="_blank" href="#"><span>[公告]</span>华北、华中部分地区配送延迟</a></li>
-								<li><a target="_blank" href="#"><span>[特惠]</span>家电狂欢千亿礼券 买1送1！</a></li>
-								
-							</ul>
-                       		<div class="advTip"><img src="/homes/images/advTip.jpg"/></div>
-						</div>
-					</div>
-					<div class="clear"></div>
 				</div>
 				<script type="text/javascript">
 					if ($(window).width() < 640) {
@@ -169,28 +96,72 @@
 			</div>
 			<div class="shopMainbg">
 				<div class="shopMain" id="shopmain">
-
-					<!--今日推荐 -->
-
 					<div class="am-g am-g-fixed recommendation">
-						<div class="clock am-u-sm-3" ">
-							<img src="/homes/images/2016.png "></img>
-							<p>今日<br>推荐</p>
+						<div class="shopTitle ">
+							<h4>今日公告</h4>
+							<h3>每一个公告都有一个故事</h3>
 						</div>
-						<!-- <div class="am-u-sm-4 am-u-lg-3 ">
-							<div class="info ">
-								<h3>真的有鱼</h3>
-								<h4>开年福利篇</h4>
+						<div class="jq22-content">
+							<div class="str1 str_wrap">
+								Panda食品商城周年庆，寒期放价嗨不停！好吃、安全、放心的食品，陪你度假期！ 
 							</div>
-							<div class="recommendationMain ">
-								<img src="/homes/images/tj.png "></img>
-							</div>
-						</div> -->
-
+						</div>
 					</div>
-					<div class="clear "></div>
-					<!--热门活动 -->
 
+					<style type="text/css">
+						.str_wrap{
+							padding-left: 3em;
+							padding-right: 3em;
+							background: #fefefe;
+							height: 2.6em;
+							line-height: 3em;
+							font-size: 1.2em;
+							color:red;
+						}
+					</style>
+
+					<script src="/homes/paomadeng/js/jquery-2.1.1.min.js"></script>
+					<script src="/homes/paomadeng/js/jquery.liMarquee.js"></script>
+					<script>
+					$(window).load(function(){
+						$('.str1').liMarquee();
+					});
+					</script>
+
+					<div class="clear "></div>
+					
+					
+					<!-- 限时秒杀 -->
+					<div class="am-container">
+                     <div class="sale-mt">
+		                   <i></i>
+		                   <em class="sale-title">新品秒杀!</em>
+		                   <div class="s-time" id="countdown">
+			                    <span class="hh">01</span>
+			                    <span class="mm">20</span>
+			                    <span class="ss">59</span>
+		                   </div>
+	                  </div>
+					  <div class="am-g am-g-fixed sale">
+					  	@foreach($goods as $v)
+						<div class="am-u-sm-3 sale-item">
+							<div class="s-img">
+								<a href="# "><img src="{{$v->gpic}}" height=200 /></a>
+							</div>
+                           <div class="s-info">
+                           	   <a href="#"><p class="s-title">{{$v->gname}}</p></a>
+                           	   <div class="s-price">￥<b>{{$v->gprice}}</b>
+                           	   	  <a class="s-buy" href="#">新品</a>
+                           	   </div>                          	  
+                           </div>	
+						</div>
+						@endforeach
+					  </div>
+                   </div>
+					<div class="clear "></div>
+
+				
+               		<!--热门活动 -->
 					<div class="am-container activity ">
 						<div class="shopTitle ">
 							<h4>活动</h4>
@@ -201,23 +172,25 @@
 						</div>
 					
 					 	<div class="am-g am-g-fixed ">
+					 	@foreach($good as $v)
 							<div class="am-u-sm-3 ">
 								<div class="icon-sale one "></div>	
-									<h4>秒杀</h4>							
+									<h4>团购	</h4>							
 								<div class="activityMain ">
-									<img src="/homes/images/activity1.jpg "></img>
+									<img src="{{$v->gpic}} " height=333></img>
 								</div>
 								<div class="info ">
 									<h3>春节送礼优选</h3>
 								</div>														
 							</div>
+						@endforeach
 					  	</div>
+					
                    	</div>
 					<div class="clear "></div>
 
-				
-                 <div class="clear "></div>
-					<!--坚果-->
+
+					<!-- 文章 -->
 					<div class="am-container ">
 						<div class="shopTitle ">
 							<h4>购物指南文章</h4>
@@ -235,29 +208,10 @@
 					<div class="am-g am-g-fixed title" >
 						<ul >
 							@foreach($works as $v)
-							<li style="padding:5px"><b>* </b><a target="_blank" href="#"><span>{{$v->wtitle}}</span></a></li>
+							<li style="padding:5px"><b>* </b><a href="{{url('home/work/'.$v->id)}}"><span>{{$v->wtitle}}</span></a></li>
 							@endforeach
 						</ul>
 					</div>
-					
-					<!-- <div class="am-g am-g-fixed floodTwo ">
-						
-						<div class="am-u-sm-7 am-u-md-4 am-u-lg-2 text-two">
-								<div class="outer-con ">
-									<div class="title ">
-										雪之恋和风大福
-									</div>
-									
-									<div class="sub-title ">
-										仅售：¥13.8
-									</div>
-								</div>
-								<a href="# "><img src="/homes/images/5.jpg " /></a>						
-						</div>
-						
-											
-					</div> -->
-
 					<div class="clear "></div>
 
 
