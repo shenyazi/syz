@@ -46,6 +46,9 @@ Route::group(['prefix'=>'person','namespace' => 'Person'],function () {
 
 });
 
+// 商城前台商品详情
+	Route::resource('home/xq','Home\GoodController');
+
 
 //后台的登录的路由
 Route::get('admin/login','Admin\LoginController@login');

@@ -12,6 +12,7 @@ class ListController extends Controller
     public function list_()
     {
         $goods = Good::paginate(5);
+        //dd($goods);
 
         return view('home.list', compact('goods'));
 

@@ -112,6 +112,8 @@ class GoodController extends Controller
             'gname'=>'required',
             "gprice"=>'required|numeric',
             "goodsNum"=>'required',
+		    // 'gpic' => 'required|dimensions:width=80,height=80',
+			// 'avatar' => 'dimensions:width=100,height=100'
             
 
         ];
@@ -121,6 +123,8 @@ class GoodController extends Controller
             'gprice.required'=>'商品价格必须输入',
             'gprice.numeric'=>'商品价格必须为数字',
             'goodsNum.required'=>'商品上线数量必须输入',
+			// 'gpic.required'=>'商品图片必须上传',
+		    // 'gpic.dimensions'=>'图片大小必须为80*80',
             
             
         ];
@@ -201,6 +205,7 @@ class GoodController extends Controller
             'gname'=>'required',
             "gprice"=>'required|numeric',
             "goodsNum"=>'required',
+			// 'gpic' => 'required|dimensions:width=80,height=80',
             
 
         ];
@@ -210,6 +215,8 @@ class GoodController extends Controller
             'gprice.required'=>'商品价格必须输入',
             'gprice.numeric'=>'商品价格必须为数字',
             'goodsNum.required'=>'商品上线数量必须输入',
+			// 'gpic.required'=>'商品图片必须上传',
+			// 'gpic.dimensions'=>'图片大小为80*80',
             
             
         ];
