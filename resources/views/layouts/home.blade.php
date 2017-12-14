@@ -21,6 +21,9 @@
 		<link rel="stylesheet" type="text/css" href="/homes/paomadeng/css/default.css">
 		<link rel="stylesheet" href="/homes/paomadeng/css/liMarquee.css">
 
+
+		<link href="/homes/video/css/video-js.css" rel="stylesheet">
+
 	</head>
 
 	<body>

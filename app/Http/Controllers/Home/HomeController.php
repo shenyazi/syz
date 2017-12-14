@@ -39,8 +39,10 @@ class HomeController extends CommonController
     //文章跳转
     public function work(Request $request){
         $work=Work::find($request->id);
+        $title='购物指南文章';
         // dd($work);
-        return view('home.work',compact('work'));
+
+        return view('home.work',compact('work','title'));
     }
 
 

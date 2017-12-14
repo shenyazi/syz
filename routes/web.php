@@ -117,6 +117,7 @@ Route::group(['middleware'=>['islogin'],'namespace'=>'Admin'],function (){
 
 //商城后台轮播图管理模块
 Route::resource('lunbo','Admin\LunboController');
+
 //权限不够时跳转的路径
 Route::get('errors/auth',function(){
 	return view('errors.auth');
