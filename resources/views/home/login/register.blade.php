@@ -82,7 +82,7 @@
 										</ul>
 									</div>
 								@endif
-									<form method="post" action="{{url('home/phoneregister')}}">
+									<form method="post" action="{{url('home/dophoneregister')}}">
 									{{csrf_field()}}
                  <div class="user-phone">
 								    <label for="phone"><i class="am-icon-mobile-phone am-icon-md"></i></label>
@@ -91,7 +91,7 @@
 										<div class="verification">
 											<label for="code"><i class="am-icon-code-fork"></i></label>
 											<input type="tel" name="code" id="code" placeholder="请输入验证码">
-											<a class="btn" href="javascript:void(0);" onclick="sendcode();" id="sendcode">
+											<a class="btn" href="javascript:void(0):;" onclick="sendcode();" id="sendcode">
 												<span id="dyMobileButton">获取</span></a>
 										</div>
                  <div class="user-pass">
@@ -106,26 +106,7 @@
 								<input type="submit" id="btn" name="" value="注册" class="am-btn am-btn-primary am-btn-sm am-fl">
 							</div>
 									</form>
-									<script>
-										function sendcode(){
-											//1. 获取要发送的手机号
-											$phone = $('[name="phone"]').val();
-											// alert($phone);
-
-											// 2. 向服务器的发送短信的接口发送ajax请求
-
-											$.post("{{url('home/sendcode')}}",{'phone':$phone,'_token':'{{csrf_token()}}'},function(data){
-												console.log(data);
-												var obj = JSON.parse(data);
-												if(obj.status == 0){
-								                    layer.msg(obj.message, {icon: 6,area: ['100px', '80px']});
-												}else{
-								                    layer.msg(obj.message, {icon: 5,area: ['100px', '80px']});
-												}
-
-
-											})
-										}
+									
 									</script>
 								 <div class="login-links">
 										<label for="reader-me">
@@ -171,5 +152,92 @@
 						</div>
 					</div>
 	</body>
+	<script type="text/javascript">
+		//手机表单验证
+        // var x = /^1[3|4|5|8][0-9]\d{4,8}$/;
+        // var y = /^\w{6,20}$/;
+        // $("input").focus(function() {
+        //     $(this).prev().css("color","#008DE8");
+        // });
+              
+        // $("#phone").blur(function() {
+        //     var v=$(this).val();
+        //     $.ajax({
+        //             type:"post",
+        //             url:"{{url('/register/phoneajax')}}",
+        //             data:{"phone":v,"_token":"{{csrf_token()}}"},
+
+        //             success:function(data){
+        //                 if(data){
+        //                      layer.msg("手机已注册！", {icon: 6});
+        //                 }
+        //             },
+
+        //             dataType: "json",
+
+        //      });
+                 
+        //     if (v=='') {
+        //         layer.msg("手机号不能为空！", {icon: 6});
+        //     }else if(!v.match(x)){
+        //         layer.msg("手机格式不符合要求！", {icon: 6});
+               
+        //     }else{
+        //         $(this).prev().css("color","#0EA74A");
+        //         $("[name='name']").next().html("");
+        //     } 
+        // });
+
+        // $("#password").blur(function() {
+        //     var v=$(this).val();
+        //     console.log(v);
+        //     if (v=='') {
+        //         layer.msg("密码不能为空！", {icon: 6});
+               
+        //     }else if(!v.match(y)){
+        //         layer.msg("密码为6到20位！", {icon: 6});
+                
+        //     }else{
+        //         $(this).prev().css("color","#0EA74A");
+        //         $("#password").next().html("");
+        //     } 
+        // });
+
+        // $("#repass").blur(function() {
+        //     var v=$(this).val();  
+        //     var password = $("#password").val();
+            
+        //     console.log(v);
+        //     if (v=='') {
+        //         layer.msg("密码不能为空！", {icon: 6});
+               
+        //     }else if(v!= password){
+        //         layer.msg("两次密码不一致", {icon: 6});
+                
+        //     }else{
+        //         $(this).prev().css("color","#0EA74A");
+        //         $("[name='password']").next().html("");
+        //     } 
+        // });
+		function sendcode(){
+			//1. 获取要发送的手机号
+			$phone = $('[name="phone"]').val();
+			// alert($phone);
+
+			// 2. 向服务器的发送短信的接口发送ajax请求
+
+			$.post("{{url('home/sendcode')}}",{'phone':$phone,'_token':'{{csrf_token()}}'},function(data){
+				console.log(data);
+				var obj = JSON.parse(data);
+				if(obj.status == 0){
+					layer.msg(obj.message, {icon: 6,area: ['100px', '80px']});
+				}else{
+					layer.msg(obj.message, {icon: 5,area: ['100px', '80px']});
+				}
+
+
+			})
+		}
+	</script>
 
 </html>

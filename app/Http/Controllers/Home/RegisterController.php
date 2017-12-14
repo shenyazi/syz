@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Http\Model\Users;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Validator;
-
+use Session;
 use App\SMS\SendTemplateSMS;
 use App\SMS\M3Result;
 use Illuminate\Support\Facades\Hash;
@@ -49,19 +49,26 @@ class RegisterController extends Controller
         $tempSms = new SendTemplateSMS();
 
         // 参数1 手机号
-        $phone = $input['phone'];
+        $telphone = $input['phone'];
 
         // 参数2
-        $r = mt_rand(1000,9999);
-        $arr = [$r,5];
+        $m = mt_rand(1000,9999);
+        // $m = 1999;
+        
+        $arr = [$m,5];
 
         $M3Result = new M3Result();
-        $M3Result = $tempSms->sendTemplateSMS($phone,$arr,1);
+        $M3Result = $tempSms->sendTemplateSMS($telphone,$arr,1);
         //发送验证码成功后，将验证码存入session中
-        session('phone',$r);
-
+        // session('telphone',$m);
+        Session::put('telphone', $m);
+        
+       
+        // dd(session::get('telphone'));
         return $M3Result->toJson();
     }
+
+    
 
 
     /**
@@ -70,7 +77,9 @@ class RegisterController extends Controller
     public function doPhoneRegister(Request $request)
     {	
     	//获取用户提交的数据
-    	$input = $request->except('_token','code');
+    	$input = $request->all();
+    	
+    	//($input);
     	// dd($input);
     	// 表单验证
     	$rule = [
@@ -90,38 +99,71 @@ class RegisterController extends Controller
         $validators =  Validator::make($input,$rule,$message);
         // dd($validators->withErrors);
         if ($validators->fails()) {
-        	// dd(111);
-            return redirect()
+        	dd(111);
+            return redirect('home/register')
                 ->withErrors($validators)
                 ->withInput();
 
+	       
+	        }
+	       //dd(1);
 	         $input = $request->except('repass');
 	         //检查手机是否存在
-	         $phone = Users::where('phone',$input['phone']);
+	         //dd($input['phone']);
+	         
+	         $phone = Users::where('phone',$input['phone'])->first();
+	       
 	         if($phone){
+
             		return redirect('home/register')->with('errors','手机已注册');
      			}
      		//判断验证码
-     		if($input['code'] != session('phone')){
-	       	// dd(1111);
-	           return redirect('')->with('errors','验证码错误');
-	       }
+     		// dd($input['code']);
+     		//dd(Session::get('telphone'));
+     		if($input['code'] != Session::get('telphone')){
+	       		  
+	           return redirect('home/register')->with('errors','验证码错误');
 
+    		
 	    	//向用户表添加注册用户
-	    	$input['phone'] = $input['phone'];
-	    	$input['password'] = Hash::make($input['password']);
-	    	$input['is_active'] = 1;
-	    	//给token字段赋值
-	    	$input['token'] = $input['_token'];
+	    	
+    	}else{
+    		
+    		 $inputs['phone'] = $input['phone'];
+	    	 $inputs['password'] = Hash::make($input['password']);
+	    	 $inputs['is_active'] = 1;
+	    	// //给token字段赋值
+	    	 $inputs['token'] = $input['_token'];
 
-	    	$res = Users::create($input);
+	    	$res = Users::create($inputs);
 	    	if($res){
 	    		return redirect('home/login');
 	    	}else{
 	    		return back();
 	    	}
-    	}
-	}
+
+    }
+}
+    	
+            
+    		
+	
+
+	/**
+     * 查看手机是否重复
+     * 
+     */
+    // public function phoneajax(Request $request)
+    // {
+    //     $data = $request->all();
+    //     $res = Users::where('phone',$data['phone'])->first();
+    //     if($res){
+    //         return 1;
+    //     }else{
+    //         return 0;
+    //     }
+
+    // }
 
     /**
      * 邮箱注册页面

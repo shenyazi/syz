@@ -28,10 +28,14 @@ Route::get('home/work/{id}','Home\HomeController@work');
 //商城前台登录的路由
 Route::get('home/login','Home\LoginController@login');
 Route::post('home','Home\LoginController@doLogin');
+
 //商城前台手机注册
 Route::get('home/register','Home\RegisterController@PhoneRegister');
+Route::post('home/dophoneregister','Home\RegisterController@doPhoneRegister');
+
+
 //发送验证码
-Route::post('home/sendcode','Home\RegisterController@SendCode');
+Route::post('home/sendcode','Home\RegisterController@sendCode');
 
 Route::post('home/phoneregister','Home\RegisterController@doPhoneRegister');
 //邮箱注册
