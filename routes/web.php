@@ -39,7 +39,7 @@ Route::group(['prefix'=>'home','namespace' => 'Home'],function () {
 // 前台用户中心页路由组
 Route::group(['prefix'=>'person','namespace' => 'Person'],function () {
     Route::get('/index', 'PersonController@index');
-    Route::get('/address', 'AddressController@index');
+    Route::resource('/address', 'AddressController');
     Route::get('/order','OrderController@index');
     Route::get('/information', 'InformationController@index');
     Route::get('/collection', 'CollectionController@index');
@@ -58,18 +58,9 @@ Route::get('admin/yzm','Admin\LoginController@yzm');
 Route::get('admin/logout','Admin\LoginController@logout');
 
 
-<<<<<<< HEAD
 
-
-
-//后台路由组
-// Route::group(['middleware'=>['islogin','hasrole'],'namespace'=>'Admin'],function (){
-Route::group(['middleware'=>['islogin'],'namespace'=>'Admin'],function (){
-
-=======
 Route::group(['middleware'=>['islogin'],'namespace'=>'Admin'],function (){
 	
->>>>>>> origin/wyh
 	//商城后台的路由
 	Route::get('/admin','LoginController@index');
 
@@ -85,13 +76,13 @@ Route::group(['middleware'=>['islogin'],'namespace'=>'Admin'],function (){
  	Route::get('user/auth/{id}','UserController@auth');
  	Route::post('user/doauth','UserController@doauth');
 
- 	//角色管理
+ 	// 角色管理
  	Route::resource('role','RoleController');
  	Route::get('role/auth/{id}','RoleController@auth');
     Route::post('role/doauth','RoleController@doauth');
    
 
-    //权限管理
+    // 权限管理
     Route::resource('auth','AuthController');
 
 	// 分类管理路由模块

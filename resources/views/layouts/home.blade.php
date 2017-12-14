@@ -15,6 +15,9 @@
 		<link href="/homes/css/hmstyle.css" rel="stylesheet" type="text/css" />
 		<script src="/homes/AmazeUI-2.4.2/assets/js/jquery.min.js"></script>
 		<script src="/homes/AmazeUI-2.4.2/assets/js/amazeui.min.js"></script>
+		@section('css')
+
+		@show
 
 	</head>
 
@@ -78,7 +81,7 @@
 				</ul>
 			</div>
 
-		@show	
+		@show
 					<div class="footer ">
 						<div class="footer-hd ">
 							<p style='text-align:center'>
