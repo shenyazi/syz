@@ -45,9 +45,9 @@
                                       <select class="form-control" id="inputPassword2" name='pid'  ">  
                                            @foreach($cates as $k=>$v)
                                             @if(in_array($v->cate_id,$cate))
-                                              <option disabled="disabled" @if($v->cate_id == $good->pid) selected @endif value="{{$v->cate_id}}">{{$v->cate_name}}</option>  
+                                              <option disabled="disabled" @if($v->cate_id == $good->pid) selected @endif value="{{$v->cate_id}}">{{$v->_cate_name}}</option>  
                                             @else if
-                                            <option  @if($v->cate_id == $good->pid) selected @endif value="{{$v->cate_id}}" >{{$v->cate_name}}</option>  
+                                            <option  @if($v->cate_id == $good->pid) selected @endif value="{{$v->cate_id}}" >{{$v->_cate_name}}</option>  
                                             @endif
                                           @endforeach
                                        </select>  

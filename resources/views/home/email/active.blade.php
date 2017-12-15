@@ -8,6 +8,6 @@
     <title>Document</title>
 </head>
 <body>
-    <p>尊敬的{{$user->name}},感谢您注册PANDA商城，请登录您的注册邮箱 ，并在24小时内 <a href="{{url('home/active?uid='.$user->id.'&key='.$user->token)}}">激活</a>您的登录账号，账号只有激活后才能登录。</p>
+    <p>尊敬的{{$user->name}},感谢您注册PANDA商城，请登录您的注册邮箱 ，并在24小时内 <a href="{{url('home/active?id='.$user->id.'&key='.$user->token)}}">激活</a>您的登录账号，账号只有激活后才能登录。</p>
 </body>
 </html>

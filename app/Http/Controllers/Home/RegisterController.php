@@ -14,7 +14,7 @@ use App\SMS\SendTemplateSMS;
 use App\SMS\M3Result;
 use Illuminate\Support\Facades\Hash;
 
-class RegisterController extends Controller
+class RegisterController extends CommonController
 {
 	//    演示队列发送邮件
     /**
@@ -188,7 +188,10 @@ class RegisterController extends Controller
     	$input['is_active'] = 0;
     	$input['token'] = $input['password'];
 
-    	//添加成功后,返回刚才添加的那条用户记录
+        $a = Users::where('email',$input['email']);
+        if($a){
+        	 return redirect('home/register')->with('errors','该邮箱已注册');
+        }
     	$res = Users::create($input);
     	// dd($res);
     	if($res){
@@ -206,6 +209,7 @@ class RegisterController extends Controller
            return redirect('home/login');
 
        }else{
+       	dd(sadsadas);
            return back();
        }
 
@@ -223,11 +227,11 @@ class RegisterController extends Controller
 
         $user = Users::find($request['id']);
 
+
 		//2.验证激活链接的有效性
         if($request['key'] != $user->token){
             return "无效的激活链接";
         }
-
         $res = $user->update(['is_active'=>1]);
 
         if($res){
@@ -236,6 +240,29 @@ class RegisterController extends Controller
             return "激活失败，请重新注册";
         }
         
+    }
+    public function Forget()
+    {
+    	return view('home/forget');
+    }
+    public function Forgett($name)
+    {
+    	// 获取$name
+    	$name;
+
+    	// if(@){
+    	//   // send('sadsa')
+    	// }else{
+    	// 
+    	// }
+    	//  跳转
+    	//  
+    	if($name){
+    		strpos($name, "@");
+    		Mail::send('email.forget',)
+    	}else{
+    		
+    	}
     }
 
 }

@@ -32,6 +32,8 @@ Route::post('home','Home\LoginController@doLogin');
 //商城前台手机注册
 Route::get('home/register','Home\RegisterController@PhoneRegister');
 Route::post('home/dophoneregister','Home\RegisterController@doPhoneRegister');
+Route::get('home/forget','Home\RegisterController@Forget');
+Route::get('home/forget/a/{name}','Home\RegisterController@Forgett');
 
 
 //发送验证码
@@ -63,6 +65,9 @@ Route::group(['prefix'=>'person','namespace' => 'Person'],function () {
 
 });
 
+// 商城前台商品详情
+	Route::resource('home/xq','Home\GoodController');
+
 
 //后台的登录的路由
 Route::get('admin/login','Admin\LoginController@login');
@@ -73,6 +78,7 @@ Route::get('admin/yzm','Admin\LoginController@yzm');
 
 //后台用户登出的路由
 Route::get('admin/logout','Admin\LoginController@logout');
+
 
 
 
@@ -116,6 +122,7 @@ Route::group(['middleware'=>['islogin'],'namespace'=>'Admin'],function (){
 	Route::resource('admin/good','GoodController');
 	Route::post('admin/uploadd','GoodController@upload');
 	Route::get('admin/good/zt/{id}','GoodController@zt');
+	
 
 
 	
@@ -131,6 +138,10 @@ Route::group(['middleware'=>['islogin'],'namespace'=>'Admin'],function (){
 	Route::post('/admin/uploaddd','LunboController@upload');
    
 });
+
+
+//商城后台轮播图管理模块
+Route::resource('lunbo','Admin\LunboController');
 
 
 //权限不够时跳转的路径

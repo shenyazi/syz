@@ -21,6 +21,9 @@
 		<link rel="stylesheet" type="text/css" href="/homes/paomadeng/css/default.css">
 		<link rel="stylesheet" href="/homes/paomadeng/css/liMarquee.css">
 
+
+		<link href="/homes/video/css/video-js.css" rel="stylesheet">
+
 	</head>
 
 	<body>
@@ -111,15 +114,10 @@
 				</div>
 			</div>
 		</div>
-		</div>
+		
 		<!--引导 -->
 
-		<div class="navCir">
-			<li class="active"><a href="home3.html"><i class="am-icon-home "></i>首页</a></li>
-			<li><a href="sort.html"><i class="am-icon-list"></i>分类</a></li>
-			<li><a href="shopcart.html"><i class="am-icon-shopping-basket"></i>购物车</a></li>	
-			<li><a href="/homes/person/index.html"><i class="am-icon-user"></i>我的</a></li>					
-		</div>
+		
 		<!--菜单 -->
 		<div class=tip>
 			<div id="sidebar">
@@ -265,6 +263,7 @@
 			window.jQuery || document.write('<script src="basic/js/jquery.min.js "><\/script>');
 		</script>
 		<script type="text/javascript " src="/homes/basic/js/quick_links.js "></script>
+		</script>
 	</body>
 
 </html>

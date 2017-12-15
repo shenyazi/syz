@@ -20,6 +20,7 @@
 
 	<body>
 
+
 		<div class="login-boxtitle">
 			<!-- <a href="home/demo.html"><img alt="" src="{{url('/homes/images/logobig.png')}}" /></a> -->
 		</div>
@@ -32,8 +33,25 @@
 						<div class="am-tabs" id="doc-my-tabs">
 							<ul class="am-tabs-nav am-nav am-nav-tabs am-nav-justify">
 								<li class="am-active"><a href="">邮箱注册</a></li>
+
 								<li><a href="">手机号注册</a></li>
+
 							</ul>
+							<div style="text-align:center;">
+							@if (count($errors) > 0)
+									<div class="alert alert-danger">
+										<ul>
+											@if(is_object($errors))
+												@foreach ($errors->all() as $error)
+													<li style="color:red">{{ $error }}</li>
+												@endforeach
+											@else
+												<li style="color:red">{{ $errors }}</li>
+											@endif
+										</ul>
+									</div>
+								@endif
+							</div>
 
 							<div class="am-tabs-bd">
 								<div class="am-tab-panel am-active">
@@ -69,19 +87,7 @@
 
 
 								<div class="am-tab-panel">
-								@if (count($errors) > 0)
-									<div class="alert alert-danger">
-										<ul>
-											@if(is_object($errors))
-												@foreach ($errors->all() as $error)
-													<li style="color:red">{{ $error }}</li>
-												@endforeach
-											@else
-												<li style="color:red">{{ $errors }}</li>
-											@endif
-										</ul>
-									</div>
-								@endif
+								
 									<form method="post" action="{{url('home/dophoneregister')}}">
 									{{csrf_field()}}
                  <div class="user-phone">
