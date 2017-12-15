@@ -27,9 +27,25 @@ Route::get('home/work/{id}','Home\HomeController@work');
 
 //商城前台登录的路由
 Route::get('home/login','Home\LoginController@login');
+Route::post('home','Home\LoginController@doLogin');
+
+//商城前台手机注册
+Route::get('home/register','Home\RegisterController@PhoneRegister');
+Route::post('home/dophoneregister','Home\RegisterController@doPhoneRegister');
+Route::get('home/forget','Home\RegisterController@Forget');
+Route::get('home/forget/a/{name}','Home\RegisterController@Forgett');
 
 
+//发送验证码
+Route::post('home/sendcode','Home\RegisterController@sendCode');
 
+Route::post('home/phoneregister','Home\RegisterController@doPhoneRegister');
+//邮箱注册
+Route::get('home/emailregister','Home\RegisterController@EmailRegister');
+
+Route::post('home/emailregister','Home\RegisterController@doEmailRegister');
+//邮件激活
+Route::get('home/active','Home\RegisterController@active');
 
 // 前台商品列表页 详情页路由
 Route::group(['prefix'=>'home','namespace' => 'Home'],function () {
@@ -42,7 +58,7 @@ Route::group(['prefix'=>'home','namespace' => 'Home'],function () {
 // 前台用户中心页路由组
 Route::group(['prefix'=>'person','namespace' => 'Person'],function () {
     Route::get('/index', 'PersonController@index');
-    Route::get('/address', 'AddressController@index');
+    Route::resource('/address', 'AddressController');
     Route::get('/order','OrderController@index');
     Route::get('/information', 'InformationController@index');
     Route::get('/collection', 'CollectionController@index');
@@ -70,10 +86,10 @@ Route::get('admin/logout','Admin\LoginController@logout');
 
 
 
+
 //后台路由组
 // Route::group(['middleware'=>['islogin','hasrole'],'namespace'=>'Admin'],function (){
 Route::group(['middleware'=>['islogin'],'namespace'=>'Admin'],function (){
-
 
 
 
@@ -92,13 +108,13 @@ Route::group(['middleware'=>['islogin'],'namespace'=>'Admin'],function (){
  	Route::get('user/auth/{id}','UserController@auth');
  	Route::post('user/doauth','UserController@doauth');
 
- 	//角色管理
+ 	// 角色管理
  	Route::resource('role','RoleController');
  	Route::get('role/auth/{id}','RoleController@auth');
     Route::post('role/doauth','RoleController@doauth');
    
 
-    //权限管理
+    // 权限管理
     Route::resource('auth','AuthController');
 
 	// 分类管理路由模块
@@ -121,12 +137,16 @@ Route::group(['middleware'=>['islogin'],'namespace'=>'Admin'],function (){
 	//商城后台购物指南文章管理模块
 	Route::resource('work','WorkController');
    
-
+	//商城后台轮播图管理模块
+	Route::resource('lunbo','LunboController');
+	Route::post('/admin/uploaddd','LunboController@upload');
    
 });
 
+
 //商城后台轮播图管理模块
 Route::resource('lunbo','Admin\LunboController');
+
 
 //权限不够时跳转的路径
 Route::get('errors/auth',function(){

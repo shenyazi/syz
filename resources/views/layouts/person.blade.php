@@ -13,6 +13,8 @@
 
     <script src="/homes/AmazeUI-2.4.2/assets/js/jquery.min.js"></script>
     <script src="/homes/AmazeUI-2.4.2/assets/js/amazeui.js"></script>
+    <script type="text/javascript" src="{{asset('jquery-1.8.3.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('layer/layer.js')}}"></script>
     @section('css')
 
     @show
@@ -109,11 +111,11 @@
             </div>
             <div class="footer-bd">
                 <p>
-                    <a href="#">关于恒望</a>
+                    <a href="#">关于熊猫</a>
                     <a href="#">合作伙伴</a>
                     <a href="#">联系我们</a>
                     <a href="#">网站地图</a>
-                    <em>© 2015-2025 Hengwang.com 版权所有. 更多模板 <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></em>
+                    <em>Copyright © 2016 - 2017  Panda熊猫商城 版权所有</em>
                 </p>
             </div>
         </div>
@@ -162,13 +164,6 @@
         </ul>
 
     </aside>
-</div>
-<!--引导 -->
-<div class="navCir">
-    <li><a href="../home/home.html"><i class="am-icon-home "></i>首页</a></li>
-    <li><a href="../home/sort.html"><i class="am-icon-list"></i>分类</a></li>
-    <li><a href="../home/shopcart.html"><i class="am-icon-shopping-basket"></i>购物车</a></li>
-    <li class="active"><a href="index.html"><i class="am-icon-user"></i>我的</a></li>
 </div>
 </body>
 
