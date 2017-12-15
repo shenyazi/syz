@@ -215,5 +215,45 @@
 					<div class="clear "></div>
 
 
+
+
+					<div class="am-container activity ">
+						<div class="shopTitle ">
+							<h4>视频宣传</h4>
+							<h3>公益活动,有你有我会更好!!!</h3>
+							<span class="more ">
+                              <a class="more-link " href="# ">全部视频</a>
+                            </span>
+						</div>
+					
+					 	<div class="am-g am-g-fixed ">
+					 		<div class="m">
+								<video id="my-video" class="video-js" controls preload="auto" width="740" height="400"
+								   data-setup="{}">
+									<source src="/homes/video/baofeng.mp4" type="video/mp4">
+									<!-- <p class="vjs-no-js">
+									  To view this video please enable JavaScript, and consider upgrading to a web browser that
+									  <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+									</p> -->
+								  </video>
+								  <script src="/homes/video/js/video.min.js"></script>	
+								  <script type="text/javascript">
+									var myPlayer = videojs('my-video');
+									videojs("my-video").ready(function(){
+										var myPlayer = this;
+										myPlayer.play();
+									});
+								</script>
+							</div>
+
+							<style>
+								.m{ width: 666px; height: 400px; margin-left: auto; margin-right: auto; margin-top: 30px; }
+							</style>
+					  	</div>
+					
+                   	</div>
+					<div class="clear "></div>
+
+
                  
 @endsection

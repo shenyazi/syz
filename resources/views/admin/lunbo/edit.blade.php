@@ -50,8 +50,9 @@
                                  <div class="form-group">
                                       <label for="inputPassword1" class="col-lg-2 control-label">图片:</label>
                                       <div class="col-lg-6">
-                                          <img src="" alt=''>
+                                          
                                           <input type="file" class="form-control"  name='bimg'>
+                                          <img src="{{$lunbo->bimg}}" alt='' width="100">
                                       </div>
                                   </div>
                                   <div class="form-group">

@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use App\Http\Requests;
+// use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Model\Lunbo;
-use App\Services\OSS;
+// use App\Services\OSS;
 class LunboController extends Controller
 {
 	/**
@@ -42,7 +42,9 @@ class LunboController extends Controller
 		//表单验证
         $rule = [
             'btitle'=>'required|regex:/^[\x{4e00}-\x{9fa5}A-Za-z0-9_]+$/u|between:2,20',
-            "burl"=>'required'
+            "burl"=>'required',
+            'bimg'=>'required',
+            'bstatus'=>'required',
         ];
 
         $mess = [
@@ -91,8 +93,9 @@ class LunboController extends Controller
             $dirpath = public_path().'/uploads/';
 
             //将文件移动到阿里OSS
-            OSS::upload($newfile,$file->getRealPath());
-
+            // OSS::upload($newfile,$file->getRealPath());
+            $file->move($dirpath, $newfile);
+            
             //将返回的图片名称返回前台,在前台显示图片
             return $newfile;
     	}
@@ -117,14 +120,15 @@ class LunboController extends Controller
         $this->validate($request, [
            'btitle'=>'required|regex:/^[\x{4e00}-\x{9fa5}A-Za-z0-9_]+$/u|between:2,20',
             "burl"=>'required',
-            'bimg'=>'required',
+            // 'bimg'=>'required',
+            'bstatus'=>'required',
            
         ],[
             'btitle.required'=>'标题必须输入',
             'btitle.regex'=>'标题必须汉字字母下划线',
             'btitle.between'=>'标题必须在2到20位之间',
             'burl.required'=>'地址必须输入',
-            'bimg.required'=>'图片必须上传',
+            // 'bimg.required'=>'图片必须上传',
         ]);
 
         //读取内容
@@ -133,7 +137,7 @@ class LunboController extends Controller
         //提取内容
         $lunbo->btitle=$request->btitle;
         $lunbo->burl=$request->burl;
-        $lunbo->bimg=$request->bimg;
+        // $lunbo->bimg=$request->bimg;
         $lunbo->bstatus=$request->bstatus;
 
         // dd($lunbo);

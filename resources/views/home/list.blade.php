@@ -163,9 +163,12 @@
 
                     <ul class="am-avg-sm-2 am-avg-md-3 am-avg-lg-4 boxes">
                         @foreach($goods as $k=>$v)
+						
                             <li>
                                 <div class="i-pic limit">
-                                    <img style = "width:220px;height:220px;" src="{{$v->gpic}}" />
+                                   <a href="{{url('/home/xq').'/'.$v->id}}"> 
+								   <img style = "width:220px;height:220px;" src="{{$v->gpic}}" />
+								   </a>
                                     <p class="title fl">{{$v->gname}}</p>
                                     <p class="price fl">
                                         <b>¥</b>

@@ -1,5 +1,7 @@
 @extends('layouts.home')
 
+@section('title',$title);
+
 @section('content')
 				
 		<div class="center">

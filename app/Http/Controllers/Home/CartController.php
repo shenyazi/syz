@@ -8,4 +8,7 @@ use App\Http\Controllers\Controller;
 class CartController extends Controller
 {
     //商品加入购物车
+    public function insert(Request $request){
+
+    }
 }

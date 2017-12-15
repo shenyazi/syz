@@ -27,7 +27,7 @@
                           <header class="panel-heading">
                               <b>轮播图列表</b>
                           </header>
-                          <form action="{{url('friendlink')}}" method='get' style='padding:12px;margin-left:55px'>
+                          <form action="{{url('lunbo')}}" method='get' style='padding:12px;margin-left:55px'>
                               <b >每页显示条数:</b>
                                 <select name='num'>
                                     <option value='5'  @if($request['num'] == 5)  selected  @endif>5</option>
@@ -55,7 +55,7 @@
                                   <td>{{$v->id}}</td>
                                   <td class="hidden-phone">{{$v->btitle}}</td>
                                   <td>{{$v->burl}} </td>
-                                  <td>{{$v->bimg}}</td>
+                                  <td><img src="{{$v->bimg}}" width="100"></td>
 
                                   <td>{{$v->bstatus ==1? '开启' :'关闭' }}</td>
                                   <td>

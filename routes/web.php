@@ -27,9 +27,25 @@ Route::get('home/work/{id}','Home\HomeController@work');
 
 //商城前台登录的路由
 Route::get('home/login','Home\LoginController@login');
+Route::post('home','Home\LoginController@doLogin');
+
+//商城前台手机注册
+Route::get('home/register','Home\RegisterController@PhoneRegister');
+Route::post('home/dophoneregister','Home\RegisterController@doPhoneRegister');
+Route::get('home/forget','Home\RegisterController@Forget');
+Route::get('home/forget/a/{name}','Home\RegisterController@Forgett');
 
 
+//发送验证码
+Route::post('home/sendcode','Home\RegisterController@sendCode');
 
+Route::post('home/phoneregister','Home\RegisterController@doPhoneRegister');
+//邮箱注册
+Route::get('home/emailregister','Home\RegisterController@EmailRegister');
+
+Route::post('home/emailregister','Home\RegisterController@doEmailRegister');
+//邮件激活
+Route::get('home/active','Home\RegisterController@active');
 
 // 前台商品列表页 详情页路由
 Route::group(['prefix'=>'home','namespace' => 'Home'],function () {
@@ -49,6 +65,9 @@ Route::group(['prefix'=>'person','namespace' => 'Person'],function () {
 
 });
 
+// 商城前台商品详情
+	Route::resource('home/xq','Home\GoodController');
+
 
 //后台的登录的路由
 Route::get('admin/login','Admin\LoginController@login');
@@ -64,14 +83,20 @@ Route::get('admin/logout','Admin\LoginController@logout');
 
 <<<<<<< HEAD
 
+
+
 //后台路由组
 // Route::group(['middleware'=>['islogin','hasrole'],'namespace'=>'Admin'],function (){
 Route::group(['middleware'=>['islogin'],'namespace'=>'Admin'],function (){
 
+<<<<<<< HEAD
 =======
 Route::group(['middleware'=>['islogin'],'namespace'=>'Admin'],function (){
 >>>>>>> origin/jyy
 	
+=======
+
+>>>>>>> 9fcee68172d9228878a9a56a4e9c476f3d9cdb9e
 	//商城后台的路由
 	Route::get('/admin','LoginController@index');
 
@@ -105,6 +130,7 @@ Route::group(['middleware'=>['islogin'],'namespace'=>'Admin'],function (){
 	Route::resource('admin/good','GoodController');
 	Route::post('admin/uploadd','GoodController@upload');
 	Route::get('admin/good/zt/{id}','GoodController@zt');
+	
 
 
 	
@@ -115,12 +141,17 @@ Route::group(['middleware'=>['islogin'],'namespace'=>'Admin'],function (){
 	//商城后台购物指南文章管理模块
 	Route::resource('work','WorkController');
    
-
+	//商城后台轮播图管理模块
+	Route::resource('lunbo','LunboController');
+	Route::post('/admin/uploaddd','LunboController@upload');
    
 });
 
+
 //商城后台轮播图管理模块
 Route::resource('lunbo','Admin\LunboController');
+
+
 //权限不够时跳转的路径
 Route::get('errors/auth',function(){
 	return view('errors.auth');
