@@ -5,39 +5,10 @@ namespace App\Http\Controllers\Home;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Model\Good;
+use App\Http\Model\Cart;
 
 class GoodController extends CommonController
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        dd(1);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        
-    }
 
     /**
      * Display the specified resource.
@@ -52,37 +23,36 @@ class GoodController extends CommonController
         return view('home/good/xq',compact('goods'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+  
+
+
 
     /**
-     * Update the specified resource in storage.
+     * 商品加入购物车
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function tocart(Request $request,$id)
     {
         //
+        $goods=Good::find($id);
+        // dd($goods);
+        $cart=new Cart(); 
+        $cart->user_id=1;
+        $cart->good_id=$goods->id;
+        $cart->num=$request->num;
+        $cart->save();
+
+        return view('home.cart.tocart');
+
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+
+    /** 
+    *   购物车页面
+    **/
+    public function cart(){
+        return view('home.cart.index');
     }
 }
