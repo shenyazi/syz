@@ -79,7 +79,7 @@ class CateController extends Controller
     }
 
     /**
-     * 作用: 保存用户提交的数据
+     * 作用: 添加分类
      * @author: 景玉圆
      * @date: 2017-12-3 17:50
      * @param: Request $request 请求对象
@@ -141,7 +141,7 @@ class CateController extends Controller
     }
 
     /**
-     * 作用: 修改分类
+     * 作用: 跳转到修改页面
      * @author: 景玉圆
      * @date: 2017-12-4 9:40
      * @param: $id 要修改的分类id
@@ -156,7 +156,7 @@ class CateController extends Controller
     }
 
     /**
-     * 作用: 更新用户提交的数据
+     * 作用: 修改分类
      * @author: 景玉圆
      * @date: 2017-12-4 10:30
      * @param: Request $request 请求对象
@@ -178,7 +178,7 @@ class CateController extends Controller
 
         $mess = [
             'cate_name.required'=>'分类名必须输入',
-            'cate_name.regex'=>'分类名必须汉字字母下划线',
+            'cate_name.regex'=>'分类名必须是汉字字母下划线',
             'cate_name.between'=>'分类名必须在2到10位之间',
         ];
 
