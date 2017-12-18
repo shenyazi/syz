@@ -188,12 +188,13 @@ class RegisterController extends CommonController
     	$input['is_active'] = 0;
     	$input['token'] = $input['password'];
 
-        $a = Users::where('email',$input['email']);
+        $a = Users::where('email',$input['email'])->first();
+        
         if($a){
         	 return redirect('home/register')->with('errors','该邮箱已注册');
         }
     	$res = Users::create($input);
-    	// dd($res);
+    	  //dd($res->id);
     	if($res){
 
            // 4. 给注册邮箱发送注册邮件
@@ -204,12 +205,11 @@ class RegisterController extends CommonController
            Mail::send('home.email.active', ['user' => $res], function ($m) use ($res) {
 				$m->to($res->email, $res->name)->subject('邮箱激活!');
            });
-
-
+            
            return redirect('home/login');
 
        }else{
-       	dd(sadsadas);
+       	 //dd(sadsadas);
            return back();
        }
 
@@ -245,8 +245,9 @@ class RegisterController extends CommonController
     {
     	return view('home/forget');
     }
-    public function Forgett($name)
+    public function doForget($name)
     {
+
     	// 获取$name
     	$name;
 
@@ -261,8 +262,50 @@ class RegisterController extends CommonController
     		strpos($name, "@");
     		Mail::send('email.forget');
     	}else{
-    		
-    	}
+
+        
+        //如果是是有效邮箱，发送找回密码邮件
+        // dd($name);
+        $user = Users::where('email',$name)->first(); 
+        //dd($user);
+        if($user){
+             //给邮箱发送激活链接
+            //参数1 邮件发送模板   参数2 向模板中传递的遍历   参数3  的参数$user,设置跟邮件相关的信息如收件人、邮件主题等
+            Mail::send('home.email.forget', ['user' => $user], function ($m) use ($user) {
+            //to(收件人的邮箱，收件人的名字)
+                $m->to($user->email, $user->name)->subject('重置密码!');
+            });
+            return back()->with("errors","重置密码申请成功，去邮箱查看");
+        }
     }
 
+    //重置密码页面
+    public function reset(Request $request)
+    {
+    	$user = Users::find($request['id']);
+    	// dd($user);
+    	// $a = $user->name;
+    	if($request['key'] != $user->token)
+    	{
+    		return '无效的连接';
+
+    	}
+
+    	return view('home.reset',compact('name'));
+    }
+
+    //重置密码界面
+    public function doreset()
+    {
+    	// dd(111);
+        // $user = Users::where('email',$name)->first();
+        // $pass = Hash::make(['password'])
+        
+        // $re =  $user->update(['password'=>$pass]);
+        // if($re){
+        //     return redirect('home/login');
+        // }else{
+        //     return bakc()->with("errors","密码修改失败");
+        // }
+    }
 }

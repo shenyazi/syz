@@ -16,7 +16,7 @@
 					   <div class="long-title"><span class="all-goods">全部分类</span></div>
 					   <div class="nav-cont">
 							<ul>
-								<li class="index"><a href="/home">首页</a></li>
+								<li class="index"><a href="#">首页</a></li>
                                 <li class="qc"><a href="#">闪购</a></li>
                                 <li class="qc"><a href="#">限时抢</a></li>
                                 <li class="qc"><a href="#">团购</a></li>
@@ -41,32 +41,16 @@
 					
 					<form class="am-form am-form-horizontal">
 						<div class="am-form-group">
-							<label for="user-email" class="am-form-label">验证邮箱</label>
+							<label for="user-email" class="am-form-label">验证码</label>
 							<div class="am-form-content">
-								<input type="text" id="qqq"  name="email"placeholder="请输入邮箱地址" value="">
+								<input type="email" id="qqq"  name="forget"placeholder="请输入您收到的验证码" value="">
 							</div>
 						</div>
 						
 						
 						<div class="info-btn">
 							<div class="am-btn am-btn-danger">
-							<a  id="ss" class="zcnext am-fr am-btn-default" href="{{url('home/forget/a')}}">提交</a>
-
-							</div>
-							<div style="text-align:center;">
-							@if (count($errors) > 0)
-									<div class="alert alert-danger">
-										<ul>
-											@if(is_object($errors))
-												@foreach ($errors->all() as $error)
-													<li style="color:red">{{ $error }}</li>
-												@endforeach
-											@else
-												<li style="color:red">{{ $errors }}</li>
-											@endif
-										</ul>
-									</div>
-								@endif
+							<a id="ss" href="forget/a/">提交</a>
 							</div>
 						</div>
 						
@@ -78,7 +62,7 @@
 					tocart.onclick = function()
 					{
 
-						tocart.href = tocart.href +'/'+ num.value;
+						tocart.href = tocart.href + num.value;
 					}
 				</script>
 
