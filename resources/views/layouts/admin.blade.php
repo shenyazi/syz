@@ -59,10 +59,10 @@
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <img alt="" src="{{ asset('/admins/img/avatar1_small.jpg') }}">
                             <span class="username">{{session('user.username')}}</span>
-                            <b class="caret"></b>
-                            <ul class="dropdown-menu extended logout">
+                            <!-- <b class="caret"></b> -->
+                            <!-- <ul class="dropdown-menu extended logout"> -->
                             <!-- <div class="log-arrow-up"></div> -->
-                            <li><a href="{{url('admin/passedit')}}"><i class="icon-bell-alt"></i>修改密码</a></li>
+                            <!-- <li><a href="{{url('admin/passedit')}}"><i class="icon-bell-alt"></i>修改密码</a></li> -->
                             <li><a href="{{url('admin/logout')}}"><i class="icon-key"></i>退出</a></li>
                             </ul>
                         </a>

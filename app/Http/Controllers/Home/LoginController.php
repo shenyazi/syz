@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Model\Users;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;     
 
 class LoginController extends Controller
 {
@@ -17,7 +18,10 @@ class LoginController extends Controller
     
     public function login()
     {
-    	
+    	if(session('user'))
+        {
+            return back();
+        }
     	return view('home.login.index');
     }
 
@@ -36,14 +40,23 @@ class LoginController extends Controller
      
             
                 if (Hash::check($password, $data->password)){
-                    session(['users'=>$data]);
+                   Session::put('user',$data);
+                   Session::put('id',$data->id);
                     return redirect('/home')->with('success','登录成功');
                 }else{
                     return back()->with('error','用户名或密码错误')->withinput();
                 }
             
-       
-        
-    
-    }	
+    }
+
+    public function logout(Request $request)
+    {
+        session(['user'=>null]);
+        $request->session()->flush();
+        return redirect('home/login');
+    }
+
+
+
+
 }

@@ -1,6 +1,6 @@
 @extends('layouts.home')
 
-@section('title','密码找回')
+@section('title','密码重置')
 
 @section('content')
 <link href="/Homes/AmazeUI-2.4.2/assets/css/admin.css" rel="stylesheet" type="text/css">
@@ -16,7 +16,7 @@
 					   <div class="long-title"><span class="all-goods">全部分类</span></div>
 					   <div class="nav-cont">
 							<ul>
-								<li class="index"><a href="/home">首页</a></li>
+								<li class="index"><a href="#">首页</a></li>
                                 <li class="qc"><a href="#">闪购</a></li>
                                 <li class="qc"><a href="#">限时抢</a></li>
                                 <li class="qc"><a href="#">团购</a></li>
@@ -34,24 +34,37 @@
 				<div class="main-wrap">
 
 					<div class="am-cf am-padding">
-						<div class="am-fl am-cf"><strong class="am-text-danger am-text-lg">找回密码</strong></div>
+						<div class="am-fl am-cf"><strong class="am-text-danger am-text-lg">重置密码</strong></div>
 					</div>
 					<hr/>
 					<!--进度条-->
 					
-					<form class="am-form am-form-horizontal">
+					<form class="am-form am-form-horizontal" method="post">
 						<div class="am-form-group">
-							<label for="user-email" class="am-form-label">验证邮箱</label>
+							<label for="user-email" class="am-form-label">账号</label>
+							
 							<div class="am-form-content">
-								<input type="text" id="qqq"  name="email"placeholder="请输入邮箱地址" value="">
+								<input type="text" id="qqq"  name="name" placeholder="请输入要找回密码的账号" value="">
+							</div>
+						</div>
+						<div class="am-form-group">
+							<label for="user-email" class="am-form-label">重置密码</label>
+
+							<div class="am-form-content">
+								<input type="password" id="qqq"  name="password" placeholder="请输入新密码" value="">
+							</div>
+						</div>
+						<div class="am-form-group">
+							<label for="user-email" class="am-form-label">确认密码</label>
+							<div class="am-form-content">
+								<input type="password" id="qqq"  name="repass" placeholder="请确认新密码" value="">
 							</div>
 						</div>
 						
 						
 						<div class="info-btn">
 							<div class="am-btn am-btn-danger">
-							<a  id="ss" class="zcnext am-fr am-btn-default" href="{{url('home/forget/a')}}">提交</a>
-
+							<a  id="ss" class="zcnext am-fr am-btn-default" href="{{url('home/doreset')}}">提交</a>
 							</div>
 							<div style="text-align:center;">
 							@if (count($errors) > 0)

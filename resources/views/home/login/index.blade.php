@@ -30,14 +30,19 @@
 							<div class="clear"></div>
 						
 						<div class="login-form">
-						 @if (session('error'))
-					        <div style="color:red;" onclick="this.style.display='none'">
-					          
-					            <ul>
-					              <li>{{ session('error') }}</li>
-					            </ul>
-					        </div>
-					    @endif
+						 @if (count($errors) > 0)
+			                <div class="alert alert-danger">
+			                    <ul>
+			                        @if(is_object($errors))
+			                            @foreach ($errors->all() as $error)
+			                                <li style="color:red">{{ $error }}</li>
+			                        @endforeach
+			                        @else
+			                            <li style="color:red">{{ $errors }}</li>
+			                        @endif
+			                    </ul>
+			                </div>
+			            @endif
 						<form action="/home"method="post">
 						  {{ csrf_field() }} 
 							   <div class="user-name">
@@ -61,14 +66,7 @@
 								<br />
             </div>
 								
-						<div class="partner">		
-								<h3>合作账号</h3>
-							<div class="am-btn-group">
-								<li><a href="#"><i class="am-icon-qq am-icon-sm"></i><span>QQ登录</span></a></li>
-								<li><a href="#"><i class="am-icon-weibo am-icon-sm"></i><span>微博登录</span> </a></li>
-								<li><a href="#"><i class="am-icon-weixin am-icon-sm"></i><span>微信登录</span> </a></li>
-							</div>
-						</div>	
+						
 
 				</div>
 			</div>

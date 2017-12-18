@@ -28,22 +28,30 @@ Route::get('home/work/{id}','Home\HomeController@work');
 //商城前台登录的路由
 Route::get('home/login','Home\LoginController@login');
 Route::post('home','Home\LoginController@doLogin');
+//前台退出
+Route::get('home/logout','Home\LoginController@logout');
 
 //商城前台手机注册
 Route::get('home/register','Home\RegisterController@PhoneRegister');
 Route::post('home/dophoneregister','Home\RegisterController@doPhoneRegister');
-Route::get('home/forget','Home\RegisterController@Forget');
-Route::get('home/forget/a/{name}','Home\RegisterController@Forgett');
 
+//忘记密码
+Route::get('home/forget','Home\RegisterController@Forget');
+Route::get('home/forget/a/{name}','Home\RegisterController@doForget');
+
+//找回密码
+Route::get('home/reset/{id}','Home\RegisterController@reset');
+
+//重置密码
+Route::post('home/doreset','Home\RegisterController@doreset');
 
 //发送验证码
 Route::post('home/sendcode','Home\RegisterController@sendCode');
-
 Route::post('home/phoneregister','Home\RegisterController@doPhoneRegister');
-//邮箱注册
-Route::get('home/emailregister','Home\RegisterController@EmailRegister');
 
+//邮箱注册
 Route::post('home/emailregister','Home\RegisterController@doEmailRegister');
+
 //邮件激活
 Route::get('home/active','Home\RegisterController@active');
 
@@ -66,7 +74,7 @@ Route::group(['prefix'=>'person','namespace' => 'Person'],function () {
 });
 
 // 商城前台商品详情
-	Route::resource('home/xq','Home\GoodController');
+Route::resource('home/xq','Home\GoodController');
 
 
 //后台的登录的路由

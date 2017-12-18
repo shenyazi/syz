@@ -8,10 +8,7 @@
     <title>找回密码邮件注册</title>
 </head>
 <body>
-	您的验证码为:
-    <?php 
-	$a = mt_rand(1000,9999);
-	echo $a;
-	?>
+
+    <p>请点击 <a href="{{url('home/reset/id='.$user->id.'&key='.$user->name)}}">链接</a> ，找回密码</p>
 </body>
 </html>

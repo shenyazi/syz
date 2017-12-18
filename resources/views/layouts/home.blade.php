@@ -33,8 +33,13 @@
 				<ul class="message-l">
 					<div class="topMessage">
 						<div class="menu-hd">
-							<a href="#" target="_top" class="h">亲，请登录</a>
-							<a href="#" target="_top">免费注册</a>
+							@if(session('user'))
+							<a href="/home/person/index" target="_top" class="h">{{session('user')->name}}</a>
+							<a href="/home/logout" target="_top">退出</a>
+							@else
+							<a href="/home/login" target="_top" class="h">亲，请登录</a>
+							<a href="/home/register" target="_top">免费注册</a>
+							@endif
 						</div>
 					</div>
 				</ul>
@@ -78,7 +83,7 @@
 			<div class="long-title"><span class="all-goods">全部分类</span></div>
 		   	<div class="nav-cont">
 				<ul>
-					<li class="index"><a href="#">首页</a></li>
+					<li class="index"><a href="/home">首页</a></li>
                     <li class="qc"><a href="#">闪购</a></li>
                     <li class="qc"><a href="#">限时抢</a></li>
                     <li class="qc"><a href="#">团购</a></li>

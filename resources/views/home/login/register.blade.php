@@ -35,8 +35,9 @@
 								<li class="am-active"><a href="">邮箱注册</a></li>
 
 								<li><a href="">手机号注册</a></li>
-
+								
 							</ul>
+							<a href="{{url('home/login')}}" class="zcnext am-fr am-btn-default">登录</a>
 							<div style="text-align:center;">
 							@if (count($errors) > 0)
 									<div class="alert alert-danger">
@@ -159,72 +160,7 @@
 					</div>
 	</body>
 	<script type="text/javascript">
-		//手机表单验证
-        // var x = /^1[3|4|5|8][0-9]\d{4,8}$/;
-        // var y = /^\w{6,20}$/;
-        // $("input").focus(function() {
-        //     $(this).prev().css("color","#008DE8");
-        // });
-              
-        // $("#phone").blur(function() {
-        //     var v=$(this).val();
-        //     $.ajax({
-        //             type:"post",
-        //             url:"{{url('/register/phoneajax')}}",
-        //             data:{"phone":v,"_token":"{{csrf_token()}}"},
 
-        //             success:function(data){
-        //                 if(data){
-        //                      layer.msg("手机已注册！", {icon: 6});
-        //                 }
-        //             },
-
-        //             dataType: "json",
-
-        //      });
-                 
-        //     if (v=='') {
-        //         layer.msg("手机号不能为空！", {icon: 6});
-        //     }else if(!v.match(x)){
-        //         layer.msg("手机格式不符合要求！", {icon: 6});
-               
-        //     }else{
-        //         $(this).prev().css("color","#0EA74A");
-        //         $("[name='name']").next().html("");
-        //     } 
-        // });
-
-        // $("#password").blur(function() {
-        //     var v=$(this).val();
-        //     console.log(v);
-        //     if (v=='') {
-        //         layer.msg("密码不能为空！", {icon: 6});
-               
-        //     }else if(!v.match(y)){
-        //         layer.msg("密码为6到20位！", {icon: 6});
-                
-        //     }else{
-        //         $(this).prev().css("color","#0EA74A");
-        //         $("#password").next().html("");
-        //     } 
-        // });
-
-        // $("#repass").blur(function() {
-        //     var v=$(this).val();  
-        //     var password = $("#password").val();
-            
-        //     console.log(v);
-        //     if (v=='') {
-        //         layer.msg("密码不能为空！", {icon: 6});
-               
-        //     }else if(v!= password){
-        //         layer.msg("两次密码不一致", {icon: 6});
-                
-        //     }else{
-        //         $(this).prev().css("color","#0EA74A");
-        //         $("[name='password']").next().html("");
-        //     } 
-        // });
 		function sendcode(){
 			//1. 获取要发送的手机号
 			$phone = $('[name="phone"]').val();
@@ -233,6 +169,25 @@
 			// 2. 向服务器的发送短信的接口发送ajax请求
 
 			$.post("{{url('home/sendcode')}}",{'phone':$phone,'_token':'{{csrf_token()}}'},function(data){
+				console.log(data);
+				var obj = JSON.parse(data);
+				if(obj.status == 0){
+					layer.msg(obj.message, {icon: 6,area: ['100px', '80px']});
+				}else{
+					layer.msg(obj.message, {icon: 5,area: ['100px', '80px']});
+				}
+
+
+			})
+		}
+		function emailregister(){
+			//1. 获取要发送的手机号
+			$email = $('[name="email"]').val();
+			// alert($phone);
+
+			// 2. 向服务器的发送短信的接口发送ajax请求
+
+			$.post("{{url('home/emailregister')}}",{'email':$email,'_token':'{{csrf_token()}}'},function(data){
 				console.log(data);
 				var obj = JSON.parse(data);
 				if(obj.status == 0){
