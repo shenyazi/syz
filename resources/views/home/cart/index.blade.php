@@ -94,6 +94,16 @@
 					<tr class="item-list">
 						<div class="bundle  bundle-last ">
 							<div class="bundle-main">
+							
+							 <?php  
+							        $_SESSION['order']['ormb'] = 0;
+							        $_SESSION['order']['ocnt'] = 0;
+							    
+							       foreach($_SESSION['cart'] as $k=>$v): 
+							          $money = $v->gprice*$v->bcnt;
+							          $_SESSION['order']['ormb'] += $money;
+							          $_SESSION['order']['ocnt'] += $v->bcnt;
+							    ?>        
 								<ul class="item-content clearfix">
 									<li class="td td-chk">
 										<div class="cart-checkbox ">
@@ -104,11 +114,11 @@
 									<li class="td td-item">
 										<div class="item-pic">
 											<a href="#" target="_blank" data-title="美康粉黛醉美东方唇膏口红正品 持久保湿滋润防水不掉色护唇彩妆" class="J_MakePoint" data-point="tbcart.8.12">
-												<img src="../images/kouhong.jpg_80x80.jpg" class="itempic J_ItemImg"></a>
+												<img src="{{$v->gpic}}" class="itempic J_ItemImg" height=80 width=90></a>
 										</div>
 										<div class="item-info">
 											<div class="item-basic-info">
-												<a href="#" target="_blank" title="美康粉黛醉美唇膏 持久保湿滋润防水不掉色" class="item-title J_MakePoint" data-point="tbcart.8.11">美康粉黛醉美唇膏 持久保湿滋润防水不掉色</a>
+												<a href="#" target="_blank" title="美康粉黛醉美唇膏 持久保湿滋润防水不掉色" class="item-title J_MakePoint" data-point="tbcart.8.11">{{$v->gname}}</a>
 											</div>
 										</div>
 									</li>
@@ -124,10 +134,7 @@
 										<div class="item-price price-promo-promo">
 											<div class="price-content">
 												<div class="price-line">
-													<em class="price-original">78.00</em>
-												</div>
-												<div class="price-line">
-													<em class="J_Price price-now" tabindex="0">39.00</em>
+													<em class="J_Price price-now" tabindex="0">{{$v->gprice}}</em>
 												</div>
 											</div>
 										</div>
@@ -136,32 +143,33 @@
 										<div class="amount-wrapper ">
 											<div class="item-amount ">
 												<div class="sl">
-													<input class="min am-btn" name="" type="button" value="-" />
-													<input class="text_box" name="" type="text" value="3" style="width:30px;" />
-													<input class="add am-btn" name="" type="button" value="+" />
+													<!-- <input class="jian am-btn" name="" type="button" value="-" /> -->
+													<a href="{{url('home/cart/jian/'.$k)}}" class='button am-btn'>-</a>
+													<input class="text_box" name="" type="text" value="{{$v->bcnt}}" style="width:30px;" />
+													<a href="{{url('home/cart/jia/'.$k)}}" class='button am-btn'>+</a>
+													<!-- <input class="jia am-btn" name="" type="button" value="+" /> -->
 												</div>
 											</div>
 										</div>
 									</li>
 									<li class="td td-sum">
 										<div class="td-inner">
-											<em tabindex="0" class="J_ItemSum number">117.00</em>
+											<em tabindex="0" class="J_ItemSum number">{{$v->bcnt * $v->gprice}}</em>
 										</div>
 									</li>
 									<li class="td td-op">
 										<div class="td-inner">
-											<a title="移入收藏夹" class="btn-fav" href="#">
-                  移入收藏夹</a>
-											<a href="javascript:;" data-point-url="#" class="delete">
-                  删除</a>
+											<a href="{{url('home/cart/del/'.$k)}}" data-point-url="#" class="delete">
+                  								删除</a>
 										</div>
 									</li>
 								</ul>
+							<?php  endforeach;  ?>
+
 							</div>
 						</div>
 					</tr>
 					<div class="clear"></div>
-
 					
 				</div>
 				<div class="clear"></div>
@@ -174,30 +182,29 @@
 						</div>
 						<span>全选</span>
 					</div>
-					<div class="operations">
-						<a href="#" hidefocus="true" class="deleteAll">删除</a>
-						<a href="#" hidefocus="true" class="J_BatchFav">移入收藏夹</a>
-					</div>
+					
 					<div class="float-bar-right">
-						<div class="amount-sum">
-							<span class="txt">已选商品</span>
-							<em id="J_SelectedItemsCount">0</em><span class="txt">件</span>
+						
+						<div class="price-sum">
+							<div class="amount-sum">
+								<span class="txt">已选商品</span>
+								<em id="J_SelectedItemsCount">{{$_SESSION['order']['ocnt']}}</em><span class="txt">件</span>
 							<div class="arrow-box">
 								<span class="selected-items-arrow"></span>
 								<span class="arrow"></span>
 							</div>
 						</div>
-						<div class="price-sum">
 							<span class="txt">合计:</span>
-							<strong class="price">¥<em id="J_Total">0.00</em></strong>
+							<strong class="price">¥<em id="J_Total">{{$_SESSION['order']['ormb']}}</em></strong>
 						</div>
 						<div class="btn-area">
-							<a href="pay.html" id="J_Go" class="submit-btn submit-btn-disabled" aria-label="请注意如果没有选择宝贝，将无法结算">
+							<a href="{{url('home/order/pay')}}" id="J_Go" class="submit-btn submit-btn-disabled" aria-label="请注意如果没有选择宝贝，将无法结算">
 								<span>结&nbsp;算</span></a>
 						</div>
 					</div>
 
 				</div>
+
 
 				<div class="footer">
 					<div class="footer-hd">

@@ -259,7 +259,7 @@ class RegisterController extends CommonController
     	//  
     	if($name){
     		strpos($name, "@");
-    		Mail::send('email.forget',)
+    		Mail::send('email.forget');
     	}else{
     		
     	}

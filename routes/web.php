@@ -71,7 +71,17 @@ Route::group(['prefix'=>'person','namespace' => 'Person'],function () {
 //商品加入购物车
 Route::post('home/cart/{id}','Home\GoodController@tocart');
 Route::get('home/cart','Home\GoodController@cart');
+Route::get('home/cart/jia/{id}','Home\GoodController@jia');
+Route::get('home/cart/jian/{id}','Home\GoodController@jian');
+Route::get('home/cart/del/{id}','Home\GoodController@del');
 
+//商品结算,商品订单
+Route::get('home/order/pay','Home\OrderController@pay');
+Route::get('home/order/finish','Home\OrderController@finish');
+
+
+//地址添加(商品结算)
+Route::post('/home/order/address','Home\OrderController@addr');
 
 //后台的登录的路由
 Route::get('admin/login','Admin\LoginController@login');
@@ -140,6 +150,9 @@ Route::group(['middleware'=>['islogin'],'namespace'=>'Admin'],function (){
 	//商城后台轮播图管理模块
 	Route::resource('lunbo','LunboController');
 	Route::post('/admin/uploaddd','LunboController@upload');
+
+	//订单管理
+	Route::resource('order','OrderController');
    
 });
 

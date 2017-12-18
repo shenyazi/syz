@@ -36,7 +36,8 @@ class LoginController extends Controller
      
             
                 if (Hash::check($password, $data->password)){
-                    session(['users'=>$data]);
+                    // session(['users'=>$data]);
+                    \Session::put('id',$data->id);
                     return redirect('/home')->with('success','登录成功');
                 }else{
                     return back()->with('error','用户名或密码错误')->withinput();

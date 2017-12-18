@@ -172,7 +172,16 @@
                           <li><a class="" href="{{url('admin/good')}}">浏览商品</a></li>
                       </ul>
                   </li>
-                 
+                  <li class="sub-menu">
+                      <a href="javascript:;" class="">
+                          <i class="icon-th"></i>
+                          <span>订单管理</span>
+                          <span class="arrow"></span>
+                      </a>
+                      <ul class="sub">
+                          <li><a class="" href="{{url('order')}}">订单列表</a></li>
+                      </ul>
+                  </li>
                  
                   
 				         </ul>
