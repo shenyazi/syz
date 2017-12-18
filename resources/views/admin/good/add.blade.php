@@ -54,7 +54,7 @@
                                             @if(in_array($v->cate_id,$cate))
                                               <option disabled="disabled" value="{{$v->cate_id}}">{{$v->_cate_name}}</option>  
                                             @else if
-                                            <option value="{{$v->cate_id}}" >{{$v->cate_name}}</option>  
+                                            <option value="{{$v->cate_id}}" >{{$v->_cate_name}}</option>  
                                             @endif
                                           @endforeach
                                        </select>  

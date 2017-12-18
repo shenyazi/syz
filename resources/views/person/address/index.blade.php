@@ -5,7 +5,17 @@
 @endsection
 
 @section('css')
-    <link href="/homes/css/addstyle.css" rel="stylesheet" type="text/css">
+    <link href="{{url('/homes/css/addstyle.css')}}" rel="stylesheet" type="text/css">
+
+    <link href="http://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="{{url('css/city-picker.css')}}" rel="stylesheet" type="text/css" />
+
+    <script src="{{url('js/jquery.js')}}"></script>
+    <script src="{{url('js/bootstrap.js')}}"></script>
+    <script src="{{url('js/city-picker.data.js')}}"></script>
+    <script src="{{url('js/city-picker.js')}}"></script>
+    <script src="{{url('js/main.js')}}"></script>
+
 @endsection
 
 @section('content')
@@ -36,13 +46,9 @@
                             <span class="new-txt">{{$v->name}}</span>
                             <span class="new-txt-rd2">{{$v->phone}}</span>
                         </p>
-                        <div class="new-mu_l2a new-p-re">
+                        <div class="new-mu_l2a new-p-re" style="height:69px;">
                             <p class="new-mu_l2cw">
                                 <span class="title">地址：{{$v->address}}</span>
-                            {{--<span class="province">湖北</span>省--}}
-                            {{--<span class="city">武汉</span>市--}}
-                            {{--<span class="dist">洪山</span>区--}}
-                            {{--<span class="street">雄楚大道666号(中南财经政法大学)</span></p>--}}
                         </div>
                         <div class="new-addr-btn">
                             <a href="{{url('person/address/'.$v->id.'/edit')}}"><i class="am-icon-edit"></i>编辑</a>
@@ -82,33 +88,53 @@
                                     </div>
                                 @endif
 
+                                <input type="hidden" name="uid" value="1" >
                                 {{csrf_field()}}
-                                <div class="am-form-group">
+                                <div class="am-form-group" style="padding-bottom: 20px;">
                                     <label for="user-name" class="am-form-label" style="font-weight:bold;">收货人</label>
                                     <div class="am-form-content">
                                         <input type="text" name="name" value="{{old('name')}}" id="user-name" placeholder="收货人">
                                     </div>
                                 </div>
 
-                                <div class="am-form-group">
+                                <div class="am-form-group" style="padding-bottom: 20px;">
                                     <label for="user-phone" class="am-form-label"  style="font-weight:bold;">手机号码</label>
                                     <div class="am-form-content">
                                         <input id="user-phone" name="phone" value="{{old('phone')}}" placeholder="手机号必填" type="text">
                                     </div>
                                 </div>
 
-                                <div class="am-form-group">
-                                    <label for="user-intro" class="am-form-label" style="font-weight:bold;">收货地址</label>
-                                    <div class="am-form-content">
-                                        <textarea class="" rows="3" name="address" id="user-intro" placeholder="请写出你的详细地址 省/市/区/详细地址">{{old('address')}}</textarea>
-                                    </div>
-                                </div>
+                                    <div class="am-form-group" style="padding-bottom: 20px;">
+                                        <label for="user-intro" class="am-form-label" style="font-weight:bold;">所在地区</label>
 
-                                <div class="am-form-group">
+                                        <div class="am-form-content">
+                                            <div style="position: relative;width:330px;float:left;display:block;">
+                                                <input id="city-picker3" class="form-control" readonly name="address1" type="text" placeholder="&nbsp;&nbsp;请选择 省份 / 城市 / 区县" value="{{old('address1')}}"  data-toggle="city-picker" style="width:330px;">
+                                            </div>
+                                            <button class="btn btn-warning" id="reset" type="button" style="float:left;">重置</button>
+                                            <button class="btn btn-danger" id="destroy" type="button" style="float:left;">确定</button>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="am-form-group" style="padding-bottom: 20px;">
+                                        <label for="user-intro" class="am-form-label">详细地址</label>
+                                        <div class="am-form-content">
+                                            <textarea class="" rows="4" name="address2" id="user-intro" placeholder="请输入 街道 / 详细住址">{{old('address2')}}</textarea>
+                                        </div>
+                                    </div>
+
+
+
+                                <div class="am-form-group" style="padding-bottom: 20px;">
                                     <div class="am-u-sm-9 am-u-sm-push-3">
                                         <button type="submit" style="border: none;"><a class="am-btn am-btn-danger">保存</a></button>
                                         <input type="reset" class="am-close am-btn am-btn-danger" value="取消" >
                                     </div>
+                                </div>
+
+                                <div class="am-form-group" style="padding-bottom: 20px;">
+                                    <img src="{{url('images/广告图.jpg')}}" >
                                 </div>
                             </form>
                         </div>

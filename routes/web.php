@@ -22,18 +22,23 @@ Route::get('/', function () {
 //商城前台的路由
 Route::get('/home','Home\HomeController@index');	
 
-
+//前台首页文章跳转页
+Route::get('home/work/{id}','Home\HomeController@work');
 
 //商城前台登录的路由
 Route::get('home/login','Home\LoginController@login');
+
+
 
 
 // 前台商品列表页 详情页路由
 Route::group(['prefix'=>'home','namespace' => 'Home'],function () {
     Route::get('/list', 'ListController@list_');   // 商品列表页
     Route::get('/list_search', 'ListController@list_Search');   // 商品搜索页
-    Route::get('/detail', 'ListController@detail');   // 商品详情页
     Route::get('/comment', 'CommentController@comment');   // 商品评论
+    Route::get('/list/{id}', 'ListController@cate');   // 类别跳转
+    Route::post('/list/search', 'ListController@search');   // 搜索
+    Route::post('/list','ListController@orderby');   // 排序
 });
 
 // 前台用户中心页路由组
@@ -41,10 +46,15 @@ Route::group(['prefix'=>'person','namespace' => 'Person'],function () {
     Route::get('/index', 'PersonController@index');
     Route::resource('/address', 'AddressController');
     Route::get('/order','OrderController@index');
-    Route::get('/information', 'InformationController@index');
+    Route::post('/order/{id}','OrderController@change');
+    Route::resource('/information', 'InformationController');
+    Route::post('/upload','InformationController@upload');
     Route::get('/collection', 'CollectionController@index');
-
+    Route::post('/collection/{id}','CollectionController@collection');
 });
+
+// 商城前台商品详情
+	Route::resource('home/xq','Home\GoodController');
 
 
 //后台的登录的路由
@@ -59,8 +69,11 @@ Route::get('admin/logout','Admin\LoginController@logout');
 
 
 
+//后台路由组
+// Route::group(['middleware'=>['islogin','hasrole'],'namespace'=>'Admin'],function (){
 Route::group(['middleware'=>['islogin'],'namespace'=>'Admin'],function (){
-	
+
+
 	//商城后台的路由
 	Route::get('/admin','LoginController@index');
 
@@ -94,6 +107,7 @@ Route::group(['middleware'=>['islogin'],'namespace'=>'Admin'],function (){
 	Route::resource('admin/good','GoodController');
 	Route::post('admin/uploadd','GoodController@upload');
 	Route::get('admin/good/zt/{id}','GoodController@zt');
+	
 
 
 	
@@ -110,6 +124,7 @@ Route::group(['middleware'=>['islogin'],'namespace'=>'Admin'],function (){
 
 //商城后台轮播图管理模块
 Route::resource('lunbo','Admin\LunboController');
+
 //权限不够时跳转的路径
 Route::get('errors/auth',function(){
 	return view('errors.auth');

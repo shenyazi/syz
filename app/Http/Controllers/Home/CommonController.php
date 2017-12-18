@@ -21,7 +21,7 @@ class CommonController extends Controller
     //商城前台分类列表
     static public function getCatePid($pid = 0)
     {
-        $data = Cate::where('cate_pid',$pid)->get();
+        $data = Cate::where(['cate_pid'=>$pid,'status'=>1])->get();
         $arr = [];
         foreach ($data as $key => $value) {
             $value['sub'] = self::getCatePid($value['cate_id']);

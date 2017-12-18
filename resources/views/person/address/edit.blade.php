@@ -5,7 +5,16 @@
 @endsection
 
 @section('css')
-    <link href="/homes/css/addstyle.css" rel="stylesheet" type="text/css">
+    <link href="{{url('/homes/css/addstyle.css')}}" rel="stylesheet" type="text/css">
+
+    <link href="http://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="{{url('css/city-picker.css')}}" rel="stylesheet" type="text/css" />
+
+    <script src="{{url('js/jquery.js')}}"></script>
+    <script src="{{url('js/bootstrap.js')}}"></script>
+    <script src="{{url('js/city-picker.data.js')}}"></script>
+    <script src="{{url('js/city-picker.js')}}"></script>
+    <script src="{{url('js/main.js')}}"></script>
 @endsection
 
 @section('content')
@@ -24,8 +33,8 @@
 
                         <hr/>
 
-                        <div class="am-u-md-12 am-u-lg-8 docs-methods" style="margin-top: 20px;">
-                            <form class="am-form am-form-horizontal form-inline" action="{{url('person/address/'.$address->id)}}" method="post">
+                        <div class="am-u-md-12 am-u-lg-8" style="margin-top: 20px;">
+                            <form class="am-form am-form-horizontal" action="{{url('person/address/'.$address->id)}}" method="post">
 
                                 @if (count($errors) > 0)
                                     <div class="alert alert-danger">
@@ -44,21 +53,21 @@
                                 {{csrf_field()}}
                                 {{method_field('put')}}
                                 <div class="am-form-group">
-                                    <label for="user-name" class="am-form-label" style="color:red;font-weight:bold;">原收货人</label>
+                                    <label for="user-name" class="am-form-label" style="color:#EC6459;font-weight:bold;padding-bottom: 8px;">原收货人</label>
                                     <div class="am-form-content">
                                         <input type="text" id="user-name" name="oldname" disabled value="{{$address->name}}" >
                                     </div>
                                 </div>
 
                                 <div class="am-form-group">
-                                    <label for="user-name" class="am-form-label" style="color:forestgreen;font-weight:bold;">新收货人</label>
+                                    <label for="user-name" class="am-form-label" style="color:#78CD51;font-weight:bold;padding-bottom: 22px;">新收货人</label>
                                     <div class="am-form-content">
                                         <input type="text" id="user-name" name="name" placeholder="请填写新收货人" value="{{old('name')}}">
                                     </div>
                                 </div>
 
                                 <div class="am-form-group">
-                                    <label for="user-phone" class="am-form-label" style="color:red;font-weight:bold;">原手机号码</label>
+                                    <label for="user-phone" class="am-form-label" style="color:#EC6459;font-weight:bold;padding-bottom: 8px;">原手机号码</label>
                                     <div class="am-form-content">
                                         <input id="user-phone" type="text" name="oldphone" value="{{$address->phone}}" disabled >
                                     </div>
@@ -66,32 +75,44 @@
                                     <input type="hidden" name="isStaAdd" value="{{$address->isStaAdd}}">
 
                                 <div class="am-form-group">
-                                    <label for="user-phone" class="am-form-label" style="color:forestgreen;font-weight:bold;">新手机号码</label>
+                                    <label for="user-phone" class="am-form-label" style="color:#78CD51;font-weight:bold;padding-bottom: 22px;">新手机号码</label>
                                     <div class="am-form-content">
                                         <input id="user-phone" type="text" name="phone" value="{{old('phone')}}" placeholder="请填写新手机号"  >
                                     </div>
                                 </div>
 
-                                <div class="am-form-group">
-                                    <label for="user-intro" class="am-form-label" style="color:red;font-weight:bold;">原收货地址</label>
+
+                                <div class="am-form-group" style="padding-bottom: 10px;">
+                                    <label for="user-intro" class="am-form-label" style="font-weight:bold;">所在地区</label>
+
                                     <div class="am-form-content">
-                                        <textarea class="" rows="3" id="user-intro" disabled >{{$address->address}}</textarea>
+                                        <div style="position: relative;width:330px;float:left;display:block;">
+                                            <input id="city-picker3" class="form-control" readonly name="address1" type="text" placeholder="&nbsp;&nbsp;请选择 省份 / 城市 / 区县" value="{{old('address1')}}"  data-toggle="city-picker" style="width:330px;">
+                                        </div>
+                                        <button class="btn btn-warning" id="reset" type="button" style="float:left;">重置</button>
+                                        <button class="btn btn-danger" id="destroy" type="button" style="float:left;">确定</button>
+                                    </div>
+
+                                </div>
+
+                                <div class="am-form-group" style="padding-bottom: 20px;">
+                                    <label for="user-intro" class="am-form-label">详细地址</label>
+                                    <div class="am-form-content">
+                                        <textarea class="" rows="4" name="address2" id="user-intro" placeholder="请输入 街道 / 详细住址">{{old('address2')}}</textarea>
                                     </div>
                                 </div>
 
-                                <div class="am-form-group">
-                                    <label for="user-intro" class="am-form-label" style="color:forestgreen;font-weight:bold;">新收货地址</label>
-                                    <div class="am-form-content">
-                                        <textarea class="" rows="3" id="user-intro" name="address"  placeholder="请写出你的详细地址 省/市/区/详细地址">{{old('address')}}</textarea>
-                                    </div>
-                                </div>
-
-                                <div class="am-form-group">
+                                <div class="am-form-group" style="padding-bottom: 20px;">
                                     <div class="am-u-sm-9 am-u-sm-push-3">
                                         <button type="submit" style="border: none;"><a class="am-btn am-btn-danger">保存</a></button>
-                                        <a href="{{url('person/address')}}" class="am-close am-btn am-btn-danger" data-am-modal-close>取消</a>
+                                        <a href="{{url('person/address')}}" class="am-close am-btn am-btn-danger" data-am-modal-close>返回</a>
                                     </div>
                                 </div>
+
+                                <div class="am-form-group" style="padding-bottom: 20px;">
+                                    <img src="{{url('images/广告图.jpg')}}" >
+                                </div>
+
                             </form>
                         </div>
 
