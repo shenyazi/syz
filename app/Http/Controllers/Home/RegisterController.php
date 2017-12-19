@@ -276,6 +276,7 @@ class RegisterController extends CommonController
                 $m->to($user->email, $user->name)->subject('重置密码!');
             });
             return back()->with("errors","重置密码申请成功，去邮箱查看");
+            }
         }
     }
 
