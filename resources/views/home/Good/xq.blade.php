@@ -256,8 +256,22 @@
 							</li>
 							<li>
 								<div class="clearfix tb-btn tb-btn-basket theme-login">
-									<a id="LikBasket" title="加入购物车" href="/home/xq"><i></i>加入购物车</a>
-									<!-- <input type="submit" id="LikBasket" title="加入购物车" value="加入购物车"> -->
+									<form action="{{url('/home/cart/'.$goods->id)}}" method='post' >
+										{{csrf_field()}}
+										<input type="hidden" name="num" id='num' value=''>
+										<input type="submit" id="LikBasket" title="加入购物车" value="加入购物车" >
+									</form>
+									<!-- <a id="LikBasket" title="加入购物车" href="{{url('/home/cart/'.$goods->id)}}"><i></i>加入购物车</a> -->
+									<style type="text/css">
+										#LikBasket{
+											width: 98px;
+											height:30px;
+											color:#F03726;;
+											border: 1px solid #F03726;
+											background-color: #FFEDED;
+										} 
+    
+									</style>
 								</div>
 							</li>
 						</div>
@@ -268,12 +282,14 @@
 
 				</div>
 				<script type="text/javascript">
-					var tocart = document.getElementById('LikBasket');
-					var num = document.getElementById('text_box');
-					tocart.onclick = function()
-					{
-						tocart.href = tocart.href + '&bcnt=' +num.value +'&id='+ {{$goods->id}}; 
-					}
+					var tocart = $('#LikBasket');
+					var number = $('#text_box');
+					tocart.click(function()
+					{	
+						// alert(number.val());
+						// tocart.href = tocart.href + '&bcnt=' +number.val();
+						$('#num').attr('value',number.val()); 
+					});
 				</script>
 
 				<!--优惠套装-->

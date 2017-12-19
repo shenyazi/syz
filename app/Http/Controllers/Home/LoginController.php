@@ -3,6 +3,10 @@
 namespace App\Http\Controllers\Home;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use App\Http\Model\Users;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;     
 
 class LoginController extends Controller
 {
@@ -14,32 +18,47 @@ class LoginController extends Controller
     
     public function login()
     {
-    	//判断用户是否登录
-    	if(session('huser')){
-    		return back();
-    	}
+    	if(session('user'))
+        {
+            return back();
+        }
     	return view('home.login.index');
     }
 
     public function dologin(Request $request)
     {
-    	// 获取浏览器提交的数据
-    	$input = Input::except('_token');
+        // dd(111);
+        // $name=$request->input('name');
+        // $password=$request->input('password');
 
-    	$rule = [
-            'username'=>'between:6,16',
-            'password'=>'required|between:6,18'
-        ];
 
-        $mess = [
-//            'username.required'=>'用户名必须输入',
-            'username.between'=>'用户名的长度在6-16位之间',
-            'password.required'=>'密码必须输入',
-            'password.between'=>'密码的长度在6-18位之间',
-        ];
+    	
+        $num = $request->input('num');
+        $password = $request->input('password');
+        $data = Users::where('email',$num)->orWhere('phone',$num)->orWhere('name',$num)->first();
+        // dd($data);
+     
+            
+                if (Hash::check($password, $data->password)){
 
+                   Session::put('user',$data);
+                   Session::put('id',$data->id);
+
+                    return redirect('/home')->with('success','登录成功');
+                }else{
+                    return back()->with('error','用户名或密码错误')->withinput();
+                }
+            
     }
 
-    
-	
+    public function logout(Request $request)
+    {
+        session(['user'=>null]);
+        $request->session()->flush();
+        return redirect('home/login');
+    }
+
+
+
+
 }

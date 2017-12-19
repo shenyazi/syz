@@ -1,8 +1,6 @@
 @extends('layouts.admin')
 
-@section('title')
-    后台轮播图修改页面
-@endsection
+@section('title',$title)
 
 @section('content')
 	<section id="main-content">
@@ -12,7 +10,7 @@
                   <div class="col-lg-12">
                       <ul class="breadcrumb">
                           <li><a href="#"><i class="icon-home"></i> Home</a></li>
-                          <li><a href="#">轮播图</a></li>
+                          <li><a href="#"></a>订单管理</li>
                           <li class="active">修 改</li>
                       </ul>
                   </div>
@@ -30,36 +28,24 @@
                   <div class="col-lg-12">
                       <section class="panel">
                           <header class="panel-heading">
-                             <b>修改轮播图</b>        
+                             <b>修改订单</b>        
                           </header>
 
                           <div class="panel-body">
-                              <form class="form-horizontal" role="form" action='/lunbo/{{$lunbo->id}}')}}" method='post' enctype='multipart-data'>
+                              <form class="form-horizontal" role="form" action='/order/{{$order->id}}')}}" method='post' enctype='multipart-data'>
                                   <div class="form-group">
-                                      <label for="inputEmail1" class="col-lg-2 control-label">标题:	</label>
+                                      <label for="inputEmail1" class="col-lg-2 control-label">订单编号:	</label>
                                       <div class="col-lg-6">
-                                          <input type="text" class="form-control"  name='btitle' value='{{$lunbo->btitle}}'>
+                                          <input type="text" class="form-control"  name='oid' value='{{$order->oid}}' readonly>
                                       </div>
                                   </div>
+                                 
                                   <div class="form-group">
-                                      <label for="inputPassword1" class="col-lg-2 control-label">链接地址:</label>
+                                      <label for="inputPassword1" class="col-lg-2 control-label">订单状态:</label>
                                       <div class="col-lg-6">
-                                          <input type="text" class="form-control"  name='burl' value='{{$lunbo->burl}}'>
-                                      </div>
-                                  </div>
-                                 <div class="form-group">
-                                      <label for="inputPassword1" class="col-lg-2 control-label">图片:</label>
-                                      <div class="col-lg-6">
-                                          
-                                          <input type="file" class="form-control"  name='bimg'>
-                                          <img src="{{$lunbo->bimg}}" alt='' width="100">
-                                      </div>
-                                  </div>
-                                  <div class="form-group">
-                                      <label for="inputPassword1" class="col-lg-2 control-label">状态:</label>
-                                      <div class="col-lg-6">
-                                          <input type="radio" id="inputPassword1" name='bstatus' @if($lunbo->status==1) checked @endif value='1'>开启&nbsp;
-                                          <input type="radio" id="inputPassword1" name='bstatus' @if($lunbo->status==0) checked  @endif value='0'>关闭
+                                          <input type="radio" id="inputPassword1" name='status' @if($order->status==0) checked @endif value='0'>未发货&nbsp;
+                                          <input type="radio" id="inputPassword1" name='status' @if($order->status==1) checked  @endif value='1'>未收货
+                                          <input type="radio" id="inputPassword1" name='status' @if($order->status==2) checked  @endif value='2'>已收货
                                       </div>
                                   </div>
                                   <div class="form-group">

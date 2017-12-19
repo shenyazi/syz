@@ -4,17 +4,10 @@ namespace App\Http\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Order extends Model
+class Orders extends Model
 {
-
-    public $table = 'order';
+    public $table = 'orders';
     public $primaryKey = 'id';
     public $guarded = [];
     public $timestamps = false;
-
-    public function  goods()
-    {
-        return $this->hasMany('App\Http\Model\Good','oid','oid');
-    }
-
 }

@@ -59,10 +59,10 @@
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <img alt="" src="{{ asset('/admins/img/avatar1_small.jpg') }}">
                             <span class="username">{{session('user.username')}}</span>
-                            <b class="caret"></b>
-                            <ul class="dropdown-menu extended logout">
+                            <!-- <b class="caret"></b> -->
+                            <!-- <ul class="dropdown-menu extended logout"> -->
                             <!-- <div class="log-arrow-up"></div> -->
-                            <li><a href="{{url('admin/passedit')}}"><i class="icon-bell-alt"></i>修改密码</a></li>
+                            <!-- <li><a href="{{url('admin/passedit')}}"><i class="icon-bell-alt"></i>修改密码</a></li> -->
                             <li><a href="{{url('admin/logout')}}"><i class="icon-key"></i>退出</a></li>
                             </ul>
                         </a>
@@ -172,7 +172,16 @@
                           <li><a class="" href="{{url('admin/good')}}">浏览商品</a></li>
                       </ul>
                   </li>
-                 
+                  <li class="sub-menu">
+                      <a href="javascript:;" class="">
+                          <i class="icon-th"></i>
+                          <span>订单管理</span>
+                          <span class="arrow"></span>
+                      </a>
+                      <ul class="sub">
+                          <li><a class="" href="{{url('order')}}">订单列表</a></li>
+                      </ul>
+                  </li>
                  
                   
 				         </ul>

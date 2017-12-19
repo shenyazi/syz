@@ -24,6 +24,8 @@
 
 		<link href="/homes/video/css/video-js.css" rel="stylesheet">
 
+		
+
 	</head>
 
 	<body>
@@ -33,9 +35,14 @@
 				<ul class="message-l">
 					<div class="topMessage">
 						<div class="menu-hd">
-							<a href="#" target="_top" class="h">亲，请登录</a>
-							<a href="#" target="_top">免费注册</a>
-						</div>
+					@if(session('user'))
+							<a href="/home/person/index" target="_top" class="h">{{session('user')->name}}</a>
+							<a href="/home/logout" target="_top">退出</a>
+							@else
+							<a href="/home/login" target="_top" class="h">亲，请登录</a>
+							<a href="/home/register" target="_top">免费注册</a>
+							@endif
+					</div>
 					</div>
 				</ul>
 				<ul class="message-r">
@@ -46,7 +53,7 @@
 						<div class="menu-hd MyShangcheng"><a href="#" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a></div>
 					</div>
 					<div class="topMessage mini-cart">
-						<div class="menu-hd"><a id="mc-menu-hd" href="#" target="_top"><i class="am-icon-shopping-cart  am-icon-fw"></i><span>购物车</span><strong id="J_MiniCartNum" class="h">0</strong></a></div>
+						<div class="menu-hd"><a id="mc-menu-hd" href="/home/cart" target="_top"><i class="am-icon-shopping-cart  am-icon-fw"></i><span>购物车</span><strong id="J_MiniCartNum" class="h">0</strong></a></div>
 					</div>
 					<div class="topMessage favorite">
 						<div class="menu-hd"><a href="#" target="_top"><i class="am-icon-heart am-icon-fw"></i><span>收藏夹</span></a></div>
@@ -78,7 +85,7 @@
 			<div class="long-title"><span class="all-goods">全部分类</span></div>
 		   	<div class="nav-cont">
 				<ul>
-					<li class="index"><a href="#">首页</a></li>
+					<li class="index"><a href="/home">首页</a></li>
                     <li class="qc"><a href="#">闪购</a></li>
                     <li class="qc"><a href="#">限时抢</a></li>
                     <li class="qc"><a href="#">团购</a></li>
