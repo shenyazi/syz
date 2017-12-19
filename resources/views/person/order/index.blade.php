@@ -108,7 +108,7 @@
                                                 <li class="td td-amount">
                                                     <div class="item-amount">
                                                         合计：
-                                                        33
+                                                        1910
                                                         {{--{{$order->oprice += }}--}}
                                                         {{--@foreach($goods as $k=>$v)--}}
 

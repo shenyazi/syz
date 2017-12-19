@@ -9,6 +9,6 @@
 </head>
 <body>
 
-    <p>请点击 <a href="{{url('home/reset/id='.$user->id.'&key='.$user->name)}}">链接</a> ，找回密码</p>
+<p>请点击 <a href="{{url('home/reset/id='.$user->id.'&key='.$user->token)}}">链接</a> ，找回密码</p>
 </body>
 </html>

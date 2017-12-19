@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Home;
 
-use App\Http\Model\Orderss;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Model\Address;
+use App\Http\Model\Orders;
 session_start();
 
-class OrdersController extends Controller
+class OrderController extends Controller
 {
 
      //
@@ -52,7 +52,7 @@ class OrdersController extends Controller
      public function finish(){
      	$order=new Orders;
      	foreach($_SESSION['cart'] as $k=>$v){
-     		$order->oid=$this->getNewOrdersNum();
+     		$order->oid=$this->getNewOrderNum();
      		$order->gpic=$v->gpic;
      		$order->gname=$v->gname;
      		$order->gprice=$v->gprice;
@@ -68,7 +68,7 @@ class OrdersController extends Controller
      }
 
 
-    private function getNewOrdersNum()
+    private function getNewOrderNum()
     {
     	return date('YmdHis').rand(1000,9999);
     }

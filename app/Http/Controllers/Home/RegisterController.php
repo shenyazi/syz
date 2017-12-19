@@ -258,10 +258,10 @@ class RegisterController extends CommonController
     	// }
     	//  跳转
     	//  
-    	if($name){
-    		strpos($name, "@");
-    		Mail::send('email.forget');
-    	}else{
+    	// if($name){
+    	// 	strpos($name, "@");
+    	// 	Mail::send('email.forget');
+    	// }else{
 
         
         //如果是是有效邮箱，发送找回密码邮件
@@ -276,16 +276,23 @@ class RegisterController extends CommonController
                 $m->to($user->email, $user->name)->subject('重置密码!');
             });
             return back()->with("errors","重置密码申请成功，去邮箱查看");
-        }
+            }
+        // }
     }
-
     //重置密码页面
-    public function reset(Request $request)
+    public function reset(Request $request,$id)
     {
-    	$user = Users::find($request['id']);
-    	// dd($user);
+   
+   $a = explode('&',$id);
+   
+   $b = explode('=',$a[0]);
+   $c = explode('=',$a[1]);
+   //dd($c[1]);
+
+    	$user = Users::find($b[1])->first();
+//    	dd($user);
     	// $a = $user->name;
-    	if($request['key'] != $user->token)
+    	if($c[1] != $user->token)
     	{
     		return '无效的连接';
 

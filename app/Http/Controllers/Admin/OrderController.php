@@ -2,15 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Model\Orderss;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Model\Orders;
 
-class OrdersController extends Controller
+class OrderController extends Controller
 {
     //
     public function index(Request $request){
-
 		$orders = Orders::orderBy('id','asc')
 		    ->where(function($query) use($request){
 		        //检测关键字

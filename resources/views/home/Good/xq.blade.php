@@ -193,7 +193,20 @@
 															<input id="min" class="am-btn am-btn-default" name="" type="button" value="-" />
 															<input id="text_box" name="sl" type="text" value="1" style="width:30px;" />
 															<input id="add" class="am-btn am-btn-default" name="" type="button" value="+" />
-															<span id="Stock" class="tb-hidden">库存<span class="stock">1000</span>件</span>
+
+									<!-- JiaThis Button BEGIN -->
+									<div class="jiathis_style_24x24">
+										<a class="jiathis_button_qzone"></a>
+										<a class="jiathis_button_tsina"></a>
+										<a class="jiathis_button_tqq"></a>
+										<a class="jiathis_button_weixin"></a>
+										<a class="jiathis_button_renren"></a>
+										<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+										<a class="jiathis_counter_style"></a>
+									</div>
+									<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+									<!-- JiaThis Button END -->
+
 														</dd>
 
 													</div>
@@ -275,6 +288,7 @@
 								</div>
 							</li>
 						</div>
+
 
 					</div>
 

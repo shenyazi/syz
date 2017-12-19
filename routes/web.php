@@ -107,8 +107,9 @@ Route::get('admin/logout','Admin\LoginController@logout');
 
 
 
-
+//后台路由组
 Route::group(['middleware'=>['islogin'],'namespace'=>'Admin'],function (){
+//Route::group(['middleware'=>['islogin','hasrole'],'namespace'=>'Admin'],function (){
 
 	//商城后台的路由
 	Route::get('/admin','LoginController@index');
