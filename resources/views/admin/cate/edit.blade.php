@@ -34,9 +34,9 @@
                                 <div class="form-group" style="margin-bottom: 30px;">
                                     {{csrf_field()}}
                                     {{method_field('put')}}
-                                    <label for="exampleInputEmail1" style="margin-bottom: 15px;color:red;font-weight:bold;">原分类名称</label>
+                                    <label for="exampleInputEmail1" style="margin-bottom: 15px;color:#EC6459;font-weight:bold;">原分类名称</label>
                                     <input type="text" disabled style="width:400px;" class="form-control" name="old" value="{{$cate -> cate_name}}" placeholder="填写分类">
-                                    <label for="exampleInputEmail1" style="margin-bottom: 15px;padding-top:30px;color:forestgreen;font-weight:bold;">新分类名称</label>
+                                    <label for="exampleInputEmail1" style="margin-bottom: 15px;padding-top:30px;color:#78CD51;font-weight:bold;">新分类名称</label>
                                     <input type="text"  style="width:400px;" class="form-control" name="cate_name" value="" placeholder="填写新分类">
                                 </div>
                                 <button type="submit" class="btn btn-info" style="margin-right: 5px;">提交</button>

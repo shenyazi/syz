@@ -5,7 +5,7 @@
 @endsection
 
 @section('css')
-    <link href="/homes/css/systyle.css" rel="stylesheet" type="text/css">
+    <link href="{{url('/homes/css/systyle.css')}}" rel="stylesheet" type="text/css">
 @endsection
 
 @section('content')
@@ -17,7 +17,7 @@
                         <div class="m-userinfo">
                             <div class="m-baseinfo">
                                 <a href="information.html">
-                                    <img src="../images/getAvatar.do.jpg">
+                                    <img src="{{url('/images/getAvatar.do.jpg')}}">
                                 </a>
                                 <em class="s-name">(小叮当)<span class="vip1"></em>
                                 <div class="s-prestige am-btn am-round">
@@ -28,7 +28,7 @@
                                     <a href="news.html"><i class="am-icon-bell-o"></i>消息</a>
                                 </div>
                                 <div class="m-address">
-                                    <a href="address.html" class="i-trigger">我的收货地址</a>
+                                    <a href="{{url('person/address')}}" class="i-trigger">我的收货地址</a>
                                 </div>
                             </div>
                         </div>
@@ -40,34 +40,34 @@
                             </div>
                             <p class="m-bonus">
                                 <a href="bonus.html">
-                                    <i><img src="../images/bonus.png"/></i>
+                                    <i><img src="{{url('/images/bonus.png')}}"/></i>
                                     <span class="m-title">红包</span>
                                     <em class="m-num">2</em>
                                 </a>
                             </p>
                             <p class="m-coupon">
                                 <a href="coupon.html">
-                                    <i><img src="../images/coupon.png"/></i>
+                                    <i><img src="{{url('/images/coupon.png')}}"/></i>
                                     <span class="m-title">优惠券</span>
                                     <em class="m-num">2</em>
                                 </a>
                             </p>
                             <p class="m-bill">
                                 <a href="bill.html">
-                                    <i><img src="../images/wallet.png"/></i>
+                                    <i><img src="{{url('/images/wallet.png')}}"/></i>
                                     <span class="m-title">钱包</span>
                                     <em class="m-num">2</em>
                                 </a>
                             </p>
                             <p class="m-big">
                                 <a href="#">
-                                    <i><img src="../images/day-to.png"/></i>
+                                    <i><img src="{{url('/images/day-to.png')}}"/></i>
                                     <span class="m-title">签到有礼</span>
                                 </a>
                             </p>
                             <p class="m-big">
                                 <a href="#">
-                                    <i><img src="../images/72h.png"/></i>
+                                    <i><img src="{{url('/images/72h.png')}}"/></i>
                                     <span class="m-title">72小时发货</span>
                                 </a>
                             </p>
@@ -82,11 +82,11 @@
                             <a class="i-load-more-item-shadow" href="order.html">全部订单</a>
                         </div>
                         <ul>
-                            <li><a href="order.html"><i><img src="../images/pay.png"/></i><span>待付款</span></a></li>
-                            <li><a href="order.html"><i><img src="../images/send.png"/></i><span>待发货<em class="m-num">1</em></span></a></li>
-                            <li><a href="order.html"><i><img src="../images/receive.png"/></i><span>待收货</span></a></li>
-                            <li><a href="order.html"><i><img src="../images/comment.png"/></i><span>待评价<em class="m-num">3</em></span></a></li>
-                            <li><a href="change.html"><i><img src="../images/refund.png"/></i><span>退换货</span></a></li>
+                            <li><a href="order.html"><i><img src="{{url('/images/pay.png')}}"/></i><span>待付款</span></a></li>
+                            <li><a href="order.html"><i><img src="{{url('/images/send.png')}}"/></i><span>待发货<em class="m-num">1</em></span></a></li>
+                            <li><a href="order.html"><i><img src="{{url('/images/receive.png')}}"/></i><span>待收货</span></a></li>
+                            <li><a href="order.html"><i><img src="{{url('/images/comment.png')}}"/></i><span>待评价<em class="m-num">3</em></span></a></li>
+                            <li><a href="change.html"><i><img src="{{url('/images/refund.png')}}"/></i><span>退换货</span></a></li>
                         </ul>
                     </div>
                     <!--九宫格-->
@@ -96,11 +96,11 @@
                         </div>
                         <ul>
 
-                            <a href="../home/shopcart.html"><li class="am-u-sm-4"><i class="am-icon-shopping-basket am-icon-md"></i><img src="../images/iconbig.png"/><p>购物车</p></li></a>
-                            <a href="collection.html"><li class="am-u-sm-4"><i class="am-icon-heart am-icon-md"></i><img src="../images/iconsmall1.png"/><p>我的收藏</p></li></a>
-                            <a href="../home/home.html"><li class="am-u-sm-4"><i class="am-icon-gift am-icon-md"></i><img src="../images/iconsmall0.png"/><p>为你推荐</p></li></a>
-                            <a href="comment.html"><li class="am-u-sm-4"><i class="am-icon-pencil am-icon-md"></i><img src="../images/iconsmall3.png"/><p>好评宝贝</p></li></a>
-                            <a href="foot.html"><li class="am-u-sm-4"><i class="am-icon-clock-o am-icon-md"></i><img src="../images/iconsmall2.png"/><p>我的足迹</p></li></a>
+                            <a href="../home/shopcart.html"><li class="am-u-sm-4"><i class="am-icon-shopping-basket am-icon-md"></i><img src="{{url('/images/iconbig.png')}}"/><p>购物车</p></li></a>
+                            <a href="collection.html"><li class="am-u-sm-4"><i class="am-icon-heart am-icon-md"></i><img src="{{url('/images/iconsmall1.png')}}"/><p>我的收藏</p></li></a>
+                            <a href="../home/home.html"><li class="am-u-sm-4"><i class="am-icon-gift am-icon-md"></i><img src="{{url('/images/iconsmall0.png')}}"/><p>为你推荐</p></li></a>
+                            <a href="comment.html"><li class="am-u-sm-4"><i class="am-icon-pencil am-icon-md"></i><img src="{{url('/images/iconsmall3.png')}}"/><p>好评宝贝</p></li></a>
+                            <a href="foot.html"><li class="am-u-sm-4"><i class="am-icon-clock-o am-icon-md"></i><img src="{{url('/images/iconsmall2.png')}}"/><p>我的足迹</p></li></a>
                         </ul>
                     </div>
                     <!--物流 -->
@@ -115,7 +115,7 @@
                                 <li class="lg-item">
                                     <div class="item-info">
                                         <a href="#">
-                                            <img src="../images/65.jpg_120x120xz.jpg" alt="抗严寒冬天保暖隔凉羊毛毡底鞋垫超薄0.35厘米厚吸汗排湿气舒适">
+                                            <img src="{{url('/images/65.jpg_120x120xz.jpg')}}" alt="抗严寒冬天保暖隔凉羊毛毡底鞋垫超薄0.35厘米厚吸汗排湿气舒适">
                                         </a>
 
                                     </div>
@@ -150,7 +150,7 @@
                                 <li class="lg-item">
                                     <div class="item-info">
                                         <a href="#">
-                                            <img src="../images/88.jpg_120x120xz.jpg" alt="礼盒袜子女秋冬 纯棉袜加厚 女式中筒袜子 韩国可爱 女袜 女棉袜">
+                                            <img src="{{url('/images/88.jpg_120x120xz.jpg')}}" alt="礼盒袜子女秋冬 纯棉袜加厚 女式中筒袜子 韩国可爱 女袜 女棉袜">
                                         </a>
 
                                     </div>
@@ -201,7 +201,7 @@
 
                                     <div class="s-pic">
                                         <a href="#" class="s-pic-link">
-                                            <img src="../images/0-item_pic.jpg_220x220.jpg" alt="包邮s925纯银项链女吊坠短款锁骨链颈链日韩猫咪银饰简约夏配饰" title="包邮s925纯银项链女吊坠短款锁骨链颈链日韩猫咪银饰简约夏配饰" class="s-pic-img s-guess-item-img">
+                                            <img src="{{url('/images/0-item_pic.jpg_220x220.jpg')}}" alt="包邮s925纯银项链女吊坠短款锁骨链颈链日韩猫咪银饰简约夏配饰" title="包邮s925纯银项链女吊坠短款锁骨链颈链日韩猫咪银饰简约夏配饰" class="s-pic-img s-guess-item-img">
                                         </a>
                                     </div>
                                     <div class="s-price-box">
@@ -223,7 +223,7 @@
 
                                     <div class="s-pic">
                                         <a href="#" class="s-pic-link">
-                                            <img src="../images/1-item_pic.jpg_220x220.jpg" alt="s925纯银千纸鹤锁骨链短款简约时尚韩版素银项链小清新秋款女配饰" title="s925纯银千纸鹤锁骨链短款简约时尚韩版素银项链小清新秋款女配饰" class="s-pic-img s-guess-item-img">
+                                            <img src="{{url('/images/1-item_pic.jpg_220x220.jpg')}}" alt="s925纯银千纸鹤锁骨链短款简约时尚韩版素银项链小清新秋款女配饰" title="s925纯银千纸鹤锁骨链短款简约时尚韩版素银项链小清新秋款女配饰" class="s-pic-img s-guess-item-img">
                                         </a>
                                     </div>
                                     <div class="s-price-box">
@@ -245,7 +245,7 @@
 
                                     <div class="s-pic">
                                         <a href="#" class="s-pic-link">
-                                            <img src="../images/-0-saturn_solar.jpg_220x220.jpg" alt="4折抢购!十二生肖925银女戒指,时尚开口女戒" title="4折抢购!十二生肖925银女戒指,时尚开口女戒" class="s-pic-img s-guess-item-img">
+                                            <img src="{{url('/images/-0-saturn_solar.jpg_220x220.jpg')}}" alt="4折抢购!十二生肖925银女戒指,时尚开口女戒" title="4折抢购!十二生肖925银女戒指,时尚开口女戒" class="s-pic-img s-guess-item-img">
                                         </a>
                                     </div>
                                     <div class="s-price-box">
@@ -267,7 +267,7 @@
 
                                     <div class="s-pic">
                                         <a href="#" class="s-pic-link">
-                                            <img src="../images/0-item_pic.jpg_220x220.jpg" alt="包邮s925纯银项链女吊坠短款锁骨链颈链日韩猫咪银饰简约夏配饰" title="包邮s925纯银项链女吊坠短款锁骨链颈链日韩猫咪银饰简约夏配饰" class="s-pic-img s-guess-item-img">
+                                            <img src="{{url('/images/0-item_pic.jpg_220x220.jpg')}}" alt="包邮s925纯银项链女吊坠短款锁骨链颈链日韩猫咪银饰简约夏配饰" title="包邮s925纯银项链女吊坠短款锁骨链颈链日韩猫咪银饰简约夏配饰" class="s-pic-img s-guess-item-img">
                                         </a>
                                     </div>
                                     <div class="s-price-box">
@@ -289,7 +289,7 @@
 
                                     <div class="s-pic">
                                         <a href="#" class="s-pic-link">
-                                            <img src="../images/1-item_pic.jpg_220x220.jpg" alt="s925纯银千纸鹤锁骨链短款简约时尚韩版素银项链小清新秋款女配饰" title="s925纯银千纸鹤锁骨链短款简约时尚韩版素银项链小清新秋款女配饰" class="s-pic-img s-guess-item-img">
+                                            <img src="{{url('/images/1-item_pic.jpg_220x220.jpg')}}" alt="s925纯银千纸鹤锁骨链短款简约时尚韩版素银项链小清新秋款女配饰" title="s925纯银千纸鹤锁骨链短款简约时尚韩版素银项链小清新秋款女配饰" class="s-pic-img s-guess-item-img">
                                         </a>
                                     </div>
                                     <div class="s-price-box">
@@ -311,7 +311,7 @@
 
                                     <div class="s-pic">
                                         <a href="#" class="s-pic-link">
-                                            <img src="../images/-0-saturn_solar.jpg_220x220.jpg" alt="4折抢购!十二生肖925银女戒指,时尚开口女戒" title="4折抢购!十二生肖925银女戒指,时尚开口女戒" class="s-pic-img s-guess-item-img">
+                                            <img src="{{url('/images/-0-saturn_solar.jpg_220x220.jpg')}}" alt="4折抢购!十二生肖925银女戒指,时尚开口女戒" title="4折抢购!十二生肖925银女戒指,时尚开口女戒" class="s-pic-img s-guess-item-img">
                                         </a>
                                     </div>
                                     <div class="s-price-box">
@@ -345,10 +345,11 @@
                         <a class="i-setting-trigger s-icon" href="#"></a>
                     </div>
                     <div class="s-care s-care-noweather">
-                        <div class="s-date">
-                            <em>21</em>
-                            <span>星期一</span>
-                            <span>2015.12</span>
+                        <div class="s-date" >
+                            <em>{{date('d',time())}}</em>
+                            <span id="time"></span>
+                            <span>{{date('l',time())}}</span>
+                            <span>{{date('Y - m',time())}}</span>
                         </div>
                     </div>
                 </div>
@@ -361,7 +362,7 @@
                     <div class="new-goods-info">
                         <a class="shop-info" href="#" target="_blank">
                             <div class="face-img-panel">
-                                <img src="../images/imgsearch1.jpg" alt="">
+                                <img src="{{url('/images/imgsearch1.jpg')}}" alt="">
                             </div>
                             <span class="new-goods-num ">4</span>
                             <span class="shop-title">剥壳松子</span>
@@ -378,7 +379,7 @@
                     <div class="new-goods-info">
                         <a class="shop-info" href="#" target="_blank">
                             <div >
-                                <img src="../images/imgsearch1.jpg" alt="">
+                                <img src="{{url('/images/imgsearch1.jpg')}}" alt="">
                             </div>
                             <span class="one-hot-goods">￥9.20</span>
                         </a>
@@ -386,4 +387,51 @@
                 </div>
 
             </div>
+
+            <script>
+                var time = document.getElementById('time');
+
+                setInterval(function(){
+                    run();
+                }, 1000);
+
+                function run()
+                {
+                    var mydate = new Date();
+                    var y = mydate.getFullYear();
+                    var m = mydate.getMonth();
+                    var d = mydate.getDate();
+                    var h = mydate.getHours();
+                    var mm = mydate.getMinutes();
+                    var s = mydate.getSeconds();
+                    if(m < 10)
+                    {
+                        m = '0' + m;
+                    }
+                    if(d < 10)
+                    {
+                        d = '0' + d;
+                    }
+
+                    if(h < 10)
+                    {
+                        h = '0' + h;
+                    }
+                    if(mm < 10)
+                    {
+                        mm = '0' + mm;
+                    }
+                    if(s < 10)
+                    {
+                        s = '0' + s;
+                    }
+                    var str = h + ':' + mm + ':' + s;
+
+                    time.innerHTML = str;
+
+                }
+
+                run();
+
+            </script>
 @endsection

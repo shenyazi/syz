@@ -11,48 +11,38 @@
             <div class="row">
                 <div class="col-sm-12">
                     @if(session('msg'))
-                    <div class="alert alert-success alert-block fade in" style="width:200px;text-align:center;">
-                        <button data-dismiss="alert" class="close close-sm" type="button">
-                            <i class="icon-remove"></i>
-                        </button>
-                            <h4>
-                                <i class="icon-ok-sign"></i>
-                                {{session('msg')}}
-                            </h4>
-                    </div>
+                        <div id="test" class="alert alert-success fade in" style="text-align:center;">
+                            <button data-dismiss="alert" class="close close-sm" type="button">
+                                <i class="icon-remove"></i>
+                            </button>
+                            <h4><strong>{{session('msg')}}</strong></h4>
+                        </div>
+                    @elseif(session('status'))
+                        <div id="test" class="alert alert-block alert-danger fade in" style="text-align:center;">
+                            <button data-dismiss="alert" class="close close-sm" type="button">
+                                <i class="icon-remove"></i>
+                            </button>
+                            <h4><strong>{{session('status')}}</strong></h4>
+                        </div>
                     @endif
+
+                        <script>
+                            setTimeout(function(){document.getElementById("test").style.display="none";},1800);
+                            //1000是多久被隐藏，单位毫秒
+                        </script>
+
                     <section class="panel">
                         <header class="panel-heading">
                             类别浏览
                         </header>
-                    {{--<form action="{{url('admin/cate')}}" method='get'>--}}
-                        {{--<table class="search_tab">--}}
-                            {{--<tr>--}}
-                                {{--<th>每页个数:</th>--}}
-                                {{--<td width="120">--}}
-                                    {{--<select name="num">--}}
-                                        {{--<option value="5" @if($request['num'] == 5)  selected  @endif>5</option>--}}
-                                        {{--<option value="10" @if($request['num'] == 10)  selected  @endif >10</option>--}}
-                                    {{--</select>--}}
-                                {{--</td>--}}
 
-                                {{--<th>关键字:</th>--}}
-                                {{--<td width="">--}}
-                                    {{--<input type="text" name="cate_name"  placeholder="类别名称">--}}
-                                    {{--<input type="submit"  value="查询">--}}
-                                {{--</td>--}}
-
-                            {{--</tr>--}}
-                        {{--</table>--}}
-
-                    {{--</form>--}}
-                    <form action="#" method="post">
                         <table class="table table-hover">
                             <thead>
                             <tr>
                                 <th class="tc" width="5%">排序</th>
                                 <th class="tc" width="5%">ID</th>
                                 <th>分类名称</th>
+                                <th>分类状态</th>
                                 <th>操作</th>
                             </tr>
                             </thead>
@@ -67,6 +57,19 @@
                                         <a href="#">{{$v->_cate_name}}</a>
                                     </td>
                                     <td>
+                                        <form action="{{url('admin/cate/'.$v->cate_id)}}" method="post">
+                                            {{csrf_field()}}
+                                            {{method_field('put')}}
+                                            @if($v->status == 1)
+                                                <input type="hidden" name="status" value="2"><label style="color:#6DBB4A;font-size:17px;vertical-align:middle;">已启用</label>&nbsp;
+                                                <button type="submit" style="border: none;" class="btn btn-warning" >禁用</button>
+                                            @else
+                                                <input type="hidden" name="status" value="3"><label style="color:#F1C500;font-size:17px;vertical-align:middle;">已禁用</label>&nbsp;
+                                                <button type="submit" style="border: none;" class="btn btn-success" onclick="cateOn({{$v->cate_id}})">启用</button>
+                                            @endif
+                                        </form>
+                                    </td>
+                                    <td>
                                         <a href="{{url('admin/cate/'.$v->cate_id.'/edit')}}" class="btn btn-primary" data-toggle="modal">修改</a>
                                         <a href="javascript:;" class="btn btn-danger" data-toggle="modal" onclick="cateDel({{$v->cate_id}})">删除</a>
                                     </td>
@@ -75,7 +78,7 @@
                             @endforeach
                             </tbody>
                         </table>
-                    </form>
+                    {{--</form>--}}
 
                     <script>
                         // 排序
@@ -129,6 +132,9 @@
 
                             });
                          }
+
+
+
 
                     </script>
                     </section>

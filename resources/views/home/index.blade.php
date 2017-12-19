@@ -41,7 +41,7 @@
 																<div class="sort-side">
 																	<dl class="dl-sort">
 																	@foreach($value->sub as $k=>$v)
-																		<dd><a href="{{$v->cate_id}}"><span>{{$v->cate_name}}</span></a></dd>
+																		<dd><a href="{{url('home/list/'.$v->cate_id)}}"><span>{{$v->cate_name}}</span></a></dd>
 																	@endforeach
 																	</dl>
 																</div>

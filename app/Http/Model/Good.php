@@ -12,4 +12,9 @@ class good extends Model
     protected $guarded = [];
     // 该模型是否被自动维护时间戳
     public $timestamps = false;
+
+    public function order()
+    {
+        return $this->belongsTo('App\Http\Model\Order');
+    }
 }

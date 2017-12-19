@@ -45,12 +45,17 @@ class AddressController extends Controller
      */
     public function store(Request $request)
     {
-        $input = Input::except('_token');
+        $input = $request->except('_token');
+
+        $address3 = $input['address1']."&nbsp;".$input['address2'];
+
+//        dd($input['address1']);
 
         $rule = [
             'name'=>'required|regex:/^[\x{4e00}-\x{9fa5}A-Za-z0-9_]+$/u|between:2,6',
             'phone'=>'required|regex:/^[0-9]{11}$/',
-            'address'=>'required|regex:/^[\x{4e00}-\x{9fa5}A-Za-z0-9_]+$/u|between:12,100',
+            'address1'=>'required',
+            'address2'=>'required|regex:/^[\x{4e00}-\x{9fa5}A-Za-z0-9_]+$/u|between:8,50',
         ];
 
 
@@ -60,8 +65,9 @@ class AddressController extends Controller
             'name.between'=>'收货人必须在2到6位之间',
             'phone.required'=>'手机号码必须输入',
             'phone.regex'=>'手机号码必须是11位',
-            'address.required'=>'收货地址必须输入',
-            'address.between'=>'收货地址必须在12到100位之间',
+            'address1.required'=>'所在区域必须选择',
+            'address2.required'=>'详细地址必须输入',
+            'address2.between'=>'详细地址必须在8到50位之间',
         ];
 
 
@@ -76,7 +82,8 @@ class AddressController extends Controller
         $address = new Address();
         $address->name = $input['name'];
         $address->phone = $input['phone'];
-        $address->address = $input['address'];
+        $address->address = $address3;
+        $address->uid = $input['uid'];
 
         $res = $address->save();
 
@@ -133,6 +140,7 @@ class AddressController extends Controller
         if(($request->only('isStaAdd'))['isStaAdd'] == 2){
 
             $addr = Address::where('uid','=',$address->uid)->get();
+
             foreach($addr as $k=>$v)
             {
                 $v->isStaAdd = 0;
@@ -141,12 +149,13 @@ class AddressController extends Controller
 
             $input = ['isStaAdd' => 1];
         }else{
-            $input = $request->only('name','phone','address');
+            $input = $request->only('name','phone','address1','address2');
 
             $rule = [
                 'name'=>'required|regex:/^[\x{4e00}-\x{9fa5}A-Za-z0-9_]+$/u|between:2,6',
                 'phone'=>'required|regex:/^[0-9]{11}$/',
-                'address'=>'required|regex:/^[\x{4e00}-\x{9fa5}A-Za-z0-9_]+$/u|between:12,100',
+                'address1'=>'required',
+                'address2'=>'required|regex:/^[\x{4e00}-\x{9fa5}A-Za-z0-9_]+$/u|between:8,50',
             ];
 
 
@@ -156,8 +165,9 @@ class AddressController extends Controller
                 'name.between'=>'收货人必须在2到6位之间',
                 'phone.required'=>'手机号码必须输入',
                 'phone.regex'=>'手机号码必须是11位',
-                'address.required'=>'收货地址必须输入',
-                'address.between'=>'收货地址必须在12到100位之间',
+                'address1.required'=>'所在区域必须选择',
+                'address2.required'=>'详细地址必须输入',
+                'address2.between'=>'详细地址必须在8到50位之间',
             ];
 
 
@@ -168,9 +178,13 @@ class AddressController extends Controller
                     ->withErrors($validator)
                     ->withInput();
             }
+
+            $address3 = $input['address1']."&nbsp;".$input['address2'];
+
+            $input['address'] = "$address3";
+            unset($input['address1']);
+            unset($input['address2']);
         }
-
-
 
         // 使用模型的update进行更新
         $res = $address->update($input);

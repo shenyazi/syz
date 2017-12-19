@@ -59,8 +59,10 @@ Route::get('home/active','Home\RegisterController@active');
 Route::group(['prefix'=>'home','namespace' => 'Home'],function () {
     Route::get('/list', 'ListController@list_');   // 商品列表页
     Route::get('/list_search', 'ListController@list_Search');   // 商品搜索页
-    Route::get('/detail', 'ListController@detail');   // 商品详情页
     Route::get('/comment', 'CommentController@comment');   // 商品评论
+    Route::get('/list/{id}', 'ListController@cate');   // 类别跳转
+    Route::post('/list/search', 'ListController@search');   // 搜索
+    Route::post('/list','ListController@orderby');   // 排序
 });
 
 // 前台用户中心页路由组
@@ -68,9 +70,11 @@ Route::group(['prefix'=>'person','namespace' => 'Person'],function () {
     Route::get('/index', 'PersonController@index');
     Route::resource('/address', 'AddressController');
     Route::get('/order','OrderController@index');
-    Route::get('/information', 'InformationController@index');
+    Route::post('/order/{id}','OrderController@change');
+    Route::resource('/information', 'InformationController');
+    Route::post('/upload','InformationController@upload');
     Route::get('/collection', 'CollectionController@index');
-
+    Route::post('/collection/{id}','CollectionController@collection');
 });
 
 // 商城前台商品详情
@@ -100,8 +104,6 @@ Route::get('admin/yzm','Admin\LoginController@yzm');
 
 //后台用户登出的路由
 Route::get('admin/logout','Admin\LoginController@logout');
-
-
 
 
 

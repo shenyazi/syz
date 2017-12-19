@@ -110,7 +110,7 @@
                                                   }
                                                  
                                                  var formData = new FormData();
-                                                 formData.append("gpicc", $('#tp')[0].files[0]);
+                                                 formData.append("gpficc", $('#tp')[0].files[0]);
                                                 formData.append("_token", '{{csrf_token()}}');
 
 

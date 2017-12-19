@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
 
+
 class CateController extends Controller
 {
     /**
@@ -45,6 +46,8 @@ class CateController extends Controller
     }
 
 
+
+
     /**
      * 作用: 显示分类页面
      * @author: 景玉圆
@@ -55,11 +58,12 @@ class CateController extends Controller
 
     public function index()
     {
-
         $cates = (new Cate)->tree();
 
         return view('admin.cate.list', compact('cates'));
     }
+
+
 
     /**
      * 作用: 显示添加分类页面
@@ -161,6 +165,8 @@ class CateController extends Controller
      * @date: 2017-12-4 10:30
      * @param: Request $request 请求对象
      *         $id 要修改的分类id
+     *         getCate 获取所有子类id
+     *         sub 多维数组中的子类数组,不需要插入数据库,会报错,插入前先销毁
      * @return: 修改成功返回列表页, 修改失败返回修改页
      */
     public function update(Request $request, $id)
@@ -168,38 +174,84 @@ class CateController extends Controller
         // 通过id找到要修改的那条用户记录
         $cate = Cate::find($id);
 
-        // 通过$request获取要修改的值
-        $input = $request->only('cate_name');
 
-        $rule = [
-            'cate_name'=>'required|regex:/^[\x{4e00}-\x{9fa5}A-Za-z0-9_]+$/u|between:2,10',
-        ];
+        if(($request->only('status'))['status'] == 2){
 
+            $input = ['status' => 0];
 
-        $mess = [
-            'cate_name.required'=>'分类名必须输入',
-            'cate_name.regex'=>'分类名必须是汉字字母下划线',
-            'cate_name.between'=>'分类名必须在2到10位之间',
-        ];
+            $arr = self::getCate($id);
 
+            foreach($arr as $k=>$v)
+            {
+                $v['status'] = 0;
+                foreach($v['sub'] as $m=>$n)
+                {
+                    $n['status'] = 0;
+                    unset($n['sub']);
+                    $n->save();
+                }
+                unset($v['sub']);
+                $v->save();
+            }
 
-        $validator =  Validator::make($input,$rule,$mess);
-        //如果表单验证失败 passes()
-        if ($validator->fails()) {
-            return back()
-                ->withErrors($validator)
-                ->withInput();
-        }
+            $cate->update($input);
 
-        // 使用模型的update进行更新
-        $res = $cate->update($input);
+            return redirect('admin/cate')->with('msg','禁用分类成功!');
 
-        // 判断更新是否成功, 跳转页面
-        if($res){
-            return redirect('admin/cate')->with('msg','修改成功');
+        }elseif(($request->only('status'))['status'] == 3){
+
+            if($cate->cate_pid != 0){
+
+                if(Cate::find($cate->cate_pid)->status == 0){
+                    return redirect('admin/cate')->with('status','上级分类还未启用!');
+                }
+            }
+
+            $input = ['status' => 1];
+
+            $cate->update($input);
+
+            return redirect('admin/cate')->with('msg','启用分类成功!');
+
         }else{
-            return back();
+
+            // 通过$request获取要修改的值
+            $input = $request->only('cate_name');
+
+            $rule = [
+                'cate_name'=>'required|regex:/^[\x{4e00}-\x{9fa5}A-Za-z0-9_]+$/u|between:2,10',
+            ];
+
+
+            $mess = [
+                'cate_name.required'=>'分类名必须输入',
+                'cate_name.regex'=>'分类名必须是汉字字母下划线',
+                'cate_name.between'=>'分类名必须在2到10位之间',
+            ];
+
+
+            $validator =  Validator::make($input,$rule,$mess);
+            //如果表单验证失败 passes()
+            if ($validator->fails()) {
+                return back()
+                    ->withErrors($validator)
+                    ->withInput();
+            }
+
+            // 使用模型的update进行更新
+            $res = $cate->update($input);
+
+            // 判断更新是否成功, 跳转页面
+            if($res){
+                return redirect('admin/cate')->with('msg','修改成功');
+            }else{
+                return back();
+            }
+
+
         }
+
+
 
     }
 
@@ -237,5 +289,16 @@ class CateController extends Controller
             }
         }
         return $data;
+    }
+
+    static public function getCate($id)
+    {
+        $data = Cate::where('cate_pid',$id)->get();
+        $arr = [];
+        foreach ($data as $k => $v) {
+            $v['sub'] = self::getCate($v['cate_id']);
+            $arr[] = $v;
+        }
+        return $arr;
     }
 }

@@ -29,10 +29,8 @@ class UserController extends Controller
             })
             ->paginate($request->input('num', 5));
 
-<<<<<<< HEAD
-        // dd($user);
-=======
->>>>>>> origin/jyy
+
+
         $title='用户列表';
         return view('admin.user.list',['user'=>$user,'request'=>$request,'title'=>$title]);
     }

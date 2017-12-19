@@ -7,12 +7,13 @@
 
     <title>@yield('title')-『Panda熊猫』</title>
 
-    <link href="/homes/AmazeUI-2.4.2/assets/css/admin.css" rel="stylesheet" type="text/css">
-    <link href="/homes/AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet" type="text/css">
-    <link href="/homes/css/personal.css" rel="stylesheet" type="text/css">
+    <link href="{{url('/homes/AmazeUI-2.4.2/assets/css/admin.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{url('/homes/AmazeUI-2.4.2/assets/css/amazeui.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{url('/homes/css/personal.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{url('/homes/css/systyle.css')}}" rel="stylesheet" type="text/css">
 
-    <script src="/homes/AmazeUI-2.4.2/assets/js/jquery.min.js"></script>
-    <script src="/homes/AmazeUI-2.4.2/assets/js/amazeui.js"></script>
+    <script src="{{url('/homes/AmazeUI-2.4.2/assets/js/jquery.min.js')}}"></script>
+    <script src="{{url('/homes/AmazeUI-2.4.2/assets/js/amazeui.js')}}"></script>
     <script type="text/javascript" src="{{asset('jquery-1.8.3.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('layer/layer.js')}}"></script>
     @section('css')
@@ -54,14 +55,15 @@
 
             <div class="nav white">
                 <div class="logoBig">
-                    <li><img src="../images/logobig.png" /></li>
+                    <li><img src="{{url('/homes/images/logo/panda.jpg')}}" style="width:110px;height:80px;" /></li>
                 </div>
 
                 <div class="search-bar pr">
                     <a name="index_none_header_sysc" href="#"></a>
-                    <form>
-                        <input id="searchInput" name="index_none_header_sysc" type="text" placeholder="搜索" autocomplete="off">
-                        <input id="ai-topsearch" class="submit am-btn" value="搜索" index="1" type="submit">
+                    <form action="{{url('home/list')}}" method="post">
+                        {{csrf_field()}}
+                        <input id="searchInput" name="search" type="text" placeholder="搜索" autocomplete="off">
+                        <input id="ai-topsearch" class="submit am-btn"  value="搜索" index="1" type="submit">
                     </form>
                 </div>
             </div>
@@ -122,42 +124,61 @@
 
     </div>
 
+    <!-- JiaThis Button BEGIN -->
+    <script type="text/javascript" src="http://v3.jiathis.com/code_mini/jiathis_r.js?move=0&amp;btn=r4.gif" charset="utf-8"></script>
+    <!-- JiaThis Button END -->
+
+    <script type='text/javascript'>
+        (function(m, ei, q, i, a, j, s) {
+            m[i] = m[i] || function() {
+                (m[i].a = m[i].a || []).push(arguments)
+            };
+            j = ei.createElement(q),
+                s = ei.getElementsByTagName(q)[0];
+            j.async = true;
+            j.charset = 'UTF-8';
+            j.src = 'https://static.meiqia.com/dist/meiqia.js?_=t';
+            s.parentNode.insertBefore(j, s);
+        })(window, document, 'script', '_MEIQIA');
+        _MEIQIA('entId', 91394);
+    </script>
+
     <aside class="menu">
         <ul>
             <li class="person active">
                 <a href="index">个人中心</a>
             </li>
             <li class="person">
-                <a href="#">个人资料</a>
+                {{--<a href="#">个人资料</a>--}}
                 <ul>
-                    <li> <a href="information">个人信息</a></li>
-                    <li> <a href="safety.html">安全设置</a></li>
-                    <li> <a href="address">收货地址</a></li>
+                    <li> <a href="{{url('person/information')}}" >个人信息</a></li>
+                    {{--<li> <a href="safety.html">安全设置</a></li>--}}
                 </ul>
             </li>
             <li class="person">
-                <a href="#">我的交易</a>
+                {{--<a href="#">我的交易</a>--}}
                 <ul>
                     <li><a href="order">订单管理</a></li>
-                    <li> <a href="change.html">退款售后</a></li>
+                    {{--<li> <a href="change.html">退款售后</a></li>--}}
                 </ul>
             </li>
             <li class="person">
-                <a href="#">我的资产</a>
+                {{--<a href="#">我的资产</a>--}}
                 <ul>
-                    <li> <a href="coupon.html">优惠券 </a></li>
-                    <li> <a href="bonus.html">红包</a></li>
-                    <li> <a href="bill.html">账单明细</a></li>
+                    <li> <a href="{{url('person/address')}}">收货地址</a></li>
+                    {{--<li> <a href="coupon.html">优惠券 </a></li>--}}
+                    {{--<li> <a href="bonus.html">红包</a></li>--}}
+                    {{--<li> <a href="bill.html">账单明细</a></li>--}}
                 </ul>
             </li>
 
             <li class="person">
-                <a href="#">我的小窝</a>
+                {{--<a href="#">我的小窝</a>--}}
                 <ul>
-                    <li> <a href="collection">收藏</a></li>
-                    <li> <a href="foot.html">足迹</a></li>
-                    <li> <a href="comment.html">评价</a></li>
-                    <li> <a href="news.html">消息</a></li>
+                    <li> <a href="{{url('person/collection')}}">我的收藏</a></li>
+                    {{--<li> <a href="foot.html">足迹</a></li>--}}
+                    {{--<li> <a href="comment.html">评价</a></li>--}}
+                    {{--<li> <a href="news.html">消息</a></li>--}}
                 </ul>
             </li>
 

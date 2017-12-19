@@ -5,8 +5,10 @@
 @endsection
 
 @section('css')
-    <link href="/homes/css/infstyle.css" rel="stylesheet" type="text/css">
-    <script src="/homes/js/datePicker.js"></script>
+    <link href="{{url('/homes/css/infstyle.css')}}" rel="stylesheet" type="text/css">
+    <script src="{{url('/homes/js/datePicker.js')}}"></script>
+
+
 @endsection
 
 @section('content')
@@ -18,39 +20,117 @@
                 <hr/>
 
                 <!--头像 -->
-                <div class="user-infoPic">
 
-                    <div class="filePic">
-                        <input type="file" class="inputPic" allowexts="gif,jpeg,jpg,png,bmp" accept="image/*">
-                        <img class="am-circle am-img-thumbnail" src="../images/getAvatar.do.jpg" alt="" />
-                    </div>
 
-                    <p class="am-form-help">头像</p>
+                {{--<input type="text" size="40" id="limg" name="face" >--}}
+                {{--<input  id="tp" type="file" name="facee" multiple='true'>--}}
+                {{--<img src="" id="img1" alt="" style="width:80px;height:80px">--}}
 
-                    <div class="info-m">
-                        <div><b>用户名：<i>小叮当</i></b></div>
-                        <div class="u-level">
-									<span class="rank r2">
-							             <s class="vip1"></s><a class="classes" href="#">铜牌会员</a>
-						            </span>
-                        </div>
-                        <div class="u-safety">
-                            <a href="safety.html">
-                                账户安全
-                                <span class="u-profile"><i class="bc_ee0000" style="width: 60px;" width="0">60分</i></span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                <script type="text/javascript">
+
+                    $(function () {
+                        $("#tp").change(function () {
+
+                            $('img1').show();
+                            uploadImage();
+
+                        });
+                    });
+                    function uploadImage() {
+                        // 判断是否有选择上传文件
+                        var imgPath = $("#tp").val();
+                        if (imgPath == "") {
+                            alert("请选择上传图片！");
+                            return;
+                        }
+                        //判断上传文件的后缀名
+                        var strExtension = imgPath.substr(imgPath.lastIndexOf('.') + 1);
+                        if (strExtension != 'jpg' && strExtension != 'gif'
+                            && strExtension != 'png' && strExtension != 'bmp') {
+                            alert("请选择图片文件");
+                        }
+
+                     var formData = new FormData($('#bd')[0]);
+                        var formData = new FormData();
+                        formData.append("facee", $('#tp')[0].files[0]);
+                        formData.append("_token", '{{csrf_token()}}');
+
+
+                        $.ajax({
+                            type: "POST",
+                            url: "/person/upload",
+                            data: formData,
+                            async: true,
+                            cache: false,
+                            contentType: false,
+                            processData: false,
+                            success: function(data) {
+                                // $('#img1').attr('src','/uploads/'+data);
+                                //$('#img1').attr('src','http://p09v2gc7p.bkt.clouddn.com/uploads/'+data);
+                                $('#img1').attr('src','/uploads/'+data);
+                                $('#img1').show();
+                                $('#limg').attr('value','/uploads/'+data);
+                            },
+                            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                                alert("上传失败，请检查网络后重试");
+                            }
+                        });
+                    }
+                </script>
+
 
                 <!--个人信息 -->
                 <div class="info-main">
-                    <form class="am-form am-form-horizontal">
+                    <form class="am-form am-form-horizontal" id="bd" action="{{url('person/information/'.$info->id)}}" method="post">
+
+                        <input type='hidden' id="limg" name="face" value="{{$info->face}}">
+
+                        <div class="user-infoPic">
+
+                            {{csrf_field()}}
+                            {{method_field('put')}}
+                            <div class="filePic">
+
+                                <input type="file" class="inputPic" id="tp" name="facee" multiple='true' allowexts="gif,jpeg,jpg,png,bmp" accept="image/*">
+                                <img src="{{$info->face}}" id="img1" alt="" style="width:90px;height:90px;border-radius:50%; overflow:hidden;padding:3px;box-shadow: 0px 0px 0px 4px white,0px 0px 0px 5px gray;">
+                            </div>
+
+
+
+                            <p class="am-form-help">头像</p>
+
+                            <div class="info-m">
+                                <div><b>用户名：<i>{{$info->nickname}}</i></b></div>
+                                <div class="u-level">
+									<span class="rank r2">
+							             <s class="vip1"></s>铜牌会员
+						            </span>
+                                </div>
+                                <div class="u-safety">
+                                        账户安全
+                                        <span class="u-profile"><i class="bc_ee0000" style="width: 60px;" width="0">60分</i></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        @if (count($errors) > 0)
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @if(is_object($errors))
+                                        @foreach ($errors->all() as $error)
+                                            <li style="color:red">{{ $error }}</li>
+                                        @endforeach
+                                    @else
+                                        <li style="color:red">{{ $errors }}</li>
+                                    @endif
+                                </ul>
+                            </div>
+                        @endif
 
                         <div class="am-form-group">
                             <label for="user-name2" class="am-form-label">昵称</label>
                             <div class="am-form-content">
-                                <input type="text" id="user-name2" placeholder="nickname">
+                                <input type="text" id="user-name2" name="nickname" placeholder="nickname" value="{{$info->nickname}}">
 
                             </div>
                         </div>
@@ -58,7 +138,7 @@
                         <div class="am-form-group">
                             <label for="user-name" class="am-form-label">姓名</label>
                             <div class="am-form-content">
-                                <input type="text" id="user-name2" placeholder="name">
+                                <input type="text" id="user-name2" name="realname" placeholder="name" value="{{$info->realname}}">
 
                             </div>
                         </div>
@@ -67,22 +147,22 @@
                             <label class="am-form-label">性别</label>
                             <div class="am-form-content sex">
                                 <label class="am-radio-inline">
-                                    <input type="radio" name="radio10" value="male" data-am-ucheck> 男
+                                    <input type="radio" name="sex" value="1" @if($info->sex == 1) checked @endif data-am-ucheck> 男
                                 </label>
                                 <label class="am-radio-inline">
-                                    <input type="radio" name="radio10" value="female" data-am-ucheck> 女
+                                    <input type="radio" name="sex" value="0" @if($info->sex == 0) checked @endif data-am-ucheck> 女
                                 </label>
                                 <label class="am-radio-inline">
-                                    <input type="radio" name="radio10" value="secret" data-am-ucheck> 保密
+                                    <input type="radio" name="sex" value="2" @if($info->sex == 2) checked @endif data-am-ucheck> 保密
                                 </label>
                             </div>
                         </div>
 
                         <div class="am-form-group">
-                            <label for="user-birth" class="am-form-label">生日</label>
+                            <label for="user-birth" class="am-form-label" >生日</label>
                             <div class="am-form-content birth" style="padding-top:10px;">
 
-                                <input id="demo1" placeholder="请点击选择日期" name="birthday">
+                                <input id="demo1" placeholder="请点击选择日期" name="birthday" value="{{$info->birthday}}" style="width:575px; height:32px;background-color: #F5F8FA;border:1px solid #E4EAEE;text-indent:1em;">
                                 <script>
                                     var calendar = new datePicker();
                                     calendar.init({
@@ -98,42 +178,9 @@
                                     });
 
                                 </script>
-                                {{--<div class="birth-select">--}}
-                                    {{--<select data-am-selected>--}}
-                                        {{--<option value="a">2015</option>--}}
-                                        {{--<option value="b">1987</option>--}}
-                                    {{--</select>--}}
-                                    {{--<em>年</em>--}}
-                                {{--</div>--}}
-                                {{--<div class="birth-select2">--}}
-                                    {{--<select data-am-selected>--}}
-                                        {{--<option value="a">12</option>--}}
-                                        {{--<option value="b">8</option>--}}
-                                    {{--</select>--}}
-                                    {{--<em>月</em></div>--}}
-                                {{--<div class="birth-select2">--}}
-                                    {{--<select data-am-selected>--}}
-                                        {{--<option value="a">21</option>--}}
-                                        {{--<option value="b">23</option>--}}
-                                    {{--</select>--}}
-                                    {{--<em>日</em></div>--}}
                             </div>
 
 
-                        </div>
-                        <div class="am-form-group">
-                            <label for="user-phone" class="am-form-label">电话</label>
-                            <div class="am-form-content">
-                                <input id="user-phone" placeholder="telephonenumber" type="tel">
-
-                            </div>
-                        </div>
-                        <div class="am-form-group">
-                            <label for="user-email" class="am-form-label">电子邮件</label>
-                            <div class="am-form-content">
-                                <input id="user-email" placeholder="Email" type="email">
-
-                            </div>
                         </div>
                         <div class="am-form-group address">
                             <label for="user-address" class="am-form-label">收货地址</label>
@@ -162,7 +209,7 @@
                             </div>
                         </div>
                         <div class="info-btn">
-                            <div class="am-btn am-btn-danger">保存修改</div>
+                            <button type="submit" style="border: none;"><div class="am-btn am-btn-danger">保存修改</div></button>
                         </div>
 
                     </form>
